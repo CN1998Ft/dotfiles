@@ -16,7 +16,7 @@ vimcmd_replace_one_symbol = '[🅡 ➜](bold purple)'
 [os]
 disabled = false
 style = "bold blue"
-format = "[($symbol)]($style)"
+# format = "[($symbol)]($style)"
 
 [os.symbols]
 Alpaquita = " "
