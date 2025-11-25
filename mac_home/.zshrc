@@ -78,5 +78,5 @@ unset __mamba_setup
 
 # >>>> work alias >>>>
 alias opensim="open /Applications/OpenSim\ 4.5/OpenSim\ 4.5.app"
-alias pwe="conda activate phd; z project_related; clear"
+alias pwe="conda activate phd; cd project_related;"
 alias pwen="pwe; nvim"
