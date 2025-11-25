@@ -30,5 +30,5 @@ n() { if [ "$#" -eq 0 ]; then nvim .; else nvim "$@"; fi; }
 # Shell Tool section
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
-
+source <(fzf --zsh)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
