@@ -1,3 +1,5 @@
+# Use $XDG_CONFIG_HOME as the default for config files
+export XDG_CONFIG_HOME="$HOME/.config"
 # Enable terminal-shell plugins
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
@@ -11,12 +13,31 @@ source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 # alias section
 alias du="du -sh"
 # alias du1="du -hd1"
-alias ls="lsd"
-#alias cd="z"
+if command -v lsd &> /dev/null; then
+  alias ls="lsd"
+fi
+
+if command -v eza &> /dev/null; then
+  alias ls='eza -lh --group-directories-first --icons=auto'
+fi
+
+if command -v zoxide &> /dev/null; then
+  alias cd="zd"
+  zd() {
+    if [ $# -eq 0 ]; then
+      builtin cd ~ && return
+    elif [ -d "$1" ]; then
+      builtin cd "$1"
+    else
+      z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
+    fi
+  }
+fi
+
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 # alias vim="nvim"
 
 
-# export PATH="$PATH:/Applications/FEBioStudio.app/Contents/MacOS"
 export PATH="$PATH:/Applications/OpenSim\ 4.5/bin"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 

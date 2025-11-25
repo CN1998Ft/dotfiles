@@ -1,0 +1,14 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Fengtao Zhang
+	email = zhangfengtao1998@gmail.com
+[core]
+	excludesfile = /Users/fengtaozhang/.gitignore_global
+	editor = nvim
+	autocrlf = input
+[init]
+	defaultBranch = ft_mac
