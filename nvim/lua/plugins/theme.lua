@@ -1,0 +1,1 @@
+/home/fengtao/.config/omarchy/current/theme/neovim.lua
