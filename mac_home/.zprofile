@@ -7,3 +7,5 @@ export PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 export PATH="$PATH:/Applications/FEBioStudio.app/Contents/MacOS"
+
+export XDG_CONFIG_HOME="$HOME/.config"

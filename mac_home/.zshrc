@@ -10,11 +10,12 @@ source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 export ZVM_CURSOR_STYLE_ENABLED=false
 
 # alias section
-alias du="du -sh"
+# alias du="du -sh"
 # alias du1="du -hd1"
-if command -v lsd &> /dev/null; then
-  alias ls="lsd"
-fi
+# if command -v lsd &> /dev/null; then
+#   alias ls="lsd"
+# fi
+command -v lsd &> /dev/null && alias ls="lsd"
 
 if command -v eza &> /dev/null; then
   alias ls='eza -lh --group-directories-first --icons=auto'
@@ -73,7 +74,7 @@ unset __mamba_setup
 # --------------------- Temporary stuff --------------------- 
 
 # >>> Python path for specific projects, temporarily  >>>
-# export PYTHONPATH="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/project_related:$PYTHONPYTH"
+export PYTHONPATH="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/project_related:$PYTHONPYTH"
 # <<< Python path for specific projects, temporarily  <<<
 
 # >>>> work alias >>>>
