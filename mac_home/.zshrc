@@ -37,9 +37,14 @@ fi
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 # alias vim="nvim"
 
+# zsh completion system
+autoload -Uz compinit
+compinit
 
-export PATH="$PATH:/Applications/OpenSim\ 4.5/bin"
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+setopt auto_list
+setopt auto_menu
+zstyle ':completion:*' menu select
+
 
 
 # >>> conda initialize >>>
