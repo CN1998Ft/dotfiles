@@ -14,11 +14,14 @@ window-padding-y = 14
 confirm-close-surface=false
 resize-overlay = never
 gtk-toolbar-style = flat
-macos-titlebar-style = hidden
+# macos-titlebar-style = hidden
+macos-titlebar-style = tabs
+macos-icon = blueprint
 
 # Cursor styling
 cursor-style = "block"
 cursor-style-blink = true
+mouse-hide-while-typing = true
 
 # Cursor styling + SSH session terminfo
 # (all shell integration options must be passed together)
