@@ -1,0 +1,45 @@
+syntax on
+filetype plugin indent on
+set relativenumber
+set number
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set ruler
+set hlsearch
+set incsearch
+set scrolloff=10
+set sidescrolloff=25
+
+
+"Customise status line:
+set statusline=[%f]
+set statusline+=%m
+set statusline+=%r
+set statusline+=%h
+set statusline+=%=
+set statusline+=FileType: 
+set statusline+=%y
+set statusline+=\ 
+set statusline+=\--
+set statusline+=%p%%
+set statusline+=\--
+set statusline+=\ 
+set statusline+=row:
+set statusline+=%l/%L
+set statusline+=\ 
+set statusline+=col:
+set statusline+=%c
+set laststatus=2
+
+
+"Set curosr shape during vim session:
+let &t_EI = "\<Esc>[2 q"
+let &t_SR = "\<Esc>[3 q"
+let &t_SI = "\<Esc>[1 q"
+
+
+"Reset the cursor style to blinking block after leaving vim.
+autocmd VimLeave * silent !printf "\e[1 q"
+
+
