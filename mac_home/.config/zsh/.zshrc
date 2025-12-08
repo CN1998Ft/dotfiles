@@ -48,7 +48,8 @@ zstyle ':completion:*' menu select
 # history options
 HISTSIZE=1000000
 SAVESIZE=1000000
-HISTFILE="$XDG_CACHE_HOME/zsh_history"
+HISTFILE="$XDG_CACHE_HOME/zsh/history"
+export ZSHCOMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump-$ZSH_VERSION"
 HISTCONTROL=ignoreboth #Ignore duplicateds and commands
 
 
