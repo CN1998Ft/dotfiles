@@ -45,6 +45,11 @@ setopt auto_list
 setopt auto_menu
 zstyle ':completion:*' menu select
 
+# history options
+HISTSIZE=1000000
+SAVESIZE=1000000
+HISTFILE="$XDG_CACHE_HOME/zsh_history"
+HISTCONTROL=ignoreboth #Ignore duplicateds and commands
 
 
 # >>> conda initialize >>>
