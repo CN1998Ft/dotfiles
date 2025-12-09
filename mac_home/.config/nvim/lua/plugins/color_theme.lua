@@ -1,13 +1,13 @@
-return {
-	{ "neanias/everforest-nvim" },
-	{
-		"LazyVim/LazyVim",
-		opts = {
-			colorscheme = "everforest",
-			background = "soft",
-		},
-	},
-}
+-- return {
+-- 	{ "neanias/everforest-nvim" },
+-- 	{
+-- 		"LazyVim/LazyVim",
+-- 		opts = {
+-- 			colorscheme = "everforest",
+-- 			background = "soft",
+-- 		},
+-- 	},
+-- }
 -- return {
 --   {
 --     "gthelding/monokai-pro.nvim",
@@ -39,16 +39,16 @@ return {
 --     },
 --   },
 -- }
--- return {
---   {
---     "catppuccin/nvim",
---   },
---   lazy = false,
---   name = "catppuccin",
---   {
---     "lazyVim/LazyVim",
---     opts = {
---       colorscheme = "catppuccin-mocha",
---     },
---   },
--- }
+return {
+  {
+    "catppuccin/nvim",
+  },
+  lazy = false,
+  name = "catppuccin",
+  {
+    "lazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin-mocha",
+    },
+  },
+}
