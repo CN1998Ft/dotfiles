@@ -1,6 +1,6 @@
 # Dynamic theme colors
 # config-file = ?"~/.config/ghostty/themes/catppuccin-mocha.conf"
-theme = Catppuccin Mocha
+theme = Monokai Pro Ristretto
 
 # Font
 font-family = "JetBrainsMono Nerd Font"

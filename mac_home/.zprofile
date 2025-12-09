@@ -13,8 +13,8 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # history files
-export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
-export PYTHON_HISTORY="$XDG_DATA_HOME/python/history"
+export LESSHISTFILE="$XDG_STATE_HOME/less_history"
+export PYTHON_HISTORY="$XDG_STATE_HOME/python/history"
 
 # PATH
 # Setting PATH for Python 3.10

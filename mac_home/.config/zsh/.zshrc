@@ -48,9 +48,13 @@ zstyle ':completion:*' menu select
 # history options
 HISTSIZE=1000000
 SAVESIZE=1000000
-HISTFILE="$XDG_CACHE_HOME/zsh/history"
-export ZSHCOMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump-$ZSH_VERSION"
+[ -d "$XDG_STATE_HOME"/zsh ] || mkdir -p "$XDG_STATE_HOME"/zsh
+HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTCONTROL=ignoreboth #Ignore duplicateds and commands
+[ -d "$XDG_CACHE_HOME"/zsh ] || mkdir -p "$XDG_CACHE_HOME"/zsh
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
+compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-$ZSH_VERSION
+
 
 
 # >>> conda initialize >>>
