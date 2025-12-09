@@ -37,13 +37,6 @@ fi
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 # alias vim="nvim"
 
-# zsh completion system
-autoload -Uz compinit
-compinit
-
-setopt auto_list
-setopt auto_menu
-zstyle ':completion:*' menu select
 
 # history options
 HISTSIZE=1000000
@@ -51,10 +44,16 @@ SAVESIZE=1000000
 [ -d "$XDG_STATE_HOME"/zsh ] || mkdir -p "$XDG_STATE_HOME"/zsh
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTCONTROL=ignoreboth #Ignore duplicateds and commands
+
 [ -d "$XDG_CACHE_HOME"/zsh ] || mkdir -p "$XDG_CACHE_HOME"/zsh
+# zsh completion system
+autoload -Uz compinit
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-$ZSH_VERSION
 
+setopt auto_list
+setopt auto_menu
+zstyle ':completion:*' menu select
 
 
 # >>> conda initialize >>>
