@@ -16,9 +16,16 @@ window-padding-y = 14
 confirm-close-surface=false
 resize-overlay = never
 gtk-toolbar-style = flat
-macos-titlebar-style = hidden
-# macos-titlebar-style = tabs
+# macos-titlebar-style = hidden
+macos-titlebar-style = tabs
 macos-icon = blueprint
+# macos-icon = chalkboard
+# macos-icon = microchip
+# macos-icon = glass
+# macos-icon = holographic
+# macos-icon = paper
+# macos-icon = retro
+# macos-icon = xray
 
 # Cursor styling
 cursor-style = "block"
