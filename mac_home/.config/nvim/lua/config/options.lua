@@ -14,10 +14,11 @@ vim.opt.softtabstop = 2 -- Number of spaces a tab counts for while editing
 
 -- Set cursor to blink during nvim.
 vim.opt.guicursor = {
-  "n-v-c:block-blinkon500-blinkoff500",
-  "i-ci:ver25-blinkon500-blinkoff500",
-  "r-cr:hor20-blinkon500-blinkoff500",
-  "o:hor40-blinkon500-blinkoff500",
+  "a:block-blinkon0",
+  -- "n-v-c:block-blinkon500-blinkoff500",
+  -- "i-ci:ver25-blinkon500-blinkoff500",
+  -- "r-cr:hor20-blinkon500-blinkoff500",
+  -- "o:hor40-blinkon500-blinkoff500",
 }
 
 -- Add column ruler at 80.
