@@ -33,13 +33,3 @@ set statusline+=%c
 set laststatus=2
 
 
-"Set curosr shape during vim session:
-let &t_EI = "\<Esc>[2 q"
-let &t_SR = "\<Esc>[3 q"
-let &t_SI = "\<Esc>[1 q"
-
-
-"Reset the cursor style to blinking block after leaving vim.
-autocmd VimLeave * silent !printf "\e[1 q"
-
-
