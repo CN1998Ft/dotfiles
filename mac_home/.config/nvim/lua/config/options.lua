@@ -8,9 +8,9 @@ vim.opt.sidescrolloff = 200 --Keep at least 5 col on the left.
 
 -- Tab settings: expand tab to spaces, and set width to 2
 vim.opt.expandtab = true -- Convert tabs to spaces
-vim.opt.tabstop = 2 -- Number of spaces a tab counts for
-vim.opt.shiftwidth = 2 -- Number of spaces to use for autoindent
-vim.opt.softtabstop = 2 -- Number of spaces a tab counts for while editing
+vim.opt.tabstop = 4 -- Number of spaces a tab counts for
+vim.opt.shiftwidth = 4 -- Number of spaces to use for autoindent
+vim.opt.softtabstop = 4 -- Number of spaces a tab counts for while editing
 
 -- Set cursor to blink during nvim.
 vim.opt.guicursor = {

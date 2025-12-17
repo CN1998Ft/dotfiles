@@ -4,7 +4,8 @@ return {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "everforest",
-      background = "soft",
+      background = "hard",
+      ui_contrast = "high",
     },
   },
 }
