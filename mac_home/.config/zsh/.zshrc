@@ -14,6 +14,12 @@ export ZVM_CURSOR_STYLE_ENABLED=false
 # if command -v lsd &> /dev/null; then
 #   alias ls="lsd"
 # fi
+
+unalias run-help
+autoload run-help
+HELPDIR="/usr/share/zsh/$ZSH_VERSION/help"
+alias help=run-help
+
 command -v lsd &> /dev/null && alias ls="lsd"
 
 if command -v eza &> /dev/null; then
