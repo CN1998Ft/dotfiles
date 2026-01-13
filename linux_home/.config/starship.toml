@@ -17,7 +17,7 @@ error_symbol = '[➜](bold red)'
 [os]
 disabled = false
 style = "bold blue"
-format = "[($symbol)]($style)"
+# format = "[($symbol)]($style)"
 
 [os.symbols]
 Alpaquita = " "
