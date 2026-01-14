@@ -101,6 +101,14 @@ run = 'layout floating'
 if.app-id = 'org.localsend.localsendApp'
 run = 'layout floating'
 
+[[on-window-detected]]
+if.app-id = 'com.apple.DiskUtility'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.helpviewer'
+run = 'layout floating'
+
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
