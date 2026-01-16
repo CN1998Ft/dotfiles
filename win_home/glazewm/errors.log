@@ -1,0 +1,35 @@
+[2m2026-01-15T15:10:51.392052Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to execute 'zebar'.
+
+Error: The operation was canceled by the user. (0x800704C7)
+[2m2026-01-15T15:14:56.407102Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to execute 'zebar'.
+
+Error: The operation was canceled by the user. (0x800704C7)
+[2m2026-01-15T20:30:14.015631Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to execute 'terminal'.
+
+Error: The operation was canceled by the user. (0x800704C7)
+[2m2026-01-15T21:50:27.963341Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to execute 'start "https://github.com/CN1998Ft'.
+
+Error: The operation was canceled by the user. (0x800704C7)
+[2m2026-01-15T21:50:43.692283Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Command doesn't have an ending `"`: '"https://github.com/CN1998Ft'.
+[2m2026-01-15T21:51:04.676681Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to execute 'start "https://github.com/CN1998Ft"'.
+
+Error: The operation was canceled by the user. (0x800704C7)
+[2m2026-01-15T21:55:45.360698Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to execute '""C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe""'.
+
+Error: The operation was canceled by the user. (0x800704C7)
+[2m2026-01-15T21:56:03.978607Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Command doesn't have an ending `"`: '"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"'.
+[2m2026-01-15T23:09:06.830706Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to execute 'start "https://github.com/CN1998Ft"'.
+
+Error: The operation was canceled by the user. (0x800704C7)
+[2m2026-01-15T23:09:19.200290Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to execute 'Start "https://github.com/CN1998Ft"'.
+
+Error: The operation was canceled by the user. (0x800704C7)
+[2m2026-01-15T23:09:40.024346Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to execute 'Start "https://github.com/CN1998Ft"'.
+
+Error: The operation was canceled by the user. (0x800704C7)
+[2m2026-01-15T23:10:14.371286Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to execute 'Start-Process "https://github.com/CN1998Ft"'.
+
+Error: The operation was canceled by the user. (0x800704C7)
+[2m2026-01-15T23:11:17.009888Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to execute 'Start-Process "https://github.com/CN1998Ft"'.
+
+Error: The operation was canceled by the user. (0x800704C7)
