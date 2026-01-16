@@ -44,14 +44,14 @@ gaps:
   scale_with_dpi: true
 
   # Gap between adjacent windows.
-  inner_gap: '10px'
+  inner_gap: '7px'
 
   # Gap between windows and the screen edge.
   outer_gap:
     top: '5px'
-    right: '10px'
-    bottom: '10px'
-    left: '10px'
+    right: '5px'
+    bottom: '5px'
+    left: '5px'
 
 window_effects:
   # Visual effects to apply to the focused window.
@@ -223,7 +223,8 @@ keybindings:
 
   # Change the focused window to be floating.
   - commands: ['toggle-floating --centered']
-    bindings: ['alt+shift+space']
+    # bindings: ['alt+shift+space']
+    bindings: ['alt+shift+f']
 
   # Change the focused window to be tiling.
   - commands: ['toggle-tiling']
@@ -298,14 +299,14 @@ keybindings:
 
   # Move the focused window's parent workspace to a monitor in a given
   # direction.
-  - commands: ['move-workspace --direction left']
-    bindings: ['alt+shift+a']
-  - commands: ['move-workspace --direction right']
-    bindings: ['alt+shift+f']
-  - commands: ['move-workspace --direction up']
-    bindings: ['alt+shift+d']
-  - commands: ['move-workspace --direction down']
-    bindings: ['alt+shift+s']
+  # - commands: ['move-workspace --direction left']
+  #   bindings: ['alt+shift+a']
+  # - commands: ['move-workspace --direction right']
+  #   bindings: ['alt+shift+f']
+  # - commands: ['move-workspace --direction up']
+  #   bindings: ['alt+shift+d']
+  # - commands: ['move-workspace --direction down']
+  #   bindings: ['alt+shift+s']
 
   # Move focused window to a workspace defined in `workspaces` config.
   - commands: ['move --workspace 1', 'focus --workspace 1']

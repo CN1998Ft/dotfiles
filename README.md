@@ -58,13 +58,13 @@ My personal dotfiles started with MacOs and Linux. Finally, with Windows too.
 |alt+shift+hjkl(motions keys)|Swap focused window position|
 |alt+shift+numbers|send focused window to workspaces(number)|
 |alt+f |Toggle focused window fullscreen|
+|alt+shift+f |Toggle focused window floating|
 
 
 ### MacOs aerospace specific shortcuts table
 
 |Application Shortcuts| Description |
 |------------|-------------|
-|cmd/super/win+enter|Launch ghostty/terminal|
-|cmd/super/win+b|Launch Google chrome|
-|cmd/super/win+y|Launch Youtube|
+|alt+slash|Toggle horizontal vertical tiles|
+|alt+comma|Toggle horizontal vertical accordion|
 
