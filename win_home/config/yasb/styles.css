@@ -133,31 +133,45 @@
     border-radius: 12px;
     border: 1px solid var(--surface1);
 }
-.komorebi-workspaces .offline-status {
-    color: var(--surface2);
-    font-size: 12px;
-    padding: 0 0 0 4px;
-    font-weight: 600;
+.glazewm-workspaces {
+    margin: 0;
 }
-.komorebi-workspaces .ws-btn {
-    border: none;
-    background-color: transparent;
-    margin: 0 3px;
-    padding: 0;
+
+.glazewm-workspaces .ws-btn {
     font-size: 14px;
-    color: var(--surface2);
+    background-color: transparent;
+    border: none;
+    padding: 0px 4px 0px 4px;
+    margin: 0 2px 0 2px;
+    color: #384B55;
 }
-.komorebi-workspaces .ws-btn:hover {
-    color: var(--overlay2);
+
+.glazewm-workspaces .ws-btn.active_populated {
+    color: #83C092;
+    background-color: #384B55;
 }
-.komorebi-workspaces .ws-btn.populated {
-    color: var(--text);
+.glazewm-workspaces .ws-btn.active_empty {
+    color: #E67E80;
+    background-color: #384B55;
 }
-.komorebi-workspaces .ws-btn.active {
-    color: var(--text);
+
+.glazewm-workspaces .ws-btn.populated {
+    color: #83C092;
 }
+
+.glazewm-workspaces .ws-btn.empty {
+    color: #E67E80;
+}
+
+.glazewm-workspaces .ws-btn:hover,
+.glazewm-workspaces .ws-btn.populated:hover,
+.glazewm-workspaces .ws-btn.empty:hover {
+    background-color: #3C4841;
+}
+.memory-widget .icon,
 .cpu-widget .icon {
-    color: var(--orange);
+    /* color: #E69875; */
+    color: var(--orange)
 }
 .memory-widget .label,
 .cpu-widget .label {

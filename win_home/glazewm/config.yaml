@@ -48,7 +48,7 @@ gaps:
 
   # Gap between windows and the screen edge.
   outer_gap:
-    top: '10px'
+    top: '5px'
     right: '10px'
     bottom: '10px'
     left: '10px'
@@ -261,6 +261,10 @@ keybindings:
   # Launch browsers
   - commands: ['shell-exec chrome.exe "https://github.com/CN1998Ft"']
     bindings: ['LWin+b']
+
+  # Youtube
+  - commands: ['shell-exec chrome.exe "https://youtube.com"']
+    bindings: ['LWin+y']
 
   # Focus the next/previous active workspace defined in `workspaces` config.
   - commands: ['focus --next-active-workspace']

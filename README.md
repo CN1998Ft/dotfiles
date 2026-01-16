@@ -38,3 +38,33 @@ My personal dotfiles started with MacOs and Linux. Finally, with Windows too.
 - pwsh
 - yasb
 - glazewm
+
+---
+## Shortcuts
+### Universal shortcuts table
+|Application Shortcuts| Description |
+|------------|-------------|
+|cmd/super/win+enter|Launch ghostty/terminal|
+|cmd/super/win+b|Launch Google chrome|
+|cmd/super/win+y|Launch Youtube|
+|cmd/super/win+w/q|Close focused window|
+
+
+
+|Window manager bindings| Description |
+|------------|-------------|
+|alt+hjkl(motions keys)|Change focused window|
+|alt+numbers|Change focused workspaces|
+|alt+shift+hjkl(motions keys)|Swap focused window position|
+|alt+shift+numbers|send focused window to workspaces(number)|
+|alt+f |Toggle focused window fullscreen|
+
+
+### MacOs aerospace specific shortcuts table
+
+|Application Shortcuts| Description |
+|------------|-------------|
+|cmd/super/win+enter|Launch ghostty/terminal|
+|cmd/super/win+b|Launch Google chrome|
+|cmd/super/win+y|Launch Youtube|
+

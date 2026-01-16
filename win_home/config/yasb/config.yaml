@@ -128,7 +128,7 @@ widgets:
   memory:
     type: "yasb.memory.MemoryWidget"
     options:
-      label: " MEM"
+      label: "\uefc5 MEM"
       label_alt: "VIRT: {virtual_mem_percent}% SWAP: {swap_mem_percent}%"
       update_interval: 5000
       progress_bar:
@@ -146,7 +146,7 @@ widgets:
   cpu:
     type: "yasb.cpu.CpuWidget"
     options:
-      label: " CPU"
+      label: "\uf4bc CPU"
       label_alt: "CPU {info[percent][total]:.0f}%"
       progress_bar:
         enabled: true
@@ -212,7 +212,7 @@ widgets:
     type: "glazewm.workspaces.GlazewmWorkspacesWidget"
     options:
       offline_label: "\u23fc Offline"
-      hide_empty_workspaces: false
+      hide_empty_workspaces: true
       hide_if_offline: false
       enable_scroll_switching: true
       btn_shadow:

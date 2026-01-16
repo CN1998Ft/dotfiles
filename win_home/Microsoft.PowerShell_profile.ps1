@@ -1,7 +1,8 @@
 # ==> region conda initialize
 # !! Contents within this block are managed by 'conda init' !!
-If (Test-Path "C:\Users\93581\miniforge3\Scripts\conda.exe") {
-    (& "C:\Users\93581\miniforge3\Scripts\conda.exe" "shell.powershell" "hook") |
+If (Test-Path "$HOME/miniforge3/Scripts/conda.exe") {
+    echo hello
+    (& "$HOME/miniforge3/Scripts/conda.exe" "shell.powershell" "hook") |
     Out-String | ?{$_} | Invoke-Expression
 }
 #> <== endregion
@@ -29,12 +30,12 @@ Set-Alias -Name ls -Value lsa
 #> <== Aliases
 # ==> PhD Aliases
 function pwe{
-  cd "phd_project";
+  cd "project";
   conda activate phd;
   clear
 }
 function pwen {
-  cd "phd_project";
+  cd "project";
   conda activate phd;
   clear;
   nvim

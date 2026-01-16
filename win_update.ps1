@@ -38,6 +38,19 @@ for (($i=0); $package = $packages[$i]; $i++)
     scoop update $package
 }
 
+# Add glazewm to startup folder
+$startup_glazewm="$HOME/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/glazewm.exe"
+$glazewm_scoop="$HOME/scoop/apps/glazewm/current/glazewm.exe"
+if (-Not(test-path $startup_glazewm))
+{
+    if (test-path $glazewm_scoop)
+    {
+        clear
+        echo Hello
+        Copy-Item -Force $glazewm_scoop $startup_glazewm
+    }
+}
+
 # Start synchronize configuration files
 echo "Synchronizing Windows configuration"
 

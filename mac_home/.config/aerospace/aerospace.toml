@@ -148,6 +148,7 @@ run = 'layout floating'
 # Add shortcut for chrome and ghostty
 cmd-enter = 'exec-and-forget open -a ghostty'
 cmd-b = 'exec-and-forget open -a "Google Chrome"'
+cmd-y = 'exec-and-forget open "https://youtube.com"'
 
 # Fullscreen
 alt-f = 'fullscreen --no-outer-gaps'
