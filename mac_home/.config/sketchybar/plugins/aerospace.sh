@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
-aerospace_workspaces=$(aerospace list-workspaces --all)
-focused=$(aerospace list-workspaces --focused)
-for workspace in "${aerospace_workspaces[@]}"; do
-	if [[ "$1" = "$FOCUSED_WORKSPACE" ]]; then
-		sketchybar --set $NAME background.drawing=on
-		sketchybar --set $NAME label.drawing=on
-		sketchybar --move $NAME before chevron
-	fi
-done
+sketchybar --set $NAME label="$FOCUSED_WORKSPACE"
+# if [[ "$1" == "$FOCUSED_WORKSPACE" ]]; then
+# 	sketchybar --set $NAME label=""
+# else
+# 	sketchybar --set $NAME label=""
+# fi
