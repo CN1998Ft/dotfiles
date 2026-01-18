@@ -94,5 +94,36 @@ sketchybar --add item clock right \
 	--set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
 	--subscribe battery system_woke power_source_change
 
+# Playaround a bit
+
+brew_f=(
+	brew_f
+	width=0
+	icon.drawing=off
+	label.color=$BLACK
+	label.font="Hack Nerd Font:Bold:8.0"
+	label.y_offset=4
+	update_freq=1
+	script="$PLUGIN_DIR/brew_f.sh"
+)
+brew_cask=(
+	brew_cask
+	width=75
+	icon=""
+	icon.color=$BLACK
+	icon.align=left
+	label.font="Hack Nerd Font:Bold:8.0"
+	label.color=$BLACKGREEN
+	label.align=center
+	label.y_offset=-4
+	update_freq=1
+	script="$PLUGIN_DIR/brew_cask.sh"
+)
+
+sketchybar -m --add item brew_f q \
+	--set "${brew_f[@]}" \
+	--add item brew_cask q \
+	--set "${brew_cask[@]}"
+
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
