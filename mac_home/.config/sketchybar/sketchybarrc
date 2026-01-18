@@ -103,7 +103,7 @@ brew_f=(
 	label.color=$BLACK
 	label.font="Hack Nerd Font:Bold:8.0"
 	label.y_offset=4
-	update_freq=1
+	update_freq=86400
 	script="$PLUGIN_DIR/brew_f.sh"
 )
 brew_cask=(
@@ -116,7 +116,7 @@ brew_cask=(
 	label.color=$BLACKGREEN
 	label.align=center
 	label.y_offset=-4
-	update_freq=1
+	update_freq=86400
 	script="$PLUGIN_DIR/brew_cask.sh"
 )
 
