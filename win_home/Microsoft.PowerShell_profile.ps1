@@ -15,9 +15,29 @@ Invoke-Expression (&starship init powershell)
 function vim{
         nvim --clean $args
     }
+function zd{
+        if ($args.Count -eq 0){
+                Set-Location
+            }
+        elseif(Test-Path -Path $args){
+                Set-Location @args
+            }
+        else{
+                $pwd_1="$(pwd)"
+                z @args
+                $pwd_2="$(pwd)"
+                if ($pwd_1 -ne $pwd_2){
+                    Write-Host -NoNewline "`u{F17A9} "
+                    echo $pwd_2
+                    }
+                else {
+                    Write-Host "Error: Directory not found"
+                    }
+            }
+    }
 if (Test-Path Alias:cd){
 	Remove-Item Alias:cd -Force
-	Set-Alias -Name cd -Value z
+	Set-Alias -Name cd -Value zd
 }
 if (Test-Path Alias:ls){
 	Remove-Item Alias:ls -Force
