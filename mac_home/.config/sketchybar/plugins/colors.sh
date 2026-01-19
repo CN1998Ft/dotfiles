@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-export BAR=0x3f0ce6e6
+# export BAR=0x3f0ce6e6
+export BAR=0x6f374145
 export BACKGROUND=0x5fa7c080
 # Everforest theme
 export FOREGROUND=0xffd3c6aa

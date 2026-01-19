@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-sketchybar --set $NAME label="$FOCUSED_WORKSPACE"
+total=$(aerospace list-workspaces --all --count)
+sketchybar --set $NAME label="$FOCUSED_WORKSPACE / $total"
 # if [[ "$1" == "$FOCUSED_WORKSPACE" ]]; then
 # 	sketchybar --set $NAME label=""
 # else
