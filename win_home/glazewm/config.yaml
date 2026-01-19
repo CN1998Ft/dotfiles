@@ -260,7 +260,7 @@ keybindings:
   - commands: ['shell-exec wt']
     bindings: ['LWin+enter']
   # Launch browsers
-  - commands: ['shell-exec chrome.exe "https://github.com/CN1998Ft"']
+  - commands: ['shell-exec chrome.exe --new-window "https://github.com/CN1998Ft"']
     bindings: ['LWin+b']
 
   # Youtube
