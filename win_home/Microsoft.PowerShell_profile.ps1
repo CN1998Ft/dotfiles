@@ -35,6 +35,17 @@ function zd{
                     }
             }
     }
+function openf{
+        if ($args.Count -eq 0){
+                $fzf_in="$(fzf)"
+                if (-Not ($fzf_in -ne $null)){
+                        Invoke-Item $fzf_in
+                    }
+            }
+        elseif (Test-Path -Path $args){
+                Invoke-Item $args
+            }
+    }
 if (Test-Path Alias:cd){
 	Remove-Item Alias:cd -Force
 	Set-Alias -Name cd -Value zd

@@ -108,6 +108,8 @@ echo "Synchronzed all windows configurations."
 echo ""
 # <== Configuration synchronizing section
 
+. $PROFILE
+
 echo ""
 echo "Happy coding!"
 echo ""
