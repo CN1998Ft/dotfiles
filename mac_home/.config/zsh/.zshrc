@@ -40,13 +40,12 @@ if command -v zoxide &> /dev/null; then
 fi
 
 openf(){
-    if [[ $# -eq 0 ]];then
-        $fzf_in="$(fzf)"
-        if [[ -n $fzf_in ]];then
-            open $fzf_in
-        fi
+    fzf_in="$(fzf)"
+    if [[ -n $fzf_in ]]; then
+        open $fzf_in
     fi
 }
+
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 # alias vim="nvim"
 
