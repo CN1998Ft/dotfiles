@@ -36,16 +36,12 @@ function zd{
             }
     }
 function openf{
-        if ($args.Count -eq 0){
-                $fzf_in="$(fzf)"
-                if (-Not ($fzf_in -ne $null)){
-                        Invoke-Item $fzf_in
-                    }
-            }
-        elseif (Test-Path -Path $args){
-                Invoke-Item $args
-            }
+    $fzf_in="$(fzf)"
+    if (($fzf_in -ne $null) -and ($fzf_in -ne '')){
+        echo $fzf_in
+        Invoke-Item $fzf_in
     }
+}
 if (Test-Path Alias:cd){
 	Remove-Item Alias:cd -Force
 	Set-Alias -Name cd -Value zd
