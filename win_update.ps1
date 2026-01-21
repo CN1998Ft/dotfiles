@@ -93,7 +93,7 @@ Copy-Item -Recurse -Force ./win_home/nvim $HOME/AppData/Local/
 # PowerShell
 Copy-Item -Force ./win_home/Microsoft.PowerShell_profile.ps1 $PROFILE
 
-# YASB and Starship
+# YASB and Starship and vim
 $config_dir = $(ls ./win_home/config/)
 for (($i=0); $config=$config_dir[$i]; $i++)
 {

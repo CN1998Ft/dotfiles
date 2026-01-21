@@ -4,6 +4,7 @@ syntax on
 filetype plugin indent on
 set relativenumber
 set number
+set colorcolumn=80
 set shiftwidth=4
 set tabstop=4
 set expandtab
@@ -11,10 +12,13 @@ set ruler
 set hlsearch
 set incsearch
 set scrolloff=10
-set sidescrolloff=25
+set sidescrolloff=200
 
+" Colorscheme
+colorscheme default
+set background=light
 
-"Customise status line:
+" Customise status line:
 set statusline=[%f]
 set statusline+=%m
 set statusline+=%r

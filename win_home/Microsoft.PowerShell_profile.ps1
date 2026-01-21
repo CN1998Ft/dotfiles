@@ -13,7 +13,7 @@ Invoke-Expression (&starship init powershell)
 
 # ==> Aliases
 function vim{
-        nvim --clean $args
+        nvim -u $HOME/.config/vim/vimrc @args
     }
 function zd{
         if ($args.Count -eq 0){

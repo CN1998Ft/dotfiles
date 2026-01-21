@@ -1,7 +1,6 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
-vim.opt.winbar = "%=%m %F"
 -- Set minimal number of screen lines above and below the cursor
 vim.opt.scrolloff = 10 -- Keeps at least 10 lines above/below cursor
 vim.opt.sidescrolloff = 200 --Keep at least 5 col on the left.
