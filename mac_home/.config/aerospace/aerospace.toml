@@ -59,7 +59,7 @@ automatically-unhide-macos-hidden-apps = false
 # even when they are invisible.
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-# persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -146,7 +146,18 @@ run = 'layout floating'
 # '''
 
 # Add shortcut for chrome and ghostty
-cmd-enter = 'exec-and-forget open -na ghostty'
+# cmd-enter = 'exec-and-forget open -na ghostty'
+cmd-enter='''exec-and-forget osascript -e '
+tell application "Ghostty"
+    if it is running
+        tell application "System Events" to tell process "Ghostty"
+            click menu item "New Window" of menu "File" of menu bar 1
+        end tell
+    else
+        activate
+    end if
+end tell'
+'''
 cmd-b = 'exec-and-forget open -na "Google Chrome"'
 cmd-y = 'exec-and-forget open "https://youtube.com"'
 
