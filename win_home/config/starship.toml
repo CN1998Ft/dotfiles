@@ -3,6 +3,7 @@ $os\
 $all\
 $character"""
 
+command_timeout=1000
 add_newline = true
 
 [character]
@@ -227,8 +228,7 @@ symbol = " "
 symbol = " "
 
 [custom.uv]
-command = 'uv --version | awk "{print \$2}"'
-# command = 'uv --version | awk "{print \$1, \$2}"'
+command = '((uv --version) -split " ")[1]'
 detect_files = ["uv.lock"]
 symbol = ' 󰑡 '
 format = 'by[${symbol}v${output}]($style) '
