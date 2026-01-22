@@ -7,7 +7,8 @@
 	name = Fengtao Zhang
 	email = zhangfengtao1998@gmail.com
 [core]
-	excludesfile = /Users/fengtaozhang/.gitignore_global
+    # excludesfile = $HOME/.config/git/ignore
+    excludesfile = $XDG_CONFIG_HOME/git/ignore
 	editor = nvim
 	autocrlf = input
 [init]
