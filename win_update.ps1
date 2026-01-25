@@ -39,6 +39,7 @@ $packages = @(
 'starship'
 'yasb'
 'zoxide'
+'Alacritty'
 )
 
 # Install mising packages if 
@@ -89,6 +90,7 @@ echo ""
 
 # Neovim
 Copy-Item -Recurse -Force ./win_home/nvim $HOME/AppData/Local/
+Copy-Item -Recurse -Force ./win_home/alacritty $HOME/AppData/
 
 # PowerShell
 Copy-Item -Force ./win_home/Microsoft.PowerShell_profile.ps1 $PROFILE

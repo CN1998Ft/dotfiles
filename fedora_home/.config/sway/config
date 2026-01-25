@@ -7,7 +7,8 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4
+set $mod Mod1
+set $launch Mod4
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -31,11 +32,12 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
-output * bg /usr/share/backgrounds/default.jxl fill
+output * bg $HOME/Pictures/3-ristretto.jpg fill
 #
 # Example configuration:
 #
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+output HDMI-A-1 resolution 1920x1080 position 0 0
+output eDP-1 resolution 1920x1080 position 1920 0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -66,18 +68,41 @@ output * bg /usr/share/backgrounds/default.jxl fill
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+### Style
+# Font
+font JetBrainsMonoNL Nerd Font Mono 12
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
+# Gaps
+# gaps inner 35
+# gaps outer 15
+
 ### Key bindings
 #
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym $launch+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $launch+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $launch+space exec $menu
+
+    # Start your browser
+    bindsym $launch+b exec chromium-browser
+
+    # Start youtube
+    bindsym $launch+y exec "xdg-open https://youtube.com"
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
