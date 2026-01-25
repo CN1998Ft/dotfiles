@@ -25,11 +25,11 @@
 	enabled = true           # Record and reuse conflict resolutions
 	autoupdate = true        # Apply stored conflict resolutions automatically
 [user]
-  name = ft_linux
+  name = ft_fedora
   email = zhangfengtao1998@gmail.com
 [core]
   excludesfile = $HOME/.config/git/ignore
   editor = nvim
   autocrlf = input
 [init]
-  defaultBranch = ft_linux
+  defaultBranch = ft_fedora

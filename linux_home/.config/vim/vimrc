@@ -1,5 +1,6 @@
 set nocompatible
 set viminfofile=$XDG_STATE_HOME/vim/viminfo
+set nowrap
 syntax on
 filetype plugin indent on
 set relativenumber
@@ -15,8 +16,8 @@ set scrolloff=10
 set sidescrolloff=200
 
 " Colorscheme
-colorscheme default
-set background=light
+colorscheme desert
+set background=dark
 
 " Customise status line:
 set statusline=[%f]
