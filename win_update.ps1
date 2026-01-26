@@ -39,6 +39,7 @@ $packages = @(
 'starship'
 'yasb'
 'zoxide'
+'alacritty'
 )
 
 # Install mising packages if 
@@ -64,11 +65,20 @@ for (($i=0); $package = $packages[$i]; $i++)
 # Add wt and glazewm to startup folder
 $startup_glazewm="$HOME/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/glazewm.lnk"
 $glazewm="$HOME/scoop/apps/glazewm/current/glazewm.exe"
+$startup_alacritty="$HOME/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/alacritty.lnk"
+$alacritty="$HOME/scoop/apps/alacritty/current/alacritty.exe"
 if (-Not (Test-Path $startup_glazewm))
 {
     $shell=New-Object -comObject WScript.Shell
     $shortcut=$shell.CreateShortcut($startup_glazewm)
     $shortcut.TargetPath=$glazewm
+    $shortcut.Save()
+}
+elseif (-Not (Test-Path $startup_alacritty))
+{
+    $shell=New-Object -comObject WScript.Shell
+    $shortcut=$shell.CreateShortcut($startup_alacritty)
+    $shortcut.TargetPath=$alacritty
     $shortcut.Save()
 }
 else
@@ -89,7 +99,9 @@ echo ""
 
 # Neovim
 Copy-Item -Recurse -Force ./win_home/nvim $HOME/AppData/Local/
-# Copy-Item -Recurse -Force ./win_home/alacritty $HOME/AppData/
+
+# Alacritty
+Copy-Item -Recurse -Force ./win_home/alacritty $HOME/AppData/Roaming/
 
 # PowerShell
 Copy-Item -Force ./win_home/Microsoft.PowerShell_profile.ps1 $PROFILE

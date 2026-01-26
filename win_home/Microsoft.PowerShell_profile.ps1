@@ -69,5 +69,5 @@ function pwen {
 #> <== PhD Aliases
 
 # ==> Powershell config
-Set-PSReadLineOption -EditMode vi
+# Set-PSReadLineOption -EditMode vi
 #> <== Powershell config
