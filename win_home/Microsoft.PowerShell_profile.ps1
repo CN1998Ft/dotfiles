@@ -27,7 +27,7 @@ function zd{
                 z @args
                 $pwd_2="$(pwd)"
                 if ($pwd_1 -ne $pwd_2){
-                    Write-Host -NoNewline "`u{F17A9} "
+                    Write-Host -NoNewline "`u{F17A9}"
                     echo $pwd_2
                     }
                 else {
@@ -57,13 +57,11 @@ Set-Alias -Name ls -Value lsa
 # ==> PhD Aliases
 function pwe{
   cd "project";
-  conda activate phd;
-  clear
+  conda activate phd
 }
 function pwen {
   cd "project";
   conda activate phd;
-  clear;
   nvim
 }
 #> <== PhD Aliases
