@@ -1,4 +1,5 @@
 set nocompatible
+set nowrap
 set viminfofile=$XDG_STATE_HOME/vim/viminfo
 syntax on
 filetype plugin indent on

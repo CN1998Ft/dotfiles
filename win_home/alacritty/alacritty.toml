@@ -3,7 +3,10 @@ TERM = "xterm-256color"
 WINIT_X11_SCALE_FACTOR = "1.0"
 
 [terminal]
-shell = {program = "C:\\Program Files\\PowerShell\\7\\pwsh.exe", args = ["-i"]}
+# shell = { program = "C:\\Program Files\\PowerShell\\7\\pwsh.exe", args = [
+#     "-i",
+# ] }
+shell = "pwsh"
 
 [window]
 padding.x = 10
@@ -23,7 +26,7 @@ style = { shape = "Block", blinking = "Never" }
 hide_when_typing = true
 
 [keyboard]
-bindings = [{key = "/", mods = "Control" , chars = "\u001f"},
-# {key="N",mods = "Control|Shift", command="alacritty"}
-{key="N",mods = "Control|Shift", action="CreateNewWindow"}
+bindings = [
+    { key = "/", mods = "Control", chars = "\u001f" },
+    {key="N",mods = "Control|Shift", action="CreateNewWindow"}
 ]
