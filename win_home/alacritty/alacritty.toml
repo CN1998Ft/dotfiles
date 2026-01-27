@@ -21,3 +21,9 @@ style = { shape = "Block", blinking = "Never" }
 
 [mouse]
 hide_when_typing = true
+
+[keyboard]
+bindings = [{key = "/", mods = "Control" , chars = "\u001f"},
+# {key="N",mods = "Control|Shift", command="alacritty"}
+{key="N",mods = "Control|Shift", action="SpawnNewInstance"}
+]
