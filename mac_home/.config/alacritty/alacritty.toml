@@ -17,3 +17,6 @@ style = { shape = "Block", blinking = "Never" }
 
 [mouse]
 hide_when_typing = true
+
+[keyboard]
+bindings = [{key="N",mods = "Control|Shift", action="CreateNewWindow"}]
