@@ -1,13 +1,14 @@
 # .bashrc
+[[ -n $PS1 ]] || return
 
 # Source global definitions
 if [[ -f /etc/bashrc ]]; then
-    . /etc/bashrc
+	. /etc/bashrc
 fi
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:" ]]; then
-    PATH="$HOME/.local/bin:$PATH"
+	PATH="$HOME/.local/bin:$PATH"
 fi
 export PATH
 
@@ -49,23 +50,23 @@ shopt -s dirspell
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
 if command -v eza &>/dev/null; then
-    alias ls="eza -lh --group-directories-first --icons=auto"
+	alias ls="eza -lh --group-directories-first --icons=auto"
 fi
 
 if command -v zoxide &>/dev/null; then
-    alias cd="zd"
-    zd() {
-        if [[ $# -eq 0 ]]; then
-            builtin cd ~ && return
-        elif [[ -d "$1" ]]; then
-            builtin cd "$1"
-        else
-            z "$@" &>/dev/null && echo -ne "\U000F17A9" && pwd || echo "Error: Directory not found"
-            # z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
-        fi
-    }
+	alias cd="zd"
+	zd() {
+		if [[ $# -eq 0 ]]; then
+			builtin cd ~ && return
+		elif [[ -d "$1" ]]; then
+			builtin cd "$1"
+		else
+			z "$@" &>/dev/null && echo -ne "\U000F17A9" && pwd || echo "Error: Directory not found"
+			# z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
+		fi
+	}
 fi
 
 vim() {
-    nvim -u $HOME/.config/vim/vimrc $@
+	nvim -u $HOME/.config/vim/vimrc $@
 }

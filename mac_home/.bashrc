@@ -1,13 +1,14 @@
 # .bashrc
+[[ -n $PS1 ]] || return
 
 # Source global definitions
 if [[ -f /etc/bashrc ]]; then
-    . /etc/bashrc
+	. /etc/bashrc
 fi
 
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:" ]]; then
-    PATH="$HOME/.local/bin:$PATH"
+	PATH="$HOME/.local/bin:$PATH"
 fi
 export PATH
 
@@ -50,41 +51,41 @@ shopt -s dirspell
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
 if command -v eza &>/dev/null; then
-    alias ls="eza -lh --group-directories-first --icons=auto"
+	alias ls="eza -lh --group-directories-first --icons=auto"
 fi
 
 if command -v zoxide &>/dev/null; then
-    alias cd="zd"
-    zd() {
-        if [[ $# -eq 0 ]]; then
-            builtin cd ~ && return
-        elif [[ -d "$1" ]]; then
-            builtin cd "$1"
-        else
-            z "$@" &>/dev/null && echo -ne "\U000F17A9" && pwd || echo "Error: Directory not found"
-            # z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
-        fi
-    }
+	alias cd="zd"
+	zd() {
+		if [[ $# -eq 0 ]]; then
+			builtin cd ~ && return
+		elif [[ -d "$1" ]]; then
+			builtin cd "$1"
+		else
+			z "$@" &>/dev/null && echo -ne "\U000F17A9" && pwd || echo "Error: Directory not found"
+			# z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
+		fi
+	}
 fi
 
 openf() {
-    fzf_in="$(fzf)"
-    if [[ -n $fzf_in ]]; then
-        open $fzf_in
-    fi
+	fzf_in="$(fzf)"
+	if [[ -n $fzf_in ]]; then
+		open $fzf_in
+	fi
 }
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/fengtaozhang/miniforge3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+	eval "$__conda_setup"
 else
-    if [ -f "/Users/fengtaozhang/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/Users/fengtaozhang/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/fengtaozhang/miniforge3/bin:$PATH"
-    fi
+	if [ -f "/Users/fengtaozhang/miniforge3/etc/profile.d/conda.sh" ]; then
+		. "/Users/fengtaozhang/miniforge3/etc/profile.d/conda.sh"
+	else
+		export PATH="/Users/fengtaozhang/miniforge3/bin:$PATH"
+	fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
@@ -95,9 +96,9 @@ export MAMBA_EXE='/Users/fengtaozhang/miniforge3/bin/mamba'
 export MAMBA_ROOT_PREFIX='/Users/fengtaozhang/miniforge3'
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
+	eval "$__mamba_setup"
 else
-    alias mamba="$MAMBA_EXE" # Fallback on help from mamba activate
+	alias mamba="$MAMBA_EXE" # Fallback on help from mamba activate
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
