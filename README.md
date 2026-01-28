@@ -29,7 +29,9 @@ My personal dotfiles started with MacOs and Linux. Finally, with Windows too.
 - Alacritty
 - git
 - vim
-- sway <!-- - *~~hyprland~~* potential replacement [sway] -->
+- sway: window manager and session basically<!-- - *~~hyprland~~* potential replacement [sway] -->
+- rofi: app launcher
+- kanshi: dynamic display manager
 - starship
 - .bashrc
 
@@ -39,6 +41,7 @@ My personal dotfiles started with MacOs and Linux. Finally, with Windows too.
 > Since Windows does not have any tool like GNU/stow, we will create a
 > PowerShell script to create symlink for the following configurations.
 
+- Alacritty
 - neovim
 - starship
 - pwsh

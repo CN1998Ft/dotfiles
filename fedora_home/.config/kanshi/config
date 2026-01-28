@@ -1,0 +1,18 @@
+output "XEC MFG24F4L *" {
+        mode 1920x1080@180Hz
+        scale 1
+        position 0,0
+        alias $cheap_extern
+    }
+
+output "AU Optronics 0x82ED *" {
+        mode 1920x1080@144Hz
+        scale 1.2
+        position 1920,0
+        alias $builtin
+    }
+
+profile phd_2026 {
+        output $cheap_extern enable
+        output $builtin enable
+    }

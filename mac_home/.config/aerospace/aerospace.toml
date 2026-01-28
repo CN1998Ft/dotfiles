@@ -146,7 +146,7 @@ run = 'layout floating'
 # '''
 
 # Add shortcut for chrome and ghostty
-# cmd-enter = 'exec-and-forget open -na ghostty'
+cmd-shift-enter = 'exec-and-forget open -na alacritty'
 cmd-enter = '''exec-and-forget osascript -e '
 tell application "Ghostty"
     if it is running
