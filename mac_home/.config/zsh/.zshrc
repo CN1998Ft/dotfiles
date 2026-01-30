@@ -23,7 +23,7 @@ alias help=run-help
 command -v lsd &> /dev/null && alias ls="lsd"
 
 if command -v eza &> /dev/null; then
-  alias ls='eza -lh --group-directories-first --icons=auto'
+  alias ls='eza -h --group-directories-first --icons=auto'
 fi
 
 if command -v zoxide &> /dev/null; then

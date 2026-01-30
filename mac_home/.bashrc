@@ -51,7 +51,7 @@ shopt -s dirspell
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
 if command -v eza &>/dev/null; then
-	alias ls="eza -lh --group-directories-first --icons=auto"
+	alias ls="eza -h --group-directories-first --icons=auto"
 fi
 
 if command -v zoxide &>/dev/null; then
