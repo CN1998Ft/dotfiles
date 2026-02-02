@@ -80,16 +80,16 @@ preset = 'qwerty'
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 7
-inner.vertical = 7
-outer.left = 5
-outer.bottom = 5
-outer.top = 5
-outer.right = 5
+inner.horizontal = [{ monitor."built-in" = 7 }, 8]
+inner.vertical = [{ monitor."built-in" = 7 }, 8]
+outer.left = [{ monitor."built-in" = 5 }, 5]
+outer.bottom = [{ monitor."built-in" = 5 }, 5]
+outer.top = [{ monitor."built-in" = 5 }, 37]
+outer.right = [{ monitor."built-in" = 5 }, 5]
 
 [workspace-to-monitor-force-assignment]
-1 = ['secondary', 'main', 'built-in']
-2 = 'built-in'
+1 = 'built-in'
+2 = ['secondary', 'main', 'built-in']
 3 = ['secondary', 'main', 'built-in']
 4 = ['secondary', 'main', 'built-in']
 5 = ['secondary', 'main', 'built-in']
@@ -225,7 +225,7 @@ alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
-alt-shift-10 = 'move-node-to-workspace 10'
+alt-shift-0 = 'move-node-to-workspace 10'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
