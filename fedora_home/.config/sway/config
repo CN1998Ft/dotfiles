@@ -83,6 +83,7 @@ for_window [workspace="2"] layout tabbed
 
 ## Boottraping some applications on startup
 exec_always kanshi
+exec_always fcitx5 -d
 exec $term
 exec chromium-browser
 
