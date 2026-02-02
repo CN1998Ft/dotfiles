@@ -87,6 +87,18 @@ outer.bottom = 5
 outer.top = 5
 outer.right = 5
 
+[workspace-to-monitor-force-assignment]
+1 = ['secondary', 'main', 'built-in']
+2 = 'built-in'
+3 = ['secondary', 'main', 'built-in']
+4 = ['secondary', 'main', 'built-in']
+5 = ['secondary', 'main', 'built-in']
+6 = ['secondary', 'main', 'built-in']
+7 = ['secondary', 'main', 'built-in']
+8 = ['secondary', 'main', 'built-in']
+9 = ['secondary', 'main', 'built-in']
+10 = ['secondary', 'main', 'built-in']
+
 # Add windows deteciton rules for certian apps to be float by default
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
@@ -201,6 +213,7 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
+alt-0 = 'workspace 10'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -212,6 +225,7 @@ alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
+alt-shift-10 = 'move-node-to-workspace 10'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'

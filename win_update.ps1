@@ -40,6 +40,7 @@ $packages = @(
 'yasb'
 'zoxide'
 'alacritty'
+'miktex'
 )
 
 # Install mising packages if 
