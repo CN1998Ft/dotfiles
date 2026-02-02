@@ -2,11 +2,13 @@ set nocompatible
 set nowrap
 syntax on
 filetype plugin indent on
+set smartindent
 set relativenumber
 set number
 set colorcolumn=80
 set shiftwidth=4
 set tabstop=4
+set softtabstop=4
 set expandtab
 set ruler
 set hlsearch
@@ -45,4 +47,5 @@ set guicursor=a:block-blinkon0
 "Reset the cursor style to blinking block after leaving vim.
 "autocmd VimLeave * silent !printf "\e[1 q"
 
-
+let mapleader = " "
+nnoremap <leader>e :Ex<CR>
