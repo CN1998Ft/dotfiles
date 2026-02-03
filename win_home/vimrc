@@ -49,7 +49,10 @@ set guicursor=a:block-blinkon0
 
 let mapleader = " "
 nnoremap <leader>e :Ex<CR>
-nnoremap <leader>b :buffers<CR>
+nnoremap <leader>bb :buffers<CR>
+nnoremap <leader>bd :bd<CR>
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bp :bp<CR>
 
 " GUI vim specific settings
 if has("gui_running")
