@@ -1,6 +1,7 @@
 set nocompatible
 set viminfofile=$XDG_STATE_HOME/vim/viminfo
 let g:netrw_home=$XDG_STATE_HOME.'/vim'
+let g:loaded_colorresp = 1
 set nowrap
 syntax on
 filetype plugin indent on
@@ -51,3 +52,4 @@ set guicursor=a:block-blinkon0
 
 let mapleader = " "
 nnoremap <leader>e :Ex<CR>
+nnoremap <leader>b :buffers<CR>
