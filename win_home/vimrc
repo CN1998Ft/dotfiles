@@ -1,0 +1,62 @@
+set nocompatible
+set nowrap
+syntax on
+filetype plugin indent on
+set smartindent
+set relativenumber
+set number
+set colorcolumn=80
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set expandtab
+set ruler
+set hlsearch
+set incsearch
+set scrolloff=10
+set sidescrolloff=200
+
+" Colorscheme
+colorscheme default
+set background=light
+
+" Customise status line:
+set statusline=[%f]
+set statusline+=%m
+set statusline+=%r
+set statusline+=%h
+set statusline+=%=
+set statusline+=FileType: 
+set statusline+=%y
+set statusline+=\ 
+set statusline+=\--
+set statusline+=%p%%
+set statusline+=\--
+set statusline+=\ 
+set statusline+=row:
+set statusline+=%l/%L
+set statusline+=\ 
+set statusline+=col:
+set statusline+=%c
+set laststatus=2
+
+
+" Set curosr shape during vim session:
+set guicursor=a:block-blinkon0
+
+" Reset the cursor style to blinking block after leaving vim.
+" autocmd VimLeave * silent !printf "\e[1 q"
+
+let mapleader = " "
+nnoremap <leader>e :Ex<CR>
+
+" GUI vim specific settings
+if has("gui_running")
+    set guioptions-=m
+    set guioptions-=T
+    set guioptions-=r
+    set guioptions-=L
+    set guifont=JetBrainsMono\ NFM:h13
+    set background=dark
+    colorscheme desert
+endif

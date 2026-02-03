@@ -12,9 +12,6 @@ Invoke-Expression (&starship init powershell)
 #> <== plugins/addons
 
 # ==> Aliases
-function vim{
-        nvim -u $HOME/.config/vim/vimrc @args
-    }
 function zd{
         if ($args.Count -eq 0){
                 Set-Location

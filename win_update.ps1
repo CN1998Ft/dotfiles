@@ -41,6 +41,7 @@ $packages = @(
 'zoxide'
 'alacritty'
 'miktex'
+'vim'
 )
 
 # Install mising packages if 
@@ -101,13 +102,25 @@ echo ""
 # Neovim
 Copy-Item -Recurse -Force ./win_home/nvim $HOME/AppData/Local/
 
+# vim
+$home_path=$([Environment]::GetFolderPath("MyDocuments"))
+$vim_path=$home_path+"\.vimrc"
+$gvim_path=$home_path+"\_vimrc"
+if ( Test-Path $home_path ){
+    Copy-Item -Force ./win_home/vimrc $vim_path
+    Copy-Item -Force ./win_home/vimrc $gvim_path
+}
+# if ( Test-Path $HOME/.config/vim ){
+#     Remove-Item -Recurse -Force $HOME/.config/vim
+# }
+
 # Alacritty
 Copy-Item -Recurse -Force ./win_home/alacritty $HOME/AppData/Roaming/
 
 # PowerShell
 Copy-Item -Force ./win_home/Microsoft.PowerShell_profile.ps1 $PROFILE
 
-# YASB and Starship and vim
+# YASB and Starship
 $config_dir = $(ls ./win_home/config/)
 for (($i=0); $config=$config_dir[$i]; $i++)
 {
