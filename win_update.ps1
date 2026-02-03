@@ -103,7 +103,12 @@ echo ""
 Copy-Item -Recurse -Force ./win_home/nvim $HOME/AppData/Local/
 
 # vim
-$home_path=$([Environment]::GetFolderPath("MyDocuments"))
+$me=$(whoami).split("\")[1]
+if ($me -eq "mn19fz"){
+    $home_path=$([Environment]::GetFolderPath("MyDocuments"))
+} else {
+    $home_path=$($HOME)
+}
 $vim_path=$home_path+"\.vimrc"
 $gvim_path=$home_path+"\_vimrc"
 if ( Test-Path $home_path ){
