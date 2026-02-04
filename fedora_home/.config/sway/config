@@ -78,7 +78,8 @@ workspace 9 output HDMI-A-1
 workspace 10 output HDMI-A-1
 
 show_marks yes
-
+focus_follows_mouse no
+ 
 for_window [workspace="2"] layout tabbed
 
 ## Boottraping some applications on startup
