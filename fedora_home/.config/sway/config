@@ -49,18 +49,29 @@ input "2821:6246:Asus_Keyboard" xkb_layout gb
 # Font
 font JetBrainsMonoNL Nerd Font Mono 12
 
-# class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+# Everforest Palette Colors
+set $bg      #1E2326
+set $bg_alt  #3d484d
+set $fg      #d3c6aa
+set $green   #A7C080
+set $aqua    #83c092
+set $red     #e67e80
+set $purple  #d69875
+set $grey    #7A8478
+set $bg_dim  #272E33
 
-client.background       #ffffff
+# class                 border  backgr. text    indicator child_border
+client.focused          $green  $green  $bg     $green     $green
+client.focused_inactive $bg_alt $bg     $grey   $bg_alt   $bg_alt
+client.unfocused        $bg_dim $bg_dim $grey   $bg_dim   $bg_dim
+client.urgent           $red    $red    $bg     $red      $red
+client.placeholder      $green  #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       $green
 
 # Gaps
-gaps inner 3
-gaps outer 2
+gaps inner 0
+gaps outer 0
 smart_gaps inverse_outer
 
 workspace 2 gaps inner 0

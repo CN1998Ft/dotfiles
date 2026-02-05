@@ -33,6 +33,13 @@ button:hover {
     box-shadow: inset 0 -3px #d3c6aa;
 }
 
+#window {
+    background-color: #4F5B58;
+    color: #000000;
+    border-radius: 4px;
+}
+
+
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
@@ -44,7 +51,7 @@ button:hover {
 }
 
 #workspaces button.focused {
-    background-color: #475258;
+    background-color: #3C4841;
     box-shadow: inset 0 -3px #a7c080; /* Everforest Green highlight */
 }
 
@@ -72,15 +79,18 @@ button:hover {
 #mpd {
     padding: 0 10px;
     color: #d3c6aa;
+    border-radius: 4px;
 }
 
 #clock {
     background-color: #3d484d;
+    border-radius: 4px;
 }
 
 #battery {
     background-color: #a7c080; /* Green */
     color: #2d353b;
+    border-radius: 4px;
 }
 
 #battery.charging, #battery.plugged {
@@ -106,6 +116,7 @@ button:hover {
 
 #power-profiles-daemon {
     padding-right: 15px;
+    border-radius: 4px;
 }
 
 #power-profiles-daemon.performance {
@@ -126,16 +137,19 @@ button:hover {
 #cpu {
     background-color: #83c092; /* Aqua */
     color: #2d353b;
+    border-radius: 4px;
 }
 
 #memory {
     background-color: #d699b6; /* Purple */
     color: #2d353b;
+    border-radius: 4px;
 }
 
 #disk {
     background-color: #7fbbb3; /* Blue */
     color: #2d353b;
+    border-radius: 4px;
 }
 
 #backlight {
@@ -144,7 +158,7 @@ button:hover {
 }
 
 #network {
-    background-color: #7fbbb3;
+    background-color: #83C092;
     color: #2d353b;
 }
 
@@ -156,6 +170,7 @@ button:hover {
 #pulseaudio {
     background-color: #dbbc7f;
     color: #2d353b;
+    border-radius: 4px;
 }
 
 #pulseaudio.muted {
@@ -166,6 +181,7 @@ button:hover {
 #temperature {
     background-color: #e69875; /* Orange */
     color: #2d353b;
+    border-radius: 4px;
 }
 
 #temperature.critical {

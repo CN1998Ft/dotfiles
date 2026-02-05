@@ -17,8 +17,7 @@
     ],
     "modules-right": [
         "idle_inhibitor",
-        "pulseaudio",
-        "network",
+        // "network",
         "power-profiles-daemon",
         "cpu",
         "memory",
@@ -26,8 +25,11 @@
         // "backlight",
         "sway/language",
         "battery",
+        "disk",
+        "pulseaudio",
         "tray"
     ],
+
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -48,6 +50,11 @@
     //         "persistent": ""
     //     }
     // },
+
+    "sway/window":{
+        "format": "{app_id}"
+    },
+
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -114,6 +121,14 @@
         // "format-alt": "{:%Y-%m-%d}"
         "format-alt": "{:%Y-%m-%d %H:%M}"
     },
+    "disk":{
+        "format": "󰋊{percentage_used}%"
+    },
+
+    // "sway/language":{
+    //     "format": " {short}"
+    // },
+
     "cpu": {
         "format": " {usage}%",
         "tooltip": false
