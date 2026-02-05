@@ -61,7 +61,7 @@ set $grey    #7A8478
 set $bg_dim  #272E33
 
 # class                 border  backgr. text    indicator child_border
-client.focused          $green  $green  $bg     $green     $green
+client.focused          $green  $green  $bg     $red      $green
 client.focused_inactive $bg_alt $bg     $grey   $bg_alt   $bg_alt
 client.unfocused        $bg_dim $bg_dim $grey   $bg_dim   $bg_dim
 client.urgent           $red    $red    $bg     $red      $red

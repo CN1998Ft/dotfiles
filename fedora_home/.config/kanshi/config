@@ -12,7 +12,16 @@ output "AU Optronics 0x82ED *" {
         alias $builtin
     }
 
+output Virtual-1 {
+        mode 2936x1846@60Hz
+        scale 1.6
+        alias $virtual
+    }
+
 profile phd_2026 {
         output $cheap_extern enable
         output $builtin enable
+    }
+profile virtual {
+        output $virtual enable
     }
