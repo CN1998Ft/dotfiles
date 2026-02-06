@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+# Determine the os.
+os_name=$(uname)
+case $os_name in
+    "Darwin")
+        node_name=$os_name
+        ;;
+    "Linux")
+        node_name=$(uname --nodename) # Linux distro name
+        ;;
+esac
+
+echo -e "The current operating system is $node_name\n"
+
+# list of packages that I want to install. c_pkg as common packages, f_pkg
+# for Fedora, and m_pkg for MacOs homebrew.
+c_pkg=(
+    bat
+    cloc
+    fastfetch
+    fd
+    fzf
+    git
+    lazygit
+    starship
+    ripgrep
+    neovim
+    zoxide
+    tldr
+    tmux
+    stow
+)
+f_pkg=(
+    # eza and nerd fonts need to use curl
+    # also eza needs both bash completion and the man files
+    vim
+    alacritty
+    chromium-browser
+)
+m_pkg=(
+    borders
+    ghostty
+    eza
+    aerospace
+    utm
+    sketchybar
+    font-hack-nerd-font
+    font-sketchybar-app-font
+    font-jetbrains-mono-nerd-font
+)
+
+# define the fedora install function
+fedora_install(){
+    sudo dnf copr enable atim/starship
+    sudo dnf copr enable dejan/lazygit
+    max="${#c_pkg[@]}"
+    for (( i=0; i<$max; i++)); do
+        cmd="${c_pkg[i]}"
+        $cmd "--version"  || sudo dnf install "${c_pkc[i]}"
+    done
+}
+case $node_name in
+    "fedora")
+        fedora_install
+        ;;
+    "Darwin")
+        :
+        ;;
+esac
