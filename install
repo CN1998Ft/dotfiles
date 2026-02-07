@@ -27,7 +27,6 @@ c_pkg=(
     ripgrep
     neovim
     zoxide
-    tldr
     tmux
     stow
 )
@@ -38,6 +37,7 @@ f_pkg=(
     vim
     alacritty
     chromium-browser
+    tldr
 )
 m_pkg=(
     borders
@@ -46,6 +46,7 @@ m_pkg=(
     aerospace
     utm
     iian
+    tlrc
 #    localsend
     sketchybar
     font-hack-nerd-font
