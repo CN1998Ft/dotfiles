@@ -34,6 +34,7 @@ c_pkg=(
 f_pkg=(
     # eza and nerd fonts need to use curl
     # also eza needs both bash completion and the man files
+    # Not doing eza and font for now
     vim
     alacritty
     chromium-browser
@@ -44,6 +45,8 @@ m_pkg=(
     eza
     aerospace
     utm
+    iian
+#    localsend
     sketchybar
     font-hack-nerd-font
     font-sketchybar-app-font
@@ -54,17 +57,37 @@ m_pkg=(
 fedora_install(){
     sudo dnf copr enable atim/starship
     sudo dnf copr enable dejan/lazygit
+    sudo dnf update
     max="${#c_pkg[@]}"
     for (( i=0; i<$max; i++)); do
-        cmd="${c_pkg[i]}"
-        $cmd "--version"  || sudo dnf install "${c_pkc[i]}"
+        sudo dnf install "${c_pkg[i]}"
     done
+    max1="${#f_pkg[@]}"
+    for (( i=0; i<$max1; i++)); do
+        sudo dnf install "${f_pkg[i]}"
+    done
+    sudo dnf clean all
 }
+
+# define the fedora install function
+mac_install(){
+    brew --version &>/dev/null || curl -fsSL https://raw.githubusercontent.com/Hombrew/install/HEAD/install.sh
+    max="${#c_pkg[@]}"
+    for (( i=0; i<$max; i++)); do
+        brew install "${c_pkg[i]}"
+    done
+    max1="${#m_pkg[@]}"
+    for (( i=0; i<$max; i++)); do
+        brew install "${m_pkg[i]}"
+    done
+    brew update && brew upgrade && brew cleanup --prune=all
+}
+
 case $node_name in
     "fedora")
         fedora_install
         ;;
     "Darwin")
-        :
+        mac_install
         ;;
 esac
