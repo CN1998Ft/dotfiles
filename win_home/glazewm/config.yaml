@@ -268,7 +268,7 @@ keybindings:
   # Terminal and Git Bash respectively.
   - commands: ['shell-exec alacritty.exe']
     bindings: ['LWin+enter']
-  - commands: ['shell-exec alacritty.exe --config-file "%APPDATA%/alacritty/alacritty_bash.toml']
+  - commands: ['shell-exec alacritty.exe --config-file "%APPDATA%/alacritty/alacritty_c.toml']
     bindings: ['LWin+shift+enter']
   # Launch browsers
   - commands: ['shell-exec chrome.exe --new-window "https://github.com/CN1998Ft"']
