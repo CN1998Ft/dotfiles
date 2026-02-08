@@ -9,6 +9,7 @@ If (Test-Path "$HOME/miniforge3/Scripts/conda.exe") {
 # ==> Ennable plugins/addons
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 Invoke-Expression (&starship init powershell)
+Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 #> <== plugins/addons
 
 # ==> Aliases
