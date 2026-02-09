@@ -18,6 +18,7 @@ set hlsearch
 set incsearch
 set scrolloff=10
 set sidescrolloff=200
+set belloff=all
 
 " Colorscheme
 colorscheme default
