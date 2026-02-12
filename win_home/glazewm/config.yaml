@@ -249,7 +249,7 @@ keybindings:
 
   # Close focused window.
   - commands: ['close']
-    bindings: ['LWin+q','LWin+w']
+    bindings: ['LWin+q','LWin+w', 'RWin+q', 'RWin+w']
 
   # Kill GlazeWM process safely.
   - commands: ['wm-exit']
@@ -272,11 +272,11 @@ keybindings:
     bindings: ['LWin+shift+enter']
   # Launch browsers
   - commands: ['shell-exec chrome.exe --new-window "https://github.com/CN1998Ft"']
-    bindings: ['LWin+b']
+    bindings: ['LWin+b', 'RWin+b']
 
   # Youtube
   - commands: ['shell-exec chrome.exe "https://youtube.com"']
-    bindings: ['LWin+y']
+    bindings: ['LWin+y', 'RWin+y']
 
   # Focus the next/previous active workspace defined in `workspaces` config.
   - commands: ['focus --next-active-workspace']
