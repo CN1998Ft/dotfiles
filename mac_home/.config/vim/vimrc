@@ -57,3 +57,4 @@ nnoremap <leader>bb :buffers<CR>
 nnoremap <leader>bd :bd<CR>
 nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bp :bp<CR>
+nnoremap <leader>m :marks<CR>

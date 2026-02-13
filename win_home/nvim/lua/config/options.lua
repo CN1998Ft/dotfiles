@@ -28,5 +28,5 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 if vim.fn.has("win64") or vim.fn.has("win32") then
-  vim.o.shell = "bash.exe"
+  vim.o.shell = "pwsh.exe"
 end

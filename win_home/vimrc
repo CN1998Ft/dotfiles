@@ -45,6 +45,8 @@ set laststatus=2
 " Set curosr shape during vim session:
 set guicursor=a:block-blinkon0
 
+" Set shell to powershell
+set shell=pwsh
 " Reset the cursor style to blinking block after leaving vim.
 " autocmd VimLeave * silent !printf "\e[1 q"
 
@@ -54,6 +56,7 @@ nnoremap <leader>bb :buffers<CR>
 nnoremap <leader>bd :bd<CR>
 nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bp :bp<CR>
+nnoremap <leader>m :marks<CR>
 
 " GUI vim specific settings
 if has("gui_running")
