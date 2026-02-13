@@ -97,7 +97,6 @@ for_window [workspace="2"] layout tabbed
 exec_always kanshi
 exec_always fcitx5 -d
 exec $term
-exec chromium-browser
 
 
 ### Key bindings
