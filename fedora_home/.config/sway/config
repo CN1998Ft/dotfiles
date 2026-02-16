@@ -70,12 +70,13 @@ client.placeholder      $green  #0c0c0c #ffffff #000000   #0c0c0c
 client.background       $green
 
 # Gaps
-gaps inner 0
-gaps outer 0
-smart_gaps inverse_outer
+gaps inner 3
+# gaps outer 5
+gaps left 3
+gaps right 3
 
-workspace 2 gaps inner 0
-workspace 2 gaps outer 0
+# workspace 2 gaps inner 0
+# workspace 2 gaps outer 0
 
 workspace 1 output HDMI-A-1
 workspace 2 output eDP-1
@@ -90,7 +91,7 @@ workspace 10 output HDMI-A-1
 
 show_marks yes
 focus_follows_mouse no
- 
+
 for_window [workspace="2"] layout tabbed
 
 ## Boottraping some applications on startup
