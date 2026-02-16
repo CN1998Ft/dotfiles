@@ -6,12 +6,13 @@ WINIT_X11_SCALE_FACTOR = "1.0"
 shell = { program = "pwsh.exe", args = [
     "-NoExit",
     "-Command",
-    "&{Import-Module 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\Microsoft.VisualStudio.DevShell.dll'; Enter-VsDevShell 94a21374 -SkipAutomaticLocation -DevCmdArguments '-arch=x64 -host_arch=x64'}"
+    "&{Import-Module 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\Microsoft.VisualStudio.DevShell.dll'; Enter-VsDevShell 94a21374 -SkipAutomaticLocation -DevCmdArguments '-arch=x64 -host_arch=x64'}",
 ] }
 
 [window]
 padding.x = 10
 padding.y = 10
+dynamic_padding = true
 decorations = "Full"
 
 [font]
@@ -29,6 +30,6 @@ hide_when_typing = true
 [keyboard]
 bindings = [
     { key = "/", mods = "Control", chars = "\u001f" },
-    {key = "N", mods = "Control|Shift", action="CreateNewWindow"},
-    {key = "6", mods = "Control", chars = "\u001e"}
+    { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+    { key = "6", mods = "Control", chars = "\u001e" },
 ]

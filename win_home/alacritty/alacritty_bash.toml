@@ -8,6 +8,7 @@ shell = { program = "bash", args = ["--login", "-i"] }
 [window]
 padding.x = 10
 padding.y = 10
+dynamic_padding = true
 decorations = "Full"
 
 [font]
@@ -25,6 +26,6 @@ hide_when_typing = true
 [keyboard]
 bindings = [
     { key = "/", mods = "Control", chars = "\u001f" },
-    {key = "N", mods = "Control|Shift", action="CreateNewWindow"},
-    {key = "6", mods = "Control", chars = "\u001e"}
+    { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+    { key = "6", mods = "Control", chars = "\u001e" },
 ]
