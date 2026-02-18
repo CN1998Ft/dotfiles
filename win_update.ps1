@@ -42,6 +42,8 @@ $packages = @(
 'alacritty'
 'miktex'
 'vim'
+'pandoc'
+'glow'
 )
 
 # Install mising packages if 

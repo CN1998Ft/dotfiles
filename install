@@ -40,6 +40,8 @@ f_pkg=(
     tldr
 )
 m_pkg=(
+    pandoc
+    glow
     borders
     ghostty
     eza
