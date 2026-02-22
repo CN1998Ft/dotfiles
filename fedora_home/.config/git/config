@@ -29,7 +29,7 @@
   email = zhangfengtao1998@gmail.com
 [core]
   excludesfile = $HOME/.config/git/ignore
-  editor = nvim
+  editor = vim
   autocrlf = input
 [init]
   defaultBranch = ft_fedora

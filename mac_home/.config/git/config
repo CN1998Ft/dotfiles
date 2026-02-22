@@ -9,7 +9,7 @@
 [core]
     # excludesfile = $HOME/.config/git/ignore
     excludesfile = $XDG_CONFIG_HOME/git/ignore
-	editor = nvim
+	editor = vim
 	autocrlf = input
 [init]
 	defaultBranch = ft_mac

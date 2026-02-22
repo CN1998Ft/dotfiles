@@ -29,6 +29,7 @@ c_pkg=(
     zoxide
     tmux
     stow
+    glow
 )
 f_pkg=(
     # eza and nerd fonts need to use curl
@@ -41,7 +42,6 @@ f_pkg=(
 )
 m_pkg=(
     pandoc
-    glow
     borders
     ghostty
     eza
