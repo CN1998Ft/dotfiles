@@ -41,7 +41,6 @@ set statusline+=col:
 set statusline+=%c
 set laststatus=2
 
-
 " Set curosr shape during vim session:
 set guicursor=a:block-blinkon0
 
@@ -49,6 +48,19 @@ set guicursor=a:block-blinkon0
 set shell=pwsh
 " Reset the cursor style to blinking block after leaving vim.
 " autocmd VimLeave * silent !printf "\e[1 q"
+
+" Return to the last edited position of the current buffer
+" And won't do it if file is commit, hex editor, rebasing git, and vimdiff
+augroup RestoreCursor
+  autocmd!
+  autocmd BufReadPost *
+    \ let line = line("'\"")
+    \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
+    \      && index(['xxd', 'gitrebase'], &filetype) == -1
+    \      && !&diff
+    \ |   execute "normal! g`\""
+    \ | endif
+augroup END
 
 let mapleader = " "
 nnoremap <leader>e :Ex<CR>

@@ -51,6 +51,19 @@ set guicursor=a:block-blinkon0
 "Reset the cursor style to blinking block after leaving vim.
 "autocmd VimLeave * silent !printf "\e[1 q"
 
+" Return to the last edited position of the current buffer
+" And won't do it if file is commit, hex editor, rebasing git, and vimdiff
+augroup RestoreCursor
+  autocmd!
+  autocmd BufReadPost *
+    \ let line = line("'\"")
+    \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
+    \      && index(['xxd', 'gitrebase'], &filetype) == -1
+    \      && !&diff
+    \ |   execute "normal! g`\""
+    \ | endif
+augroup END
+
 let mapleader = " "
 nnoremap <leader>e :Ex<CR>
 nnoremap <leader>bb :buffers<CR>
