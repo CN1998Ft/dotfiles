@@ -166,4 +166,4 @@ configuration {
       sorting-method:    "name";
   }
 }
-@theme "Adapta-Nokto"
+@theme "gruvbox-dark-hard"
