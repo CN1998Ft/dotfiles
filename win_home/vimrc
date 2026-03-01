@@ -16,6 +16,7 @@ set incsearch
 set scrolloff=10
 set sidescrolloff=200
 set belloff=all
+set termwinsize=15x0
 
 " Colorscheme
 colorscheme default
@@ -63,12 +64,13 @@ augroup RestoreCursor
 augroup END
 
 let mapleader = " "
-nnoremap <leader>e :Ex<CR>
+nnoremap <leader>e  :Ex<CR>
 nnoremap <leader>bb :buffers<CR>
 nnoremap <leader>bd :bd<CR>
 nnoremap <leader>bn :bn<CR>
 nnoremap <leader>bp :bp<CR>
-nnoremap <leader>m :marks<CR>
+nnoremap <leader>m  :marks<CR>
+nnoremap <leader>t  :below term<CR>
 
 " GUI vim specific settings
 if has("gui_running")
