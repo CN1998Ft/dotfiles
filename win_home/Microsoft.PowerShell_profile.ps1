@@ -25,8 +25,7 @@ function zd{
                 z @args
                 $pwd_2="$(pwd)"
                 if ($pwd_1 -ne $pwd_2){
-                    Write-Host -NoNewline "`u{F17A9}"
-                    echo $pwd_2
+                    Write-Host -NoNewline "`u{F17A9} $pwd_2"
                     }
                 else {
                     Write-Host "Error: Directory not found"
@@ -39,6 +38,9 @@ function openf{
         echo $fzf_in
         Invoke-Item $fzf_in
     }
+}
+function open{
+    invoke-item $args
 }
 if (Test-Path Alias:cd){
 	Remove-Item Alias:cd -Force

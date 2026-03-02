@@ -66,3 +66,5 @@ if command -v zoxide &>/dev/null; then
         fi
     }
 fi
+
+alias open="xdg-open"
