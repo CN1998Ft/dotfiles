@@ -89,8 +89,10 @@ mac_install(){
 case $node_name in
     "fedora")
         fedora_install
+        stow --restow -t ~ fedora_home
         ;;
     "Darwin")
         mac_install
+        stow --restow -t ~ mac_home
         ;;
 esac

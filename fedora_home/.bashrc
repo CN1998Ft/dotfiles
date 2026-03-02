@@ -68,3 +68,10 @@ if command -v zoxide &>/dev/null; then
 fi
 
 alias open="xdg-open"
+
+openf() {
+    fzf_in="$(fzf)"
+    if [[ -n $fzf_in ]]; then
+        open $fzf_in
+    fi
+}
