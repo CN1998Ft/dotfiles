@@ -44,6 +44,8 @@ $packages = @(
 'vim'
 'pandoc'
 'glow'
+'mpv'
+'yt-dlp'
 )
 
 # Install mising packages if 

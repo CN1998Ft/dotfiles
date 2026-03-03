@@ -30,6 +30,7 @@ c_pkg=(
     tmux
     stow
     glow
+    yt-dlp
 )
 f_pkg=(
     # eza and nerd fonts need to use curl
@@ -39,6 +40,7 @@ f_pkg=(
     alacritty
     chromium-browser
     tldr
+    mpv
 )
 m_pkg=(
     pandoc
