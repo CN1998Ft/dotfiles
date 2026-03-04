@@ -16,6 +16,7 @@ echo -e "The current operating system is $node_name\n"
 # list of packages that I want to install. c_pkg as common packages, f_pkg
 # for Fedora, and m_pkg for MacOs homebrew.
 c_pkg=(
+    ghostty
     bat
     cloc
     fastfetch
@@ -46,7 +47,6 @@ f_pkg=(
 m_pkg=(
     pandoc
     borders
-    ghostty
     eza
     aerospace
     utm
@@ -68,6 +68,7 @@ m_pkg=(
 
 # define the fedora install function
 fedora_install(){
+    sudo dnf copr enable scottames/ghostty
     sudo dnf copr enable atim/starship
     sudo dnf copr enable dejan/lazygit
     sudo dnf copr enable lihaohong/yazi
