@@ -46,6 +46,12 @@ $packages = @(
 'glow'
 'mpv'
 'yt-dlp'
+'yazi'
+'7zip'
+'jq'
+'poppler'
+'resvg'
+'imagemagick'
 )
 
 # Install mising packages if 

@@ -32,6 +32,7 @@ c_pkg=(
     glow
     mpv
     yt-dlp
+    yazi
 )
 f_pkg=(
     # eza and nerd fonts need to use curl
@@ -55,12 +56,21 @@ m_pkg=(
     font-hack-nerd-font
     font-sketchybar-app-font
     font-jetbrains-mono-nerd-font
+    # yazi dependencies
+    ffmpeg-full
+    sevenzip
+    jq
+    poppler
+    resvg
+    imagemagick-full
+    font-symbols-only-nerd-font
 )
 
 # define the fedora install function
 fedora_install(){
     sudo dnf copr enable atim/starship
     sudo dnf copr enable dejan/lazygit
+    sudo dnf copr enable lihaohong/yazi
     sudo dnf update
     max="${#c_pkg[@]}"
     for (( i=0; i<$max; i++)); do
