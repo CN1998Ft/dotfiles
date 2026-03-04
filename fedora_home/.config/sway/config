@@ -10,7 +10,7 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 # Recommends: foot
-set $term ghostty
+set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -106,7 +106,7 @@ exec $term
 #
     # Start a terminal
     bindsym $launch+Return exec $term
-    bindsym $launch+Shift+Return exec alacritty
+    bindsym $launch+Shift+Return exec ghostty
 
     # Kill focused window
     bindsym $launch+q kill
