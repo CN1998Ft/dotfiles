@@ -29,3 +29,6 @@ image/jpeg=imv.desktop;
 # Videos
 video/mp4=mpv.desktop;
 video/webm=mpv.desktop;
+
+# PDF viewer
+application/pdf=org.pwmt.zathura.desktop;

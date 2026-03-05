@@ -43,6 +43,8 @@ f_pkg=(
     alacritty
     chromium-browser
     tldr
+    zathura
+    zathura-pdf-poppler
 )
 m_pkg=(
     pandoc
