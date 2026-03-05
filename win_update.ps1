@@ -52,6 +52,7 @@ $packages = @(
 'poppler'
 'resvg'
 'imagemagick'
+'okular'
 )
 
 # Install mising packages if 
