@@ -54,7 +54,7 @@ m_pkg=(
     aerospace
     utm
     tlrc
-#    localsend
+    #    localsend
     sketchybar
     font-hack-nerd-font
     font-sketchybar-app-font
@@ -70,32 +70,42 @@ m_pkg=(
 )
 
 # define the fedora install function
-fedora_install(){
+fedora_install() {
     sudo dnf copr enable scottames/ghostty
     sudo dnf copr enable atim/starship
     sudo dnf copr enable dejan/lazygit
     sudo dnf copr enable lihaohong/yazi
     sudo dnf update
     max="${#c_pkg[@]}"
-    for (( i=0; i<$max; i++)); do
+    for ((i = 0; i < $max; i++)); do
         sudo dnf install "${c_pkg[i]}"
     done
     max1="${#f_pkg[@]}"
-    for (( i=0; i<$max1; i++)); do
+    for ((i = 0; i < $max1; i++)); do
         sudo dnf install "${f_pkg[i]}"
     done
     sudo dnf clean all
 }
 
+# define the sddm login screen function
+sddm_setup() {
+    sudo cp ./3-ristretto.jpg /usr/share/backgrounds/
+    str="[General]\nbackground=/usr/share/backgrounds/3-ristretto.jpg"
+    sddm_theme_conf="/usr/share/sddm/themes/03-sway-fedora/theme.conf"
+    [[ -e $sddm_theme_conf ]] || sudo touch $sddm_theme_conf
+    echo -e $str | sudo tee $sddm_theme_conf &&
+        echo "sddm theme changed successfully"
+}
+
 # define the fedora install function
-mac_install(){
+mac_install() {
     brew --version &>/dev/null || curl -fsSL https://raw.githubusercontent.com/Hombrew/install/HEAD/install.sh
     max="${#c_pkg[@]}"
-    for (( i=0; i<$max; i++)); do
+    for ((i = 0; i < $max; i++)); do
         brew install "${c_pkg[i]}"
     done
     max1="${#m_pkg[@]}"
-    for (( i=0; i<$max; i++)); do
+    for ((i = 0; i < $max; i++)); do
         brew install "${m_pkg[i]}"
     done
     brew update && brew upgrade && brew cleanup --prune=all
@@ -105,6 +115,7 @@ case $node_name in
     "fedora")
         fedora_install
         stow --restow -t ~ fedora_home
+        sddm_setup
         ;;
     "Darwin")
         mac_install

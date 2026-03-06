@@ -24,7 +24,7 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
 ### Output configuration
 #
-output * bg $HOME/Pictures/3-ristretto.jpg fill
+output * bg /usr/share/backgrounds/3-ristretto.jpg fill
 ### Idle configuration
 #
 # Example configuration:
