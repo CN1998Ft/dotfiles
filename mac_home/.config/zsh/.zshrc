@@ -15,6 +15,10 @@ export ZVM_CURSOR_STYLE_ENABLED=false
 #   alias ls="lsd"
 # fi
 
+# Disable vi mode
+bindkey -e
+
+# builtin help
 unalias run-help
 autoload run-help
 HELPDIR="/usr/share/zsh/$ZSH_VERSION/help"
