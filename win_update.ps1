@@ -147,7 +147,7 @@ for (($i=0); $config=$config_dir[$i]; $i++)
 Copy-Item -Force -Recurse ./win_home/glazewm $HOME/.glzr/
 
 # Okular
-Copy-Item -Force -Recurse ./win_home/okular $HOME/AppData/Local/kxmlgui5/
+Copy-Item -Force -Recurse ./win_home/okular $HOME/AppData/Local/kxmlgui5/okular
 
 echo ""
 echo "Synchronzed all windows configurations."
