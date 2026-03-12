@@ -66,6 +66,16 @@ function pwen {
 }
 #> <== PhD Aliases
 
+# ==> PhD python path
+$me=$(whoami).split("\")[1]
+if ($me -eq "mn19fz"){
+    $motion_path=$HOME+"\Documents\PhD\motion_path"
+} else {
+    $motion_path=$HOME+"\Documents\motion_path"
+}
+$env:PYTHONPATH+=";$motion_path"
+# <== PhD python path
+
 # ==> Powershell config
 # Set-PSReadLineOption -EditMode vi
 #> <== Powershell config
