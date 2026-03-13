@@ -106,8 +106,9 @@ unset __mamba_setup
 # --------------------- Temporary stuff ---------------------
 
 # >>> Python path for specific projects, temporarily  >>>
-export PYTHONPATH="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/project_related:$PYTHONPYTH"
-export PYTHONPATH="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/motion_path:$PYTHONPYTH"
+phd_python="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/project_related:"
+phd_python+="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/motion_path:"
+export PYTHONPATH="$phd_python$PYTHONPATH"
 export PATH="$PATH:/Applications/FEBioStudio.app/Contents/MacOS"
 export PATH="$PATH:/Applications/OpenSim\ 4.5/bin"
 # <<< Python path for specific projects, temporarily  <<<
