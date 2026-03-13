@@ -115,5 +115,5 @@ export PATH="$PATH:/Applications/OpenSim\ 4.5/bin"
 
 # >>>> work alias >>>>
 alias opensim="open /Applications/OpenSim\ 4.5/OpenSim\ 4.5.app"
-alias pwe="conda activate phd; cd project_related;"
-alias pwen="pwe; nvim"
+alias pwe="cd project_related; mamba activate phd"
+alias mwe="cd motion; mamba activate phd"

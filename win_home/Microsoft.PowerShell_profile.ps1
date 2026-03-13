@@ -57,12 +57,11 @@ Set-Alias -Name ls -Value lsa
 # ==> PhD Aliases
 function pwe{
   cd "project";
-  conda activate phd
+  mamba activate phd
 }
-function pwen {
-  cd "project";
-  conda activate phd;
-  nvim
+function mwe{
+  cd "motion";
+  mamba activate phd
 }
 #> <== PhD Aliases
 
