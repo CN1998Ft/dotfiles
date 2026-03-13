@@ -105,6 +105,7 @@ unset __mamba_setup
 
 # >>> Python path for specific projects, temporarily  >>>
 export PYTHONPATH="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/project_related:$PYTHONPYTH"
+export PYTHONPATH="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/motion_path:$PYTHONPYTH"
 # <<< Python path for specific projects, temporarily  <<<
 
 # >>>> work alias >>>>
