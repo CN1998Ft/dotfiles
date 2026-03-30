@@ -61,6 +61,12 @@ fi
 # history options
 HISTSIZE=1000000
 SAVESIZE=1000000
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
 [ -d "$XDG_STATE_HOME"/zsh ] || mkdir -p "$XDG_STATE_HOME"/zsh
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTCONTROL=ignoreboth #Ignore duplicateds and commands
