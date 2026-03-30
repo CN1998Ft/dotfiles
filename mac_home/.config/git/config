@@ -1,0 +1,21 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Fengtao Zhang
+	email = zhangfengtao1998@gmail.com
+[core]
+    # excludesfile = $HOME/.config/git/ignore
+    excludesfile = $XDG_CONFIG_HOME/git/ignore
+	editor = vim
+	autocrlf = input
+[init]
+	defaultBranch = mac
+[diff]
+	algorithm = histogram    # Clearer diffs on moved/edited lines
+	colorMoved = plain       # Highlight moved blocks in diffs
+	mnemonicPrefix = true    # More intuitive refs in diff output
+[commit]
+	verbose = true           # Include diff comment in commit message template

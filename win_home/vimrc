@@ -1,0 +1,100 @@
+set nocompatible
+set nowrap
+syntax on
+filetype plugin indent on
+set smartindent
+set relativenumber
+set number
+set colorcolumn=80
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set expandtab
+set ruler
+set hlsearch
+set incsearch
+set scrolloff=10
+set sidescrolloff=200
+set belloff=all
+set termwinsize=15x0
+
+" Colorscheme
+colorscheme default
+set background=light
+
+" Customise status line:
+set statusline=[%f]
+set statusline+=%m
+set statusline+=%r
+set statusline+=%h
+set statusline+=%=
+set statusline+=FileType: 
+set statusline+=%y
+set statusline+=\ 
+set statusline+=\--
+set statusline+=%p%%
+set statusline+=\--
+set statusline+=\ 
+set statusline+=row:
+set statusline+=%l/%L
+set statusline+=\ 
+set statusline+=col:
+set statusline+=%c
+set laststatus=2
+
+" Set curosr shape during vim session:
+set guicursor=a:block-blinkon0
+
+" Set shell to powershell
+set shell=pwsh
+" Reset the cursor style to blinking block after leaving vim.
+" autocmd VimLeave * silent !printf "\e[1 q"
+
+" Return to the last edited position of the current buffer
+" And won't do it if file is commit, hex editor, rebasing git, and vimdiff
+augroup RestoreCursor
+  autocmd!
+  autocmd BufReadPost *
+    \ let line = line("'\"")
+    \ | if line >= 1 && line <= line("$") && &filetype !~# 'commit'
+    \      && index(['xxd', 'gitrebase'], &filetype) == -1
+    \      && !&diff
+    \ |   execute "normal! g`\""
+    \ | endif
+augroup END
+
+let mapleader = " "
+nnoremap <leader>e  :Ex<CR>
+nnoremap <leader>bb :buffers<CR>
+nnoremap <leader>bd :bd<CR>
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bp :bp<CR>
+nnoremap <leader>m  :marks<CR>
+nnoremap <leader>t  :below term<CR>
+
+" The program file commenting and string
+augroup filetype_common_language
+    autocmd!
+    " comment the current line, find a way to switch comment on and off
+    autocmd FileType tex nnoremap gc mtI% <esc>`tll
+    autocmd FileType python,sh,ps1,make
+    \ nnoremap gc mtI# <esc>`tll
+    autocmd FileType vim nnoremap gc mtI" <esc>`tll
+    " string the selection
+    autocmd FileType python,vim,sh
+    \ vnoremap <leader>' <esc>`<i"<esc>`>la"<esc>
+    autocmd FileType python
+    \ vnoremap <leader>" <esc>`<i"<esc>..`>a"<esc>..
+augroup END
+
+" GUI vim specific settings
+if has("gui_running")
+    set guioptions-=m
+    set guioptions-=T
+    set guioptions-=r
+    set guioptions-=L
+    set guifont=JetBrainsMono\ NFM:h13
+    set background=dark
+    colorscheme desert
+    set belloff=all
+endif
