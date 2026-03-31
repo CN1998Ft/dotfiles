@@ -1,6 +1,9 @@
 -- Options for nvim
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.wrap = false
+vim.opt.scrolloff = 10
+vim.opt.sidescrolloff = 200
 
 -- Tab settings:
 vim.opt.smartindent = true
@@ -9,7 +12,6 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 
-
 -- Cursor
 vim.opt.guicursor = {
     "n-c-v-t:block",
@@ -17,7 +19,6 @@ vim.opt.guicursor = {
     "r-cr:hor40",
 }
 vim.opt.cursorline = true
-
 
 -- Add column ruler at 80
 vim.opt.colorcolumn = "80"
