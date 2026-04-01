@@ -1,6 +1,9 @@
 -- Options for nvim
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.wrap = false
+vim.opt.scrolloff = 10
+vim.opt.sidescrolloff = 200
 
 -- Tab settings:
 vim.opt.smartindent = true
