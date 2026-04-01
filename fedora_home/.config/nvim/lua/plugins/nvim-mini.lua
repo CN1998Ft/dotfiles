@@ -5,6 +5,7 @@ return {
         lazy = false,
         priority = 1000,
         opts = {
+            style = 'glyph',
         },
         config = function(_, opts)
             local icons = require("mini.icons")
@@ -20,6 +21,19 @@ return {
             delay = {
                 async = 10,
                 busy = 50,
+            },
+            window = {
+                config = function()
+                    local h = math.floor(0.5 * vim.o.lines)
+                    local w = math.floor(0.5 * vim.o.columns)
+                    return {
+                        anchor = "NW",
+                        height = h,
+                        width = w,
+                        row = math.floor(0.5 * vim.o.lines),
+                        col = 0,
+                    }
+                end,
             },
         },
         config = function(_, opts)
@@ -54,6 +68,18 @@ return {
         config = function(_, opts)
             local trailspace = require("mini.trailspace")
             trailspace.setup(opts)
+        end,
+    },
+    {
+        "nvim-mini/mini.surround",
+        version = false,
+        opts = {
+            mappings = {
+            },
+        },
+        config = function(_, opts)
+            local surround = require("mini.surround")
+            surround.setup(opts)
         end,
     },
 }
