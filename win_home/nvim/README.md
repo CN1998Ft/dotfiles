@@ -17,10 +17,11 @@ understanding of neovim/vim.
 
 1. Everforest theme.
 2. Lualine for bottom status line.
-3. nvim-mini, for icons, diff, picker(fuzzy finder), and trailspace.
+3. nvim-mini, for icons, diff, picker(fuzzy finder), and trailspace, surround.
 <!-- add autocmd to trim trailspace, MiniTrialspace.trim_last_lines() -->
-4. Write a float terminal.
-5. Harpoon for hopping between frequently edited files.
+4. which-key for previewing the shortcuts.
+5. Write a float terminal.
+6. Harpoon for hopping between frequently edited files.
 
 
 ## Neovim 0.12.0
