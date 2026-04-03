@@ -6,7 +6,11 @@ return {
             "echasnovski/mini.icons",
         },
         opts = {
-            theme = "everforest",
+            options = {
+                theme = "everforest",
+                -- globalstatus = true,
+                ignore_focus = {"terminal"},
+            },
             sections = {
                 lualine_a = {'mode'},
                 lualine_b = {
@@ -36,6 +40,11 @@ return {
                         newfile_status = true,
                         path = 1,
                         padding = {left = -1},
+                        cond = function()
+                            local mode = vim.api.nvim_get_mode()
+                            return mode.mode ~= "t"
+                        end,
+
                     },
                 },
                 lualine_x = {
@@ -65,6 +74,12 @@ return {
                         style = " %H:%M",
                     },
                 },
+            },
+            inactive_sections = {
+                lualine_a = {"filename"},
+                lualine_b = {"branch"},
+                lualine_c = {"diff"},
+                lualine_z = {"location"},
             },
         }
     }

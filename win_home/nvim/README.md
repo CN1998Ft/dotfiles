@@ -3,14 +3,14 @@
 This repo contains the nvim configuration.
 
 > [!important]
-> The plugins included should not be as exhaustive as the [LazyVim][1].
+> The plugins included should not be as exhaustive as the [LazyVim-web][1].
 > But took inspiration from it.
 
 ## Minimalistic approach
 
-Only include understanded and necessary plugins.
+Only include understood and necessary plugins.
 
-Additonally, track which plugins are used. And train on this to get better
+Additionally, track which plugins are used. And train on this to get better
 understanding of neovim/vim.
 
 ### Record of plugins
@@ -20,9 +20,17 @@ understanding of neovim/vim.
 3. nvim-mini, for icons, diff, picker(fuzzy finder), and trailspace, surround.
 <!-- add autocmd to trim trailspace, MiniTrialspace.trim_last_lines() -->
 4. which-key for previewing the shortcuts.
-5. Write a float terminal.
-6. Harpoon for hopping between frequently edited files.
+5. Harpoon for hopping between frequently edited files.
 
+- [ ] Potential nvim-treesitter and lsp.
+
+### Floating terminal
+
+Write a float terminal, it is modified based on [nvim-lite][2].
+
+### Miscellaneous
+
+Lots of the config/option.lua and config/autocmd are from [LazyVim-github][3]
 
 ## Neovim 0.12.0
 vim.pack, the neovim built-in plugins manager.
@@ -34,3 +42,5 @@ available.
 
 <!-- reference link -->
 [1]: https://www.lazyvim.org/
+[2]: https://github.com/radleylewis/nvim-lite
+[3]: https://githu.com/LazyVim/LazyVim
