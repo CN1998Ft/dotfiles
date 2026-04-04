@@ -28,7 +28,7 @@ c_pkg=(
     starship
     ripgrep
     vim
-    neovim
+    # neovim
     zoxide
     tmux
     stow
@@ -45,6 +45,8 @@ f_pkg=(
     chromium-browser
     tldr
     okular
+    cmake
+    @c-development
     # zathura
     # zathura-pdf-poppler
 )
@@ -52,6 +54,7 @@ m_pkg=(
     pandoc
     borders
     aerospace
+    neovim
     utm
     tlrc
     #    localsend

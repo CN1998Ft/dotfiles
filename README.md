@@ -12,7 +12,7 @@ My personal dotfiles started with MacOs and Linux. Finally, with Windows too.
 - ghostty
 - git
 - neovim
-- *sketchybar* [Unfinished]
+- *sketchybar* [Unused, too much effort to make it usable]
 - vim
 - zsh
 - starship
@@ -29,7 +29,8 @@ My personal dotfiles started with MacOs and Linux. Finally, with Windows too.
 - Alacritty
 - git
 - vim
-- sway: window manager and session basically<!-- - *~~hyprland~~* potential replacement [sway] -->
+- neovim(build from source)
+- sway: window manager and session basically
 - rofi: app launcher
 - kanshi: dynamic display manager
 - starship

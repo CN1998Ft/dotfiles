@@ -31,7 +31,18 @@ vim.opt.splitright = true
 
 -- Set the terminal shell for nvim, this may not be used
 if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
-    vim.o.shell = "pwsh.exe"
+    local powershell_options = {
+            shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
+            shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
+            shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
+            shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; if($?) { cat %s } : echo $null",
+            shellquote = "",
+            shellxquote = "",
+        }
+
+        for option, value in pairs(powershell_options) do
+            vim.opt[option] = value
+        end
 elseif vim.fn.has("Darwin") == 1 then
     vim.o.shell = "/bin/zsh"
 elseif vim.fn.has("Linux") == 1 then
