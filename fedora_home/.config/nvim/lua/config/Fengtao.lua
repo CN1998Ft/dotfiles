@@ -18,20 +18,12 @@ local function harpoon_pick_menu()
         source = {
             items = items,
             name = "󰛢 Harpoon",
-            choose = function(item)
-                vim.api.nvim_win_call(
-                MiniPick.get_picker_state().windows.target,
-                function() vim.cmd('edit ' .. item) end
-                )
-            end,
-            preview = function(buf_id, item)
-                local lines = vim.fn.readfile(vim.fn.expand(item))
-                vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, lines)
-                local ft = vim.filetype.match({ filename = item })
-                if ft then
-                    vim.bo[buf_id].syntax = ft
-                end
-            end,
+            -- choose = function(item)
+            --     vim.api.nvim_win_call(
+            --     MiniPick.get_picker_state().windows.target,
+            --     function() vim.cmd('edit ' .. item) end
+            --     )
+            -- end,
             show = function(buf_id, items, query)
                 return MiniPick.default_show(buf_id, items, query, {show_icons = true})
             end,
@@ -41,39 +33,44 @@ end
 
 local function pick_config()
     local items = {}
-    local show_items = {}
     for name, _ in vim.fs.dir(vim.fn.stdpath("config"), {depth = 4}) do
-        if vim.fn.isdirectory(name) then
-            temp_name = vim.fs.normalize(name)
-            table.insert(show_items, temp_name)
-        end
         temp_file = vim.fn.stdpath("config") .. "/" .. name
         file = vim.fs.normalize(temp_file)
-        if vim.fn.isdirectory(file) == 0 and vim.fn.isabsolutepath(file) then
+        if vim.fn.isabsolutepath(file) == 1 then
             table.insert(items, file)
         end
     end
 
-    -- MiniPick.start({ source = { items = vim.fn.readdir(".") }})
     MiniPick.start({
         source = {
             items = items,
-            name = "config",
+            name = " config",
             -- cwd = vim.fn.stdpath("config"),
-            choose = function(item)
-                vim.api.nvim_win_call(
-                    MiniPick.get_picker_state().windows.target,
-                    function() vim.cmd('edit ' .. item) end
-                )
+            -- choose = function(item)
+            --     vim.api.nvim_win_call(
+            --         MiniPick.get_picker_state().windows.target,
+            --         function() vim.cmd('edit ' .. item) end
+            --     )
+            -- end,
+            show = function(buf_id, items, query)
+                return MiniPick.default_show(buf_id, items, query, {show_icons = true})
             end,
-            preview = function(buf_id, item)
-                local lines = vim.fn.readfile(vim.fn.expand(item))
-                vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, lines)
-                local ft = vim.filetype.match({ filename = item })
-                if ft then
-                    vim.bo[buf_id].syntax = ft
-                end
-            end,
+        },
+    })
+end
+
+local function pick_dir_file()
+    local cwd = vim.uv.cwd()
+    local items = {}
+    local iterators = vim.fs.dir(cwd, {depth = 10})
+    for name, _ in iterators do
+        file = vim.fs.normalize(name)
+        table.insert(items, file)
+    end
+    MiniPick.start({
+        source = {
+            items = items,
+            name = "󰙅 dirs & files",
             show = function(buf_id, items, query)
                 return MiniPick.default_show(buf_id, items, query, {show_icons = true})
             end,
@@ -83,5 +80,6 @@ end
 
 M.harpoon_pick_menu = harpoon_pick_menu
 M.pick_config = pick_config
+M.pick_dir_file = pick_dir_file
 
 return M

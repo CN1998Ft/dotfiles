@@ -130,3 +130,18 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
     end,
 })
+
+
+-- lua file specific config
+local lua_config = vim.api.nvim_create_augroup("lua_config", { clear = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = lua_config,
+    pattern = {"lua"},
+    callback = function()
+        vim.opt_local.tabstop = 2
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.softtabstop = 2
+        vim.opt_local.colorcolumn = "100"
+    end,
+})

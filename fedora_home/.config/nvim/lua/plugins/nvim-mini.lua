@@ -70,16 +70,16 @@ return {
             trailspace.setup(opts)
         end,
     },
-    {
-        "nvim-mini/mini.surround",
-        version = false,
-        opts = {
-            mappings = {
-            },
-        },
-        config = function(_, opts)
-            local surround = require("mini.surround")
-            surround.setup(opts)
-        end,
-    },
+    -- {
+    --     "nvim-mini/mini.surround",
+    --     version = false,
+    --     opts = {
+    --         mappings = {
+    --         },
+    --     },
+    --     config = function(_, opts)
+    --         local surround = require("mini.surround")
+    --         surround.setup(opts)
+    --     end,
+    -- },
 }

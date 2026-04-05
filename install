@@ -28,6 +28,7 @@ c_pkg=(
     starship
     ripgrep
     vim
+    tree-sitter-cli
     # neovim
     zoxide
     tmux
@@ -55,6 +56,7 @@ m_pkg=(
     borders
     aerospace
     neovim
+    tree-sitter
     utm
     tlrc
     #    localsend
