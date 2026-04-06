@@ -1,17 +1,7 @@
-return {
-    {
-        "neanias/everforest-nvim",
-        version = false,
-        lazy = false,
-        priority = 1000,
-        config = function ()
-            require("everforest").setup({
-                background = "hard",
-                transparent_backgroud_level = 0,
-                ui_contrast = "high",
-            })
-            -- vim.cmd([[colorscheme everforest]])
-            require("everforest").load()
-        end
-    },
-}
+vim.pack.add({ "https://github.com/neanias/everforest-nvim" })
+require("everforest").setup({
+  background = "hard",
+  transparent_background_level = 0,
+  ui_contrast = "high",
+})
+require("everforest").load()

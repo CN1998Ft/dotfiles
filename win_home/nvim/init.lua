@@ -1,4 +1,10 @@
 require("config/option")
 require("config.keybinds")
 require("config.autocmd")
-require("config.lazy")
+require("plugins.colorscheme")
+require("plugins.nvim-mini")
+require("plugins.lualine")
+require("plugins.whichkey")
+require("plugins.treesitter")
+-- NOTE1: harpoon not working with vim.pack.add() enable after the update
+-- require("plugins.harpoon")

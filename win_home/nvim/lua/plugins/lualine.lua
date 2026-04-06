@@ -1,86 +1,80 @@
-return {
-    {
-        "nvim-lualine/lualine.nvim",
-        dependencies = {
-            -- "nvim-tree/nvim-web-devicons",
-            "echasnovski/mini.icons",
-        },
-        opts = {
-            options = {
-                theme = "everforest",
-                -- globalstatus = true,
-                ignore_focus = {"terminal"},
-            },
-            sections = {
-                lualine_a = {'mode'},
-                lualine_b = {
-                    {'branch'},
-                    {
-                        'diff',
-                        symbols = {
-                            added = " ",
-                            modified = " ",
-                            removed = " ",
-                        },
-                    },
-                    {'diagnostics'},
-                },
-                lualine_c = {
-                    {
-                        'filetype',
-                        colored = true,
-                        icon_only = true,
-                        icon = { align = 'left'},
-                        padding = {left = 1, right = -1},
-                        separator = " ",
-                    },
-                    {
-                        'filename',
-                        file_status = true,
-                        newfile_status = true,
-                        path = 1,
-                        padding = {left = -1},
-                        cond = function()
-                            local mode = vim.api.nvim_get_mode()
-                            return mode.mode ~= "t"
-                        end,
+vim.pack.add({"https://github.com/nvim-lualine/lualine.nvim" })
 
-                    },
-                },
-                lualine_x = {
-                    {
-                        'searchcount',
-                        maxcount = 999,
-                        timeout = 500,
-                    },
-                    {
-                        'fileformat',
-                        symbols = {
-                            unix = "󰣛 ",
-                        },
-                    },
-                },
-                lualine_y = {
-                    {
-                        'progress',
-                        padding = {left = 1, right = -1},
-                        separator = ' ',
-                    },
-                    {'location', padding = -1, separator = ' '},
-                },
-                lualine_z = {
-                    {
-                        'datetime',
-                        style = " %H:%M",
-                    },
-                },
-            },
-            inactive_sections = {
-                lualine_a = {"filename"},
-                lualine_b = {"branch"},
-                lualine_c = {"diff"},
-                lualine_z = {"location"},
-            },
-        }
-    }
+local lualine = require("lualine")
+local opts = {
+  options = {
+    theme = "everforest",
+    globalstatue = true,
+    ignore_focus = {"terminal"},
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {
+      {'branch'},
+      {
+        'diff',
+        symbols = {
+        added = " ",
+        modified = " ",
+        removed = " ",
+        },
+      },
+    {'diagnostics'},
+  },
+  lualine_c = {
+    {
+      'filetype',
+      colored = true,
+      icon_only = true,
+      icon = { align = 'left'},
+      padding = {left = 1, right = -1},
+      separator = " ",
+    },
+    {
+      'filename',
+      file_status = true,
+      newfile_status = true,
+      path = 1,
+      padding = {left = -1},
+      cond = function()
+        local mode = vim.api.nvim_get_mode()
+        return mode.mode ~= "t"
+      end,
+    },
+  },
+  lualine_x = {
+    {
+      'searchcount',
+      maxcount = 999,
+      timeout = 500,
+    },
+    {
+      'fileformat',
+      symbols = {
+        unix = "󰣛 ",
+      },
+    },
+  },
+  lualine_y = {
+    {
+      'progress',
+      padding = {left = 1, right = -1},
+      separator = ' ',
+    },
+      {'location', padding = -1, separator = ' '},
+    },
+    lualine_z = {
+      {
+        'datetime',
+        style = " %H:%M",
+      },
+    },
+  },
+  inactive_sections = {
+    lualine_a = {"filename"},
+    lualine_b = {"branch"},
+    lualine_c = {"diff"},
+    lualine_z = {"location"},
+  },
 }
+lualine.setup(opts)
