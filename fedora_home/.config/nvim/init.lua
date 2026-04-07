@@ -9,3 +9,5 @@ require("plugins.treesitter")
 -- NOTE1: harpoon not working with vim.pack.add() enable after the update
 -- require("plugins.harpoon")
 require("plugins.lsp")
+require("plugins.comment")
+require("plugins.debugger")

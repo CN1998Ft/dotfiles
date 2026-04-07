@@ -9,6 +9,7 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = tr
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
 vim.keymap.set("n", "<S-h>", ":tabprevious<CR>", { desc = "Go to left tab", remap = true })
 vim.keymap.set("n", "<S-l>", ":tabnext<CR>", { desc = "Go to left tab", remap = true })
+-- Use Comment.nvim instead
 -- vim.keymap.set("n", "gco", "o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", {desc = "Comment below"})
 -- vim.keymap.set("n", "gcO", "O<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", {desc = "Comment above"})
 vim.keymap.set("n", "<leader>r", function()

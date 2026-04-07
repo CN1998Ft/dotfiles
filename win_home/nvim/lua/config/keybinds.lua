@@ -1,47 +1,70 @@
 -- For compatible reasons, the icons and group is defined inside the
 -- plugins/whichkey.lua
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>e", ":Explore<CR>", {desc = "Explorer"})
-vim.keymap.set("n", "<leader>n", ":tabnew<CR>", {desc = "New file"})
-vim.keymap.set("n", "<C-h>", "<C-w>h", {desc = "Go to left window",remap = true })
-vim.keymap.set("n", "<C-l>", "<C-w>l", {desc = "Go to right window",remap = true })
-vim.keymap.set("n", "<C-j>", "<C-w>j", {desc = "Go to lower window",remap = true })
-vim.keymap.set("n", "<C-k>", "<C-w>k", {desc = "Go to upper window",remap = true })
-vim.keymap.set("n", "<S-h>", ":tabprevious<CR>", {desc = "Go to left tab",remap = true })
-vim.keymap.set("n", "<S-l>", ":tabnext<CR>", {desc = "Go to left tab",remap = true })
-vim.keymap.set("n", "gco", "o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", {desc = "Comment below"})
-vim.keymap.set("n", "gcO", "O<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", {desc = "Comment above"})
+vim.keymap.set("n", "<leader>e", ":Explore<CR>", { desc = "Explorer" })
+vim.keymap.set("n", "<leader>n", ":tabnew<CR>", { desc = "New file" })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
+vim.keymap.set("n", "<S-h>", ":tabprevious<CR>", { desc = "Go to left tab", remap = true })
+vim.keymap.set("n", "<S-l>", ":tabnext<CR>", { desc = "Go to left tab", remap = true })
+-- Use Comment.nvim instead
+-- vim.keymap.set("n", "gco", "o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", {desc = "Comment below"})
+-- vim.keymap.set("n", "gcO", "O<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", {desc = "Comment above"})
 vim.keymap.set("n", "<leader>r", function()
-    require("config.Fengtao").restart_session()
-end, {desc = "Restart", remap = false })
+  require("config.Fengtao").restart_session()
+end, { desc = "Restart", remap = false })
 
 -- Floating terminal
-vim.keymap.set("n", "<leader>t", require("config.terminal").termOpen, {noremap = true, desc = "Toggle Floating Terminal"})
-vim.keymap.set("t", "<Esc>", require("config.terminal").termClose, {noremap = true, desc = "Toggle Floating Terminal"})
+vim.keymap.set(
+  "n",
+  "<leader>t",
+  require("config.terminal").termOpen,
+  { noremap = true, desc = "Toggle Floating Terminal" }
+)
+vim.keymap.set(
+  "t",
+  "<Esc>",
+  require("config.terminal").termClose,
+  { noremap = true, desc = "Toggle Floating Terminal" }
+)
 
 -- buffers
-vim.keymap.set("n", "<leader>bd", ":bd<CR>", {desc = "Delete the current buffer"})
-vim.keymap.set("n", "<leader>bb", ":Pick buffers<CR>", {desc = "mini.pick buffers"})
-vim.keymap.set("n", "<leader>bp", ":bp<CR>", {desc = "Previous buffer"})
-vim.keymap.set("n", "<leader>bn", ":bn<CR>", {desc = "Next buffer"})
+vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Delete the current buffer" })
+vim.keymap.set("n", "<leader>bb", ":Pick buffers<CR>", { desc = "mini.pick buffers" })
+vim.keymap.set("n", "<leader>bp", ":bp<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bn", ":bn<CR>", { desc = "Next buffer" })
 
 -- mini.diff
-vim.keymap.set("n", "<leader>o", ":lua MiniDiff.toggle_overlay()<CR>", {desc = "Toggle git diff overlay"})
+vim.keymap.set("n", "<leader>o", ":lua MiniDiff.toggle_overlay()<CR>", { desc = "Toggle git diff overlay" })
 
 -- mini.pick
-vim.keymap.set("n", "<leader> ", ":Pick files<CR>", {desc = "mini.pick files"})
-vim.keymap.set("n", "<leader>G", ":Pick grep<CR>", {desc = "mini.pick grep"})
-vim.keymap.set("n", "<leader>/", ":Pick grep_live<CR>", {desc = "mini.pick live_grep"})
+vim.keymap.set("n", "<leader> ", ":Pick files<CR>", { desc = "mini.pick files" })
+vim.keymap.set("n", "<leader>G", ":Pick grep<CR>", { desc = "mini.pick grep" })
+vim.keymap.set("n", "<leader>/", ":Pick grep_live<CR>", { desc = "mini.pick live_grep" })
 vim.keymap.set("n", "<leader>ff", function()
-    require("config.Fengtao").pick_dir_file()
-end, {desc = "pick dirs and files"})
-vim.keymap.set("n", "<leader>fg", ":Pick grep<CR>", {desc = "pick grep"})
-vim.keymap.set("n", "<leader>fb", ":Pick buffers<CR>", {desc = "pick buffers"})
-vim.keymap.set("n", "<leader>f/", ":Pick grep_live<CR>", {desc = "pick live grep"})
-vim.keymap.set("n", "<leader>fh", ":Pick help<CR>", {desc = "grep through help files"})
+  require("config.Fengtao").pick_dir_file()
+end, { desc = "pick dirs and files" })
+vim.keymap.set("n", "<leader>fg", ":Pick grep<CR>", { desc = "pick grep" })
+vim.keymap.set("n", "<leader>fb", ":Pick buffers<CR>", { desc = "pick buffers" })
+vim.keymap.set("n", "<leader>f/", ":Pick grep_live<CR>", { desc = "pick live grep" })
+vim.keymap.set("n", "<leader>fh", ":Pick help<CR>", { desc = "grep through help files" })
 vim.keymap.set("n", "<leader>fc", function()
-    require("config.Fengtao").pick_config()
-end, {desc = "pick config"})
+  require("config.Fengtao").pick_config()
+end, { desc = "pick config" })
+
+-- Code related, mason and stuff
+vim.keymap.set("n", "<leader>cm", ":Mason<CR>", { desc = "Mason TUI" })
+vim.keymap.set("n", "<leader>cc", ":checkhealth vim.lsp<CR>", { desc = "check lsp info" })
+
+-- vim.pack
+vim.keymap.set("n", "<leader>pv", function()
+  vim.pack.update(nil, { offline = true })
+end, { desc = "pack list" })
+vim.keymap.set("n", "<leader>pu", function()
+  vim.pack.update(nil, { force = true })
+end, { desc = "pack update all" })
 
 -- NOTE1: harpoon not working for now
 -- harpoon

@@ -5,6 +5,8 @@ vim.opt.wrap = false
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 10
 vim.opt.signcolumn = "yes:1"
+vim.opt.conceallevel = 0
+vim.opt.concealcursor = ""
 
 -- Tab settings:
 vim.opt.smartindent = true
