@@ -1,85 +1,53 @@
-return {
-    {
-        "nvim-mini/mini.icons",
-        version = false,
-        lazy = false,
-        priority = 1000,
-        opts = {
-            style = 'glyph',
-        },
-        config = function(_, opts)
-            local icons = require("mini.icons")
-            icons.setup(opts)
-            icons.mock_nvim_web_devicons()
-        end,
-    },
-    {
-        "nvim-mini/mini.pick",
-        version = false,
-        lazy = false,
-        opts = {
-            delay = {
-                async = 10,
-                busy = 50,
-            },
-            window = {
-                config = function()
-                    local h = math.floor(0.5 * vim.o.lines)
-                    local w = math.floor(0.5 * vim.o.columns)
-                    return {
-                        anchor = "NW",
-                        height = h,
-                        width = w,
-                        row = math.floor(0.5 * vim.o.lines),
-                        col = 0,
-                    }
-                end,
-            },
-        },
-        config = function(_, opts)
-            local picker = require("mini.pick")
-            picker.setup(opts)
-        end,
-    },
-    {
-        "nvim-mini/mini.diff",
-        version = false,
-        opts = {
-            view = {
-                style = vim.go.number and 'sign',
-                signs = { add = '▒', change = '▒',delete = '▒' },
-                priority = 199,
-            },
-            delay = {
-                text_change = 300,
-            },
-        },
-        config = function(_, opts)
-            local git_diff = require("mini.diff")
-            git_diff.setup(opts)
-        end,
-    },
-    {
-        "nvim-mini/mini.trailspace",
-        version = false,
-        opts = {
-            only_in_normal_buffers = true,
-        },
-        config = function(_, opts)
-            local trailspace = require("mini.trailspace")
-            trailspace.setup(opts)
-        end,
-    },
-    -- {
-    --     "nvim-mini/mini.surround",
-    --     version = false,
-    --     opts = {
-    --         mappings = {
-    --         },
-    --     },
-    --     config = function(_, opts)
-    --         local surround = require("mini.surround")
-    --         surround.setup(opts)
-    --     end,
-    -- },
+vim.pack.add({
+  "https://github.com/nvim-mini/mini.icons",
+  "https://github.com/nvim-mini/mini.pick",
+  "https://github.com/nvim-mini/mini.diff",
+  "https://github.com/nvim-mini/mini.trailspace",
+})
+
+-- icons
+local icons = require("mini.icons")
+icons.setup({ style = "glyph" })
+icons.mock_nvim_web_devicons()
+
+-- pick
+local picker = require("mini.pick")
+local opts = {
+  delay = {
+    async = 10,
+    busy = 50,
+  },
+  window = {
+    config = function()
+      local h = math.floor(0.5 * vim.o.lines)
+      local w = math.floor(0.5 * vim.o.columns)
+      return {
+        anchor = "NW",
+        height = h,
+        width = w,
+        row = math.floor(0.5 * vim.o.lines),
+        col = 0,
+      }
+    end,
+  },
 }
+picker.setup(opts)
+
+-- diff
+local diff = require("mini.diff")
+opts = {
+  view = {
+    style = "sign",
+    signs = { add = '▒', change = '▒',delete = '▒' },
+    priority = 199,
+  },
+  delay = {
+    text_change = 300,
+  },
+}
+diff.setup(opts)
+
+-- trailspace
+local trailspace = require("mini.trailspace")
+opts = { only_in_normal_buffers = true }
+trailspace.setup(opts)

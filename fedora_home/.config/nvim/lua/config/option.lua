@@ -24,7 +24,13 @@ vim.opt.cursorline = true
 -- Add column ruler at 80
 vim.opt.colorcolumn = "80"
 
+-- fold
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+
 -- Miscellaneous
+vim.opt.ruler = false
 vim.opt.showmode = false
 vim.opt.splitbelow = true
 vim.opt.splitright = true

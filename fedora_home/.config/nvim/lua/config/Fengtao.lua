@@ -4,8 +4,11 @@ local function example()
     vim.cmd([[echo "hello"]])
 end
 
+-- NOTE1: harpoon not working with vim.pack.add yet
 local function harpoon_pick_menu()
+  vim.pack.add("harpoon")
     local ok, harpoon = pcall(require, "harpoon")
+    print(ok)
     harpoon:setup({})
 
     local items = {}
@@ -29,6 +32,18 @@ local function harpoon_pick_menu()
             end,
         },
     })
+end
+
+local function restart_session()
+    local data_path = vim.fn.stdpath("data")
+    local project_name = vim.fs.basename(vim.fn.getcwd())
+    local session_path = vim.fs.normalize(data_path .. "/Sessions")
+    if vim.fn.isdirectory(session_path) == 0 then
+      vim.fn.mkdir(session_path)
+    end
+    local session_file = vim.fs.normalize(session_path .. "/" .. project_name .. ".vim")
+    vim.cmd("mksession!" .. session_file)
+    vim.cmd("restart source " .. session_file)
 end
 
 local function pick_config()
@@ -81,5 +96,6 @@ end
 M.harpoon_pick_menu = harpoon_pick_menu
 M.pick_config = pick_config
 M.pick_dir_file = pick_dir_file
+M.restart_session = restart_session
 
 return M
