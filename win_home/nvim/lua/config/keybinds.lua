@@ -57,6 +57,8 @@ end, { desc = "pick config" })
 -- Code related, mason and stuff
 vim.keymap.set("n", "<leader>cm", ":Mason<CR>", { desc = "Mason TUI" })
 vim.keymap.set("n", "<leader>cc", ":checkhealth vim.lsp<CR>", { desc = "check lsp info" })
+vim.keymap.set("n", "<leader>ct", ":Inspect<CR>", { desc = "treesitter Inspect" })
+vim.keymap.set("n", "<leader>cT", ":InspectTree<CR>", { desc = "treesitter InspectTree" })
 
 -- vim.pack
 vim.keymap.set("n", "<leader>pv", function()

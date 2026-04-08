@@ -57,7 +57,7 @@ $packages = @(
 'pwsh'
 )
 
-# Install mising packages if 
+# Install mising packages if
 $installed=$(ls $HOME/scoop/apps)
 for (($i=0); $package = $packages[$i]; $i++)
 {

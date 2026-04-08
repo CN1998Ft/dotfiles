@@ -7,51 +7,47 @@ vim.pack.add({
   },
 })
 
--- This require has to be done in this format, and not like the treesitter.setup()
-require("nvim-treesitter").setup({
-  parser_install_dir = vim.fs.normalize(vim.fn.stdpath("data") .. "/site"),
-  ignore_install = { "latex" },
-  ensure_installed = {
-    "c",
-    "cpp",
-    "make",
-    "cmake",
-    "ninja",
-    "lua",
-    "vim",
-    "vimdoc",
-    "query",
-    "markdown",
-    "markdown_inline",
-    "bash",
-    "powershell",
-    "python",
-    "bibtex",
-    "xml",
-    "html",
-    "toml",
-    "yaml",
-    "git_config",
-    "git_rebase",
-    "gitcommit",
-    "gitignore",
-    "diff",
-    "regex",
-  },
-  sync_install = false,
-  auto_install = true,
-  highlight = {
-    enable = true,
-    disable = function(lang, buf)
-      local max_filesize = 100 * 1024
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
-      end
-    end,
-    additional_vim_regex_highlight = false,
-  },
+local treesitter = require("nvim-treesitter")
+treesitter.setup({
+  install_dir = vim.fs.normalize(vim.fn.stdpath("data") .. "/sit"),
 })
 
-local treesitter = require("nvim-treesitter")
-treesitter.setup({})
+ensure_installed = {
+  "c",
+  "cpp",
+  "make",
+  "cmake",
+  "ninja",
+  "lua",
+  "vim",
+  "vimdoc",
+  "query",
+  "markdown",
+  "markdown_inline",
+  "bash",
+  "powershell",
+  "python",
+  "bibtex",
+  "xml",
+  "html",
+  "toml",
+  "yaml",
+  "git_config",
+  "git_rebase",
+  "gitcommit",
+  "gitignore",
+  "diff",
+  "regex",
+}
+
+local installed_parsers = treesitter.get_installed()
+local parsers_to_install = {}
+for _, parser in ipairs(ensure_installed) do
+  if not vim.tbl_contains(installed_parsers, parser) then
+    table.insert(parsers_to_install, parser)
+  end
+end
+
+if #parsers_to_install > 0 then
+  treesitter.install(parsers_to_install)
+end

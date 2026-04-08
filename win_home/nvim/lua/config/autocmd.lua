@@ -82,6 +82,7 @@ vim.api.nvim_create_autocmd("FileType", {
     -- Not exhaustive, only the one that I use, copied from LazyVim.
     "checkhealth",
     "help",
+    "nvim-pack",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -169,8 +170,12 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
--- Disable buf
+-- auto update the treesitter parser
+local ts_update = vim.api.nvim_create_augroup("ts_update", { clear = true })
+
 vim.api.nvim_create_autocmd("PackChanged", {
+  group = ts_update,
+  desc = "Auto update the parsers when nvim-treesitter udpate",
   callback = function(ev)
     local name, kind = ev.data.spec.name, ev.data.kind
     if name == "nvim-treesitter" and kind == "update" then
@@ -178,6 +183,28 @@ vim.api.nvim_create_autocmd("PackChanged", {
         vim.cmd.packadd("nvim-treesitter")
       end
       vim.cmd("TSUpdate")
+    end
+  end,
+})
+
+-- Treesitter highlight apply
+local ts_hl = vim.api.nvim_create_augroup("ts_hl", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  group = ts_hl,
+  callback = function(args)
+    local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+    -- print(string.format("The current file type is %s.", buf_ft))
+    local parser_list = require("nvim-treesitter").get_installed()
+    if vim.list_contains(parser_list, buf_ft) then
+      vim.treesitter.start(args.buf)
+      -- print("treesitter.started")
+    elseif buf_ft == "sh" then
+      vim.treesitter.start(args.buf, "bash")
+      -- print("treesitter.started")
+    elseif buf_ft == "ps1" then
+      vim.treesitter.start(args.buf, "powershell")
+      -- print("treesitter.started")
     end
   end,
 })
