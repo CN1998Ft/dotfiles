@@ -1,0 +1,56 @@
+vim.pack.add({ "https://github.com/folke/which-key.nvim" })
+
+local icons = require("mini.icons")
+git_icons, _, _ = icons.get("filetype", "git")
+conf_icons, _, _ = icons.get("filetype", "config")
+
+opts = {
+  preset = "helix",
+  spec = {
+    { "<leader> ", icon = "󰱽" },
+    { "<leader>e", icon = "󰙅" },
+    { "<leader>n", icon = "󰝒" },
+    { "gh", icon = { icon = git_icons, hl = "MiniIconsOrange" } },
+    { "gH", icon = { icon = git_icons, hl = "MiniIconsOrange" } },
+    { "<leader>f", group = "mini.pick", icon = "󰍉" },
+    { "<leader>fh", icon = { icon = "󰋖", hl = "MiniIconsRed" } },
+    { "<leader>fg", icon = { icon = "󰍉", hl = "MiniIconsAzura" } },
+    { "<leader>f/", icon = { icon = "󰍉", hl = "MiniIconsRed" } },
+    { "<leader>ff", icon = "󰱽" },
+    { "<leader>fb", icon = "" },
+    { "<leader>fc", icon = { icon = conf_icons, hl = "MiniIconsBlue" } },
+    { "<leader>G", icon = { icon = "󰍉", hl = "MiniIconsGreen" } },
+    { "<leader>/", icon = { icon = "󰍉", hl = "MiniIconsRed" } },
+    { "<leader>b", group = "buffers", icon = "" },
+    { "<leader>bb", icon = "" },
+    { "<leader>bd", icon = "" },
+    { "<leader>bp", icon = "" },
+    { "<leader>bn", icon = "" },
+    -- NOTE1: harpoon not working with vim.pack.add() yet
+    -- {"<leader>H", icon = { icon = "󰛢", hl = "MiniIconsPurple"}},
+    -- {"<leader>h", icon = {icon = "󰀱", hl = "MiniIconsPurple"}},
+    -- {"<leader>fH", icon = { icon = "󰛢", hl = "MiniIconsPurple"}},
+    -- {"<leader>0", hidden = true},
+    -- {"<leader>1", icon = { icon = "󱡀", hl = "MiniIconsPurple"}},
+    -- {"<leader>2", icon = { icon = "󱡀", hl = "MiniIconsPurple"}},
+    -- {"<leader>3", icon = { icon = "󱡀", hl = "MiniIconsPurple"}},
+    -- {"<leader>4", icon = { icon = "󱡀", hl = "MiniIconsPurple"}},
+    -- {"<leader>5", icon = { icon = "󱡀", hl = "MiniIconsPurple"}},
+    -- {"<leader>6", icon = { icon = "󱡀", hl = "MiniIconsPurple"}},
+    -- {"<leader>7", icon = { icon = "󱡀", hl = "MiniIconsPurple"}},
+    -- {"<leader>8", icon = { icon = "󱡀", hl = "MiniIconsPurple"}},
+    -- {"<leader>9", icon = { icon = "󱡀", hl = "MiniIconsPurple"}},
+    { "gx", icon = { icon = "󱅷", hl = "MiniIconsBlue" } },
+    { "<leader>r", icon = { icon = "󰜉", hl = "MiniIconsRed" } },
+    { "<leader>c", group = "code", icon = { icon = "", hl = "MiniIconsGreen" } },
+    { "<leader>cc", icon = { icon = "", hl = "MiniIconsOrange" } },
+    { "<leader>cC", icon = { icon = "", hl = "MiniIconsGreen" } },
+    { "<leader>cT", icon = { icon = "", hl = "MiniIconsGreen" } },
+    { "<leader>ct", icon = { icon = "", hl = "MiniIconsGreen" } },
+    { "<leader>p", group = "vim.pack", icon = { icon = "󰏓", hl = "MiniIconsBlue" } },
+    { "<leader>pu", icon = { icon = "󰏔", hl = "MiniIconsBlue" } },
+  },
+}
+
+local whichkey = require("which-key")
+whichkey.setup(opts)

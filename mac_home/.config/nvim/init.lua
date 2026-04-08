@@ -1,2 +1,14 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+require("config/option")
+require("config.keybinds")
+require("config.autocmd")
+require("plugins.colorscheme")
+require("plugins.nvim-mini")
+require("plugins.lualine")
+require("plugins.whichkey")
+require("plugins.treesitter")
+-- NOTE1: harpoon not working with vim.pack.add() enable after the update
+-- require("plugins.harpoon")
+require("plugins.lsp")
+require("plugins.comment")
+require("plugins.debugger")
+require("plugins.vimtex")

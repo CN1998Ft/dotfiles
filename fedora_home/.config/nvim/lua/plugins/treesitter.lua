@@ -34,7 +34,6 @@ ensure_installed = {
   "yaml",
   "git_config",
   "git_rebase",
-  "gitcommit",
   "gitignore",
   "diff",
   "regex",
