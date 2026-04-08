@@ -10,6 +10,7 @@ vim.pack.add({
 -- This require has to be done in this format, and not like the treesitter.setup()
 require("nvim-treesitter.configs").setup({
   parser_install_dir = vim.fs.normalize(vim.fn.stdpath("data") .. "/site"),
+  ignore_install = { "latex" },
   ensure_installed = {
     "c",
     "cpp",

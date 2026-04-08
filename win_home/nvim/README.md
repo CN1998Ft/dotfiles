@@ -22,9 +22,10 @@ understanding of neovim/vim.
 4. which-key for previewing the shortcuts.
 5. Harpoon for hopping between frequently edited files. Not working with vim.pack.add()
 6. nvim-treesitter done.
+7. lsp done for lua and python.
 
-- [ ] lsp.
-- [ ] nvim-treesitter for fold.
+- [ ] Needs the dap work for python, maybe lua.
+
 
 ### Floating terminal
 

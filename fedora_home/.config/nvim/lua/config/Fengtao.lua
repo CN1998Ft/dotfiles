@@ -4,7 +4,6 @@ local function example()
   vim.cmd([[echo "hello"]])
 end
 
-local pick = require("mini.pick")
 -- NOTE1: harpoon not working with vim.pack.add yet
 local function harpoon_pick_menu()
   vim.pack.add("harpoon")

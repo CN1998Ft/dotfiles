@@ -139,6 +139,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
+  group = lua_file,
   pattern = "*.lua",
   callback = function(args)
     vim.lsp.buf.format({
@@ -146,6 +147,23 @@ vim.api.nvim_create_autocmd("BufWritePre", {
       async = false,
       filter = function(client)
         return client.name == "stylua"
+      end,
+    })
+  end,
+})
+
+-- python file specific autocmd
+local py_file = vim.api.nvim_create_augroup("py_file", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = py_file,
+  pattern = "*.py",
+  callback = function(args)
+    vim.lsp.buf.format({
+      bufnr = args.buf,
+      async = false,
+      filter = function(client)
+        return client.name == "ruff"
       end,
     })
   end,
