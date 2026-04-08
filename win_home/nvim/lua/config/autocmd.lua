@@ -170,17 +170,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- Disable buf
-local tree_no = vim.api.nvim_create_augroup("no_treesitter_hover", { clear = true })
-vim.api.nvim_create_autocmd("VimEnter", {
-  group = tree_no,
-  desc = "Patch LSP floating preview to avoid Treesitter range error",
-  callback = function()
-    local orig = vim.lsp.util.open_floating_preview
-    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-      opts = opts or {}
-      -- By forcing syntax to nil, we stop Treesitter from
-      -- attempting to highlight the hover window.
-      return orig(contents, nil, opts, ...)
+vim.api.nvim_create_autocmd("PackChanged", {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if name == "nvim-treesitter" and kind == "update" then
+      if not ev.data.active then
+        vim.cmd.packadd("nvim-treesitter")
+      end
+      vim.cmd("TSUpdate")
     end
   end,
 })

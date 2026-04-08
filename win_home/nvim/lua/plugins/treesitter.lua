@@ -2,13 +2,13 @@ vim.pack.add({
   {
     src = "https://github.com/nvim-treesitter/nvim-treesitter",
     -- Keep this until the treesitter is above 0.26.1 on fedora
-    version = "master",
+    version = "main",
     build = ":TSUpdate",
   },
 })
 
 -- This require has to be done in this format, and not like the treesitter.setup()
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter").setup({
   parser_install_dir = vim.fs.normalize(vim.fn.stdpath("data") .. "/site"),
   ignore_install = { "latex" },
   ensure_installed = {
