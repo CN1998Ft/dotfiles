@@ -12,7 +12,7 @@ treesitter.setup({
   install_dir = vim.fs.normalize(vim.fn.stdpath("data") .. "/sit"),
 })
 
-ensure_installed = {
+local ensure_installed = {
   "c",
   "cpp",
   "make",
@@ -28,6 +28,7 @@ ensure_installed = {
   "powershell",
   "python",
   "bibtex",
+  "latex",
   "xml",
   "html",
   "toml",

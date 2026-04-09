@@ -205,6 +205,9 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     elseif buf_ft == "ps1" then
       vim.treesitter.start(args.buf, "powershell")
       -- print("treesitter.started")
+    elseif buf_ft == "tex" then
+      vim.treesitter.start(args.buf, "latex")
+      -- print("treesitter.started")
     end
   end,
 })

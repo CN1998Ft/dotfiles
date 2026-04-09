@@ -197,13 +197,15 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     -- print(string.format("The current file type is %s.", buf_ft))
     local parser_list = require("nvim-treesitter").get_installed()
     if vim.list_contains(parser_list, buf_ft) then
-      vim.treesitter.start(args.buf)
-      -- print("treesitter.started")
+      -- vim.treesitter.start(args.buf)
     elseif buf_ft == "sh" then
       vim.treesitter.start(args.buf, "bash")
       -- print("treesitter.started")
     elseif buf_ft == "ps1" then
       vim.treesitter.start(args.buf, "powershell")
+      -- print("treesitter.started")
+    elseif buf_ft == "tex" then
+      vim.treesitter.start(args.buf, "latex")
       -- print("treesitter.started")
     end
   end,
