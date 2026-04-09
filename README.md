@@ -51,10 +51,6 @@ My personal dotfiles started with MacOs and Linux. Finally, with Windows too.
 
 ---
 
-## TODO
-
-    1. Figure out the xdg-open, xdg-mime, and xdg-settings on linux.
-
 ## Shortcuts
 
 ### Universal shortcuts table

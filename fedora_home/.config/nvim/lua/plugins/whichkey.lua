@@ -49,6 +49,7 @@ opts = {
     { "<leader>ct", icon = { icon = "", hl = "MiniIconsGreen" } },
     { "<leader>p", group = "vim.pack", icon = { icon = "󰏓", hl = "MiniIconsBlue" } },
     { "<leader>pu", icon = { icon = "󰏔", hl = "MiniIconsBlue" } },
+    { "<leader>d", group = "debug", icon = { icon = "", hl = "MiniIconsGreen" } },
   },
 }
 

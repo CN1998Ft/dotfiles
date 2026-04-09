@@ -69,6 +69,18 @@ vim.keymap.set("n", "<leader>pu", function()
   vim.pack.update(nil, { force = true })
 end, { desc = "pack update all" })
 
+-- nvim-dap
+vim.keymap.set("n", "<leader>dc", function()
+  require("dap").continue()
+end, { desc = "Debug continue" })
+vim.keymap.set("n", "<leader>db", function()
+  require("dap").toggle_breakpoint()
+end, { desc = "Toggle breakpoint" })
+vim.keymap.set("n", "<leader>dt", function()
+  require("dap").terminate()
+end, { desc = "Terminate session" })
+vim.keymap.set("n", "<leader>dv", ":DapViewToggle<CR>", { desc = "Terminate session" })
+
 -- NOTE1: harpoon not working for now
 -- harpoon
 -- vim.keymap.set("n", "<leader>H", function()

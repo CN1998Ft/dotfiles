@@ -83,6 +83,10 @@ vim.api.nvim_create_autocmd("FileType", {
     "checkhealth",
     "help",
     "nvim-pack",
+    "dap-view",
+    "dap-view-term",
+    "dap-repl",
+    "dap-disassembly",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -108,6 +112,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
+    vim.opt_local.linebreak = true
   end,
 })
 
@@ -194,19 +199,17 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = ts_hl,
   callback = function(args)
     local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
-    -- print(string.format("The current file type is %s.", buf_ft))
     local parser_list = require("nvim-treesitter").get_installed()
     if vim.list_contains(parser_list, buf_ft) then
-      -- vim.treesitter.start(args.buf)
+      vim.treesitter.start(args.buf)
     elseif buf_ft == "sh" then
       vim.treesitter.start(args.buf, "bash")
-      -- print("treesitter.started")
     elseif buf_ft == "ps1" then
       vim.treesitter.start(args.buf, "powershell")
-      -- print("treesitter.started")
     elseif buf_ft == "tex" then
       vim.treesitter.start(args.buf, "latex")
-      -- print("treesitter.started")
+    elseif buf_ft == "bib" then
+      vim.treesitter.start(args.buf, "bibtex")
     end
   end,
 })
