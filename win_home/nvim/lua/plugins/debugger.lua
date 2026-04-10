@@ -78,35 +78,34 @@ local dap = require("dap")
 
 -- Get python for config
 local function find_python()
-  local cwd = vim.fn.getcwd()
   local is_windows = vim.uv.os_uname().sysname == "Windows_NT"
-  local python_bin = is_windows and "/python.exe" or "/bin/python"
+  local _python_bin = is_windows and "/Scripts/python.exe" or "/bin/python"
+  local cwd = vim.fn.getcwd()
+  local venv = vim.fs.normalize(cwd .. "/.venv" .. _python_bin)
+  local alt_venv = vim.fs.normalize(cwd .. "/venv" .. _python_bin)
 
-  -- 1. Check for local .venv or venv
-  local venv_path = vim.fs.normalize(cwd .. "/.venv" .. python_bin)
-  local venv_path_alt = vim.fs.normalize(cwd .. "/venv" .. python_bin)
-
-  if vim.fn.executable(venv_path) == 1 then
-    return venv_path
-  elseif vim.fn.executable(venv_path_alt) == 1 then
-    return venv_path_alt
-  end
-
-  local conda_prefix = os.getenv("CONDA_PREFIX")
-  if conda_prefix then
-    local conda_python = vim.fs.normalize(conda_prefix .. python_bin)
-    if vim.fn.executable(conda_python) == 1 then
-      return conda_python
+  local python_bin
+  if vim.fn.executable(venv) == 1 then
+    python_bin = venv
+  elseif vim.fn.executable(alt_venv) == 1 then
+    python_bin = alt_venv
+  elseif os.getenv("CONDA_PREFIX") then
+    local conda
+    if is_windows then
+      conda = vim.fs.normalize(os.getenv("CONDA_PREFIX") .. "/python.exe")
+    else
+      conda = vim.fs.normalize(os.getenv("CONDA_PREFIX") .. _python_bin)
     end
+    python_bin = conda
+  else
+    vim.notify(
+      "No python environment found, attemping to use global python.",
+      vim.log.levels.INFO,
+      { title = "Nvim-DAP" }
+    )
+    python_bin = "python3"
   end
-
-  vim.notify(
-    "DAP: No active environment found (.venv, venv, or Conda). Please activate an environment.",
-    vim.log.levels.ERROR,
-    { title = "Nvim-DAP" }
-  )
-
-  return "python3"
+  return python_bin
 end
 
 dap.configurations.python = {
@@ -115,7 +114,7 @@ dap.configurations.python = {
     request = "launch",
     name = "Launch file",
     program = "${file}",
-    pythonPath = find_python(),
+    pythonPath = find_python,
   },
   {
     type = "python",
@@ -163,4 +162,16 @@ end
 
 dap.listeners.before["event_exited"]["dap_show_view"] = function()
   dapview.close()
+end
+
+local dap_icons = {
+  Breakpoint = { text = "", texthl = "Blue", linehl = "", numhl = "" },
+  BreakpointCondition = { text = "󰮍", texthl = "Green", linehl = "", numhl = "" },
+  BreakpointRejected = { text = "󰃤", texthl = "Red", linehl = "", numhl = "" },
+  LogPoint = { text = "󰰐", texthl = "Blue", linehl = "", numhl = "" },
+  Stopped = { text = "󰁕", texthl = "Red", linehl = "DiagnosticWarn", numhl = "" },
+}
+
+for name, config in pairs(dap_icons) do
+  vim.fn.sign_define("Dap" .. name, config)
 end
