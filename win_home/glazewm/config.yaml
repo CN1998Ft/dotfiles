@@ -145,6 +145,7 @@ window_rules:
   - commands: ['set-floating', 'toggle-minimized']
     match:
       - window_title: { regex: ".*python\\.exe$"}
+      - window_title: { regex: ".*cmd\\.exe$"}
 
   - commands: ['ignore']
     match:

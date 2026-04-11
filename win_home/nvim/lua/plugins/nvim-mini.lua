@@ -37,7 +37,7 @@ picker.setup(opts)
 local diff = require("mini.diff")
 opts = {
   view = {
-    style = "sign",
+    style = "number",
     signs = { add = "▒", change = "▒", delete = "▒" },
     priority = 199,
   },

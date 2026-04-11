@@ -55,6 +55,7 @@ $packages = @(
 'okular'
 'powertoys'
 'pwsh'
+'nodejs'
 )
 
 # Install mising packages if
