@@ -189,38 +189,108 @@ dap.configurations.lua = {
 }
 
 -- C/CPP/Rust
-local function find_lldb()
-  local is_windows = vim.uv.os_uname().sysname == "Windows_NT"
-  local lldb_path = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/adapter/codelldb"
-  local lldb_bin
-  if is_windows then
-    lldb_bin = vim.fs.normalize(lldb_path .. ".exe")
-  else
-    lldb_bin = lldb_path
+local function find_debugger()
+  local os_name = vim.uv.os_uname().sysname
+  local debugger_bin
+
+  if os_name == "Windows_NT" then
+    debugger_bin = vim.fs.normalize(vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/adapter/codelldb.exe")
+  elseif os_name == "Darwin" then
+    local temp_bin = vim.fn.system("brew --prefix llvm") .. "/bin/lldb-dap"
+    debugger_bin = string.gsub(temp_bin, "\n", "")
+  elseif os_name == "Linux" then
+    debugger_bin = "gdb"
   end
-  return lldb_bin
+  return debugger_bin
 end
 
-dap.adapters.codelldb = {
-  type = "executable",
-  command = find_lldb(),
-  -- detached = false,
-}
+local function define_config_ccpp()
+  local os_name = vim.uv.os_uname().sysname
 
-dap.configurations.cpp = {
-  {
-    name = "Launch file",
-    type = "codelldb",
-    request = "launch",
-    program = function()
-      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-    end,
-    cwd = "${workspaceFolder}",
-    stopOnEntry = false,
-  },
-}
-dap.configurations.c = dap.configurations.cpp
-dap.configurations.rust = dap.configurations.cpp
+  if os_name == "Windows_NT" then
+    dap.adapters.codelldb = {
+      type = "executable",
+      command = find_debugger(),
+    }
+    dap.configurations.cpp = {
+      {
+        name = "Launch file",
+        type = "codelldb",
+        request = "launch",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+      },
+    }
+  elseif os_name == "Darwin" then
+    dap.adapters.lldb = {
+      type = "executable",
+      command = find_debugger(),
+      name = "lldb",
+    }
+    dap.configurations.cpp = {
+      {
+        name = "Launch",
+        type = "lldb",
+        request = "launch",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        args = {},
+      },
+    }
+  elseif os_name == "Linux" then
+    dap.adapters.gdb = {
+      type = "executable",
+      command = find_debugger(),
+      args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
+    }
+    dap.configurations.cpp = {
+      {
+        name = "Launch",
+        type = "gdb",
+        request = "launch",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        args = {}, -- provide arguments if needed
+        cwd = "${workspaceFolder}",
+        stopAtBeginningOfMainSubprogram = false,
+      },
+      {
+        name = "Select and attach to process",
+        type = "gdb",
+        request = "attach",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        pid = function()
+          local name = vim.fn.input("Executable name (filter): ")
+          return require("dap.utils").pick_process({ filter = name })
+        end,
+        cwd = "${workspaceFolder}",
+      },
+      {
+        name = "Attach to gdbserver :1234",
+        type = "gdb",
+        request = "attach",
+        target = "localhost:1234",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        cwd = "${workspaceFolder}",
+      },
+    }
+  end
+  dap.configurations.c = dap.configurations.cpp
+  dap.configurations.rust = dap.configurations.cpp
+end
+
+define_config_ccpp()
 
 -- Dap trigger the dap-view
 dap.listeners.after["event_initialized"]["dap_show_view"] = function()

@@ -1,6 +1,5 @@
 vim.pack.add({
   "https://github.com/mason-org/mason.nvim",
-  "https://github.com/mason-org/mason-lspconfig.nvim",
   "https://github.com/neovim/nvim-lspconfig",
   {
     src = "https://github.com/saghen/blink.cmp",
@@ -9,20 +8,27 @@ vim.pack.add({
 })
 
 require("mason").setup({})
-require("mason-lspconfig").setup({
-  ensure_installed = {
-    "lua_ls",
-    "stylua",
-    "ruff",
-    "pylsp",
-  },
-})
-local install_debug = {
+
+-- Install debug adapter
+local install_mason = {
   "local-lua-debugger-vscode",
-  "codelldb",
+  "lua-language-server",
+  "stylua",
+  "ruff",
+  "python-lsp-server",
 }
+local install_mason_win = vim.fn.deepcopy(install_mason)
+table.insert(install_mason_win, "codelldb") -- Linux has gdb and Darwin has lldb preinstalled
+local is_win = vim.uv.os_uname().sysname == "Windows_NT"
+local to_install
+if is_win then
+  to_install = install_mason_win
+else
+  to_install = install_mason
+end
+
 local already_installed = require("mason-registry").get_installed_package_names()
-for _, debugger in ipairs(install_debug) do
+for _, debugger in ipairs(to_install) do
   if not vim.list_contains(already_installed, debugger) then
     print(string.format("The bugger %s is not installed", debugger))
     vim.cmd("MasonInstall " .. debugger)

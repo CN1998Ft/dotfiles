@@ -37,6 +37,7 @@ c_pkg=(
     mpv
     yt-dlp
     yazi
+    luajit
 )
 f_pkg=(
     # eza and nerd fonts need to use curl

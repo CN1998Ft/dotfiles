@@ -55,6 +55,7 @@ $packages = @(
 'okular'
 'powertoys'
 'pwsh'
+'luajit'
 'nodejs'
 )
 
