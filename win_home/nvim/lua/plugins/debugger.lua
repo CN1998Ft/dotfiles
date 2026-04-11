@@ -157,6 +157,7 @@ dap.adapters["local-lua"] = {
   type = "executable",
   command = "node",
   args = {
+    "--trace-deprecation",
     vim.fs.normalize(
       vim.fn.stdpath("data") .. "/mason/packages/local-lua-debugger-vscode/extension/extension/debugAdapter.js"
     ),
@@ -164,8 +165,6 @@ dap.adapters["local-lua"] = {
   enrich_config = function(config, on_config)
     if not config["extensionPath"] then
       local c = vim.deepcopy(config)
-      -- 💀 If this is missing or wrong you'll see
-      -- "module 'lldebugger' not found" errors in the dap-repl when trying to launch a debug session
       c.extensionPath =
         vim.fs.normalize(vim.fn.stdpath("data") .. "/mason/packages/local-lua-debugger-vscode/extension/")
       on_config(c)
@@ -188,6 +187,40 @@ dap.configurations.lua = {
     args = {},
   },
 }
+
+-- C/CPP/Rust
+local function find_lldb()
+  local is_windows = vim.uv.os_uname().sysname == "Windows_NT"
+  local lldb_path = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/adapter/codelldb"
+  local lldb_bin
+  if is_windows then
+    lldb_bin = vim.fs.normalize(lldb_path .. ".exe")
+  else
+    lldb_bin = lldb_path
+  end
+  return lldb_bin
+end
+
+dap.adapters.codelldb = {
+  type = "executable",
+  command = find_lldb(),
+  -- detached = false,
+}
+
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    end,
+    cwd = "${workspaceFolder}",
+    stopOnEntry = false,
+  },
+}
+dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp
 
 -- Dap trigger the dap-view
 dap.listeners.after["event_initialized"]["dap_show_view"] = function()

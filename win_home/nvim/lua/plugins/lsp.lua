@@ -8,7 +8,6 @@ vim.pack.add({
   },
 })
 
--- vim.cmd("packadd mason-lspconfig.nvim")
 require("mason").setup({})
 require("mason-lspconfig").setup({
   ensure_installed = {
@@ -18,6 +17,17 @@ require("mason-lspconfig").setup({
     "pylsp",
   },
 })
+local install_debug = {
+  "local-lua-debugger-vscode",
+  "codelldb",
+}
+local already_installed = require("mason-registry").get_installed_package_names()
+for _, debugger in ipairs(install_debug) do
+  if not vim.list_contains(already_installed, debugger) then
+    print(string.format("The bugger %s is not installed", debugger))
+    vim.cmd("MasonInstall " .. debugger)
+  end
+end
 
 -- get blink.cmp for lsp completion
 local blinkcmp = require("blink.cmp")
@@ -73,13 +83,5 @@ vim.lsp.enable({
 
 -- Disable diagnostic signs, but with underline and text color
 vim.diagnostic.config({
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = "",
-      [vim.diagnostic.severity.WARN] = "",
-      [vim.diagnostic.severity.INFO] = "",
-      [vim.diagnostic.severity.HINT] = "",
-    },
-  },
-  severity = true,
+  signs = false,
 })
