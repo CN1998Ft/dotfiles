@@ -57,6 +57,7 @@ $packages = @(
 'pwsh'
 'luajit'
 'nodejs'
+'psmux'
 )
 
 # Install mising packages if
@@ -173,6 +174,9 @@ if ($me -eq "mn19fz"){
 
 # Okular
 Copy-Item -Force -Recurse ./win_home/okular $HOME/AppData/Local/kxmlgui5/
+
+# psmux
+Copy-Item -Force ./win_home/tmux.conf $HOME/.tmux.conf
 
 echo ""
 echo "Synchronzed all windows configurations."
