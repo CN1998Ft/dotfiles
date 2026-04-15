@@ -27,7 +27,6 @@ c_pkg=(
     lazygit
     starship
     ripgrep
-    vim
     tree-sitter-cli
     # neovim
     zoxide

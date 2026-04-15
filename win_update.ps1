@@ -41,7 +41,6 @@ $packages = @(
 'zoxide'
 'alacritty'
 'miktex'
-'vim'
 'pandoc'
 'glow'
 'mpv'
@@ -134,10 +133,10 @@ if ($me -eq "mn19fz"){
     $home_path=$($HOME)
 }
 $vim_path=$home_path+"\.vimrc"
-$gvim_path=$home_path+"\_vimrc"
+# $gvim_path=$home_path+"\_vimrc"
 if ( Test-Path $home_path ){
     Copy-Item -Force ./win_home/vimrc $vim_path
-    Copy-Item -Force ./win_home/vimrc $gvim_path
+    # Copy-Item -Force ./win_home/vimrc $gvim_path
 }
 # if ( Test-Path $HOME/.config/vim ){
 #     Remove-Item -Recurse -Force $HOME/.config/vim
