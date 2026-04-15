@@ -60,6 +60,27 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+  group = highlight_group,
+  desc = "Highlight whitespaces",
+  pattern = "*",
+  callback = function()
+    vim.w.ws_match1 = vim.fn.matchadd("Leapmatch", [[^\s\+$\| \+\ze\t]])
+  end,
+})
+
+vim.api.nvim_create_autocmd("InsertLeave", {
+  group = highlight_group,
+  pattern = "*",
+  callback = function()
+    -- Use pcall (protected call) to avoid errors if the match was already cleared
+    if vim.w.ws_match1 then
+      pcall(vim.fn.matchdelete, vim.w.ws_match1)
+      vim.w.ws_match1 = nil
+    end
+  end,
+})
+
 -- Resize split when window is resized
 local resize_split = vim.api.nvim_create_augroup("resize_split", { clear = true })
 

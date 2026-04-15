@@ -50,6 +50,17 @@ set shell=pwsh
 " Reset the cursor style to blinking block after leaving vim.
 " autocmd VimLeave * silent !printf "\e[1 q"
 
+" Highlight leading whitespace without trailling characters not working
+" actually
+augroup HighlightWhitespaces
+    autocmd!
+    autocmd InsertEnter * let w:ws_match1 = matchadd("VisualNOS", "\s\+$\| \+\ze\t")
+    autocmd InsertLeave * if exists('w:ws_match1') |
+                \ silent! call matchdelete(w:ws_match1) |
+                \ unlet w:ws_match1 |
+                \ endif
+augroup END
+
 " Return to the last edited position of the current buffer
 " And won't do it if file is commit, hex editor, rebasing git, and vimdiff
 augroup RestoreCursor
