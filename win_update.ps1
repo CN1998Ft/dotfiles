@@ -124,7 +124,7 @@ echo "Synchronizing Windows configuration"
 echo ""
 
 # Neovim
-Copy-Item -Recurse -Force ./win_home/nvim $HOME/AppData/Local/
+Copy-Item -Recurse -Force ./c_config/nvim $HOME/AppData/Local/
 
 # vim
 $me=$(whoami).split("\")[1]

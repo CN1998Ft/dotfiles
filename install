@@ -124,10 +124,12 @@ case $node_name in
     "fedora")
         fedora_install
         stow --restow -t ~ fedora_home
+        stow --restow -t ~/.config c_config
         sddm_setup
         ;;
     "Darwin")
         mac_install
         stow --restow -t ~ mac_home
+        stow --restow -t ~/.config c_config
         ;;
 esac
