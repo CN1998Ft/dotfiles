@@ -51,7 +51,7 @@ opts = {
     { "<leader>pu", icon = { icon = "󰏔", hl = "MiniIconsBlue" } },
     { "<leader>d", group = "debug", icon = { icon = "", hl = "MiniIconsGreen" } },
     { "<leader>dc", icon = { icon = "", hl = "MiniIconsBlue" } },
-    { "<leader>da", icon = { icon = "", hl = "MiniIconsOrange" } },
+    -- { "<leader>da", icon = { icon = "", hl = "MiniIconsOrange" } },
     { "<leader>dt", icon = { icon = "", hl = "MiniIconsRed" } },
     { "<leader>dr", icon = { icon = "󰜉", hl = "MiniIconsRed" } },
     { "<leader>di", icon = { icon = "", hl = "MiniIconsRed" } },

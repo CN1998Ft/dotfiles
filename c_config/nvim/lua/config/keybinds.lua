@@ -83,14 +83,6 @@ vim.keymap.set("n", "<leader>dB", function()
   require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 end, { desc = "Breakpoint condition" })
 vim.keymap.set("n", "<leader>dv", "<Cmd>DapViewToggle<CR>", { desc = "Toggle dap-view" })
-vim.keymap.set("n", "<leader>da", function()
-  local args_string = vim.fn.input("Arguments: ")
-  local args = {}
-  if args_string ~= "" then
-    args = vim.split(args_string, " +")
-  end
-  require("dap").continue({ args = args })
-end, { desc = "Run with Args" })
 vim.keymap.set("n", "<leader>dC", function()
   require("dap").run_to_cursor()
 end, { desc = "Run to Cursor" })

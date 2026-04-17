@@ -119,6 +119,18 @@ dap.configurations.python = {
   },
   {
     type = "python",
+    request = "launch",
+    name = "Launch with argument",
+    program = "${file}",
+    pythonPath = find_python,
+    console = "integratedTerminal",
+    args = function()
+      local arg_string = vim.fn.input("Arguments: ")
+      return vim.split(arg_string, " +")
+    end,
+  },
+  {
+    type = "python",
     request = "attach",
     name = "Attach to remote debugger",
     connect = {
