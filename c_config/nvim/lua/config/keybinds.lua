@@ -1,14 +1,14 @@
 -- For compatible reasons, the icons and group is defined inside the
 -- plugins/whichkey.lua
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>e", ":Explore<CR>", { desc = "Explorer" })
-vim.keymap.set("n", "<leader>n", ":tabnew<CR>", { desc = "New file" })
+vim.keymap.set("n", "<leader>e", "<Cmd>Explore<CR>", { desc = "Explorer" })
+vim.keymap.set("n", "<leader>n", "<Cmd>tabnew<CR>", { desc = "New file" })
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
-vim.keymap.set("n", "<S-h>", ":tabprevious<CR>", { desc = "Go to left tab", remap = true })
-vim.keymap.set("n", "<S-l>", ":tabnext<CR>", { desc = "Go to left tab", remap = true })
+vim.keymap.set("n", "<S-h>", "<Cmd>tabprevious<CR>", { desc = "Go to left tab", remap = true })
+vim.keymap.set("n", "<S-l>", "<Cmd>tabnext<CR>", { desc = "Go to left tab", remap = true })
 -- Use Comment.nvim instead
 -- vim.keymap.set("n", "gco", "o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", {desc = "Comment below"})
 -- vim.keymap.set("n", "gcO", "O<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", {desc = "Comment above"})
@@ -31,35 +31,35 @@ vim.keymap.set(
 )
 
 -- buffers
-vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Delete the current buffer" })
-vim.keymap.set("n", "<leader>bb", ":Pick buffers<CR>", { desc = "mini.pick buffers" })
-vim.keymap.set("n", "<leader>bp", ":bp<CR>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>bn", ":bn<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>bd", "<Cmd>bd<CR>", { desc = "Delete the current buffer" })
+vim.keymap.set("n", "<leader>bb", "<Cmd>Pick buffers<CR>", { desc = "mini.pick buffers" })
+vim.keymap.set("n", "<leader>bp", "<Cmd>bp<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bn", "<Cmd>bn<CR>", { desc = "Next buffer" })
 
 -- mini.diff
-vim.keymap.set("n", "<leader>o", ":lua MiniDiff.toggle_overlay()<CR>", { desc = "Toggle git diff overlay" })
+vim.keymap.set("n", "<leader>o", "<Cmd>lua MiniDiff.toggle_overlay()<CR>", { desc = "Toggle git diff overlay" })
 
 -- mini.pick
-vim.keymap.set("n", "<leader> ", ":Pick files<CR>", { desc = "mini.pick files" })
-vim.keymap.set("n", "<leader>G", ":Pick grep<CR>", { desc = "mini.pick grep" })
-vim.keymap.set("n", "<leader>/", ":Pick grep_live<CR>", { desc = "mini.pick live_grep" })
+vim.keymap.set("n", "<leader> ", "<Cmd>Pick files<CR>", { desc = "mini.pick files" })
+vim.keymap.set("n", "<leader>G", "<Cmd>Pick grep<CR>", { desc = "mini.pick grep" })
+vim.keymap.set("n", "<leader>/", "<Cmd>Pick grep_live<CR>", { desc = "mini.pick live_grep" })
 vim.keymap.set("n", "<leader>ff", function()
   require("config.Fengtao").pick_dir_file()
 end, { desc = "pick dirs and files" })
-vim.keymap.set("n", "<leader>fg", ":Pick grep<CR>", { desc = "pick grep" })
-vim.keymap.set("n", "<leader>fb", ":Pick buffers<CR>", { desc = "pick buffers" })
-vim.keymap.set("n", "<leader>f/", ":Pick grep_live<CR>", { desc = "pick live grep" })
-vim.keymap.set("n", "<leader>fh", ":Pick help<CR>", { desc = "grep through help files" })
+vim.keymap.set("n", "<leader>fg", "<Cmd>Pick grep<CR>", { desc = "pick grep" })
+vim.keymap.set("n", "<leader>fb", "<Cmd>Pick buffers<CR>", { desc = "pick buffers" })
+vim.keymap.set("n", "<leader>f/", "<Cmd>Pick grep_live<CR>", { desc = "pick live grep" })
+vim.keymap.set("n", "<leader>fh", "<Cmd>Pick help<CR>", { desc = "grep through help files" })
 vim.keymap.set("n", "<leader>fc", function()
   require("config.Fengtao").pick_config()
 end, { desc = "pick config" })
 
 -- Code related, mason and stuff
-vim.keymap.set("n", "<leader>cm", ":Mason<CR>", { desc = "Mason TUI" })
-vim.keymap.set("n", "<leader>cc", ":checkhealth vim.lsp<CR>", { desc = "check lsp info" })
-vim.keymap.set("n", "<leader>cC", ":checkhealth nvim-treesitter<CR>", { desc = "check nvim-treesitter parsers" })
-vim.keymap.set("n", "<leader>ct", ":Inspect<CR>", { desc = "treesitter Inspect" })
-vim.keymap.set("n", "<leader>cT", ":InspectTree<CR>", { desc = "treesitter InspectTree" })
+vim.keymap.set("n", "<leader>cm", "<Cmd>Mason<CR>", { desc = "Mason TUI" })
+vim.keymap.set("n", "<leader>cc", "<Cmd>checkhealth vim.lsp<CR>", { desc = "check lsp info" })
+vim.keymap.set("n", "<leader>cC", "<Cmd>checkhealth nvim-treesitter<CR>", { desc = "check nvim-treesitter parsers" })
+vim.keymap.set("n", "<leader>ct", "<Cmd>Inspect<CR>", { desc = "treesitter Inspect" })
+vim.keymap.set("n", "<leader>cT", "<Cmd>InspectTree<CR>", { desc = "treesitter InspectTree" })
 
 -- vim.pack
 vim.keymap.set("n", "<leader>pv", function()
@@ -82,7 +82,7 @@ end, { desc = "Toggle breakpoint" })
 vim.keymap.set("n", "<leader>dB", function()
   require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
 end, { desc = "Breakpoint condition" })
-vim.keymap.set("n", "<leader>dv", ":DapViewToggle<CR>", { desc = "Toggle dap-view" })
+vim.keymap.set("n", "<leader>dv", "<Cmd>DapViewToggle<CR>", { desc = "Toggle dap-view" })
 vim.keymap.set("n", "<leader>da", function()
   local args_string = vim.fn.input("Arguments: ")
   local args = {}
