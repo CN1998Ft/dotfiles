@@ -196,6 +196,33 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
+-- C/CPP file specific autocmd
+local clang_format = vim.api.nvim_create_augroup("clang_format", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = clang_format,
+  pattern = {
+    "*.c",
+    "*.cpp",
+    "*.h",
+    "*.hpp",
+    "*.cc",
+    "*.hh",
+    "*.cxx",
+    "*.hxx",
+    "*.ino",
+  },
+  callback = function(args)
+    vim.lsp.buf.format({
+      bufnr = args.buf,
+      async = false,
+      filter = function(client)
+        return client.name == "clangd"
+      end,
+    })
+  end,
+})
+
 -- auto update the treesitter parser
 local ts_update = vim.api.nvim_create_augroup("ts_update", { clear = true })
 

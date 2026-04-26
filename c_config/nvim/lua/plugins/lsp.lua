@@ -16,6 +16,7 @@ local install_mason = {
   "stylua",
   "ruff",
   "python-lsp-server",
+  "clangd",
 }
 local install_mason_win = vim.fn.deepcopy(install_mason)
 table.insert(install_mason_win, "codelldb") -- Linux has gdb and Darwin has lldb preinstalled
@@ -85,6 +86,7 @@ vim.lsp.enable({
   "stylua",
   "ruff",
   "pylsp",
+  "clangd",
 })
 
 -- Disable diagnostic signs, but with underline and text color
