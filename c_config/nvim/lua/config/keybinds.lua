@@ -7,8 +7,8 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = tru
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
-vim.keymap.set("n", "<S-h>", "<Cmd>tabprevious<CR>", { desc = "Go to left tab", remap = true })
-vim.keymap.set("n", "<S-l>", "<Cmd>tabnext<CR>", { desc = "Go to left tab", remap = true })
+vim.keymap.set("n", "<S-h>", "<Cmd>bp<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<S-l>", "<Cmd>bn<CR>", { desc = "Next buffer" })
 -- Use Comment.nvim instead
 -- vim.keymap.set("n", "gco", "o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", {desc = "Comment below"})
 -- vim.keymap.set("n", "gcO", "O<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", {desc = "Comment above"})
@@ -60,6 +60,8 @@ vim.keymap.set("n", "<leader>cc", "<Cmd>checkhealth vim.lsp<CR>", { desc = "chec
 vim.keymap.set("n", "<leader>cC", "<Cmd>checkhealth nvim-treesitter<CR>", { desc = "check nvim-treesitter parsers" })
 vim.keymap.set("n", "<leader>ct", "<Cmd>Inspect<CR>", { desc = "treesitter Inspect" })
 vim.keymap.set("n", "<leader>cT", "<Cmd>InspectTree<CR>", { desc = "treesitter InspectTree" })
+vim.keymap.set("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Definition goto" })
+vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", { desc = "Declaration goto" })
 
 -- vim.pack
 vim.keymap.set("n", "<leader>pv", function()
