@@ -147,8 +147,14 @@ window_rules:
       - window_title: { regex: ".*python\\.exe$"}
       - window_title: { regex: ".*cmd\\.exe$"}
 
+  - commands: ['set-floating']
+    match:
+      - window_title: { regex: "^.*Motion.*Path.*$"}
+
   - commands: ['ignore']
     match:
+      - window_title: { equals: "vtkOutputWindow" }
+
       # Ignores any Zebar windows.
       - window_process: { equals: 'zebar' }
 

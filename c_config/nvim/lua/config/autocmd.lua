@@ -65,7 +65,7 @@ vim.api.nvim_create_autocmd({ "InsertEnter" }, {
   desc = "Highlight whitespaces",
   pattern = "*",
   callback = function()
-    vim.w.ws_match1 = vim.fn.matchadd("Leapmatch", [[^\s\+$]])
+    vim.w.ws_match1 = vim.fn.matchadd("HighlightWhitespaces", [[^\s\+$]])
   end,
 })
 

@@ -38,6 +38,8 @@ local diff = require("mini.diff")
 opts = {
   view = {
     style = "number",
+    --[[ style = "sign",
+    signs = { add = "+", change = "~", delete = "-" }, ]]
   },
   delay = {
     text_change = 300,

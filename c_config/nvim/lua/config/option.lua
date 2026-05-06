@@ -67,3 +67,7 @@ end
 
 vim.opt.undodir = undodir
 vim.opt.undofile = true
+
+-- Highlight group
+vim.api.nvim_set_hl(0, "MiniTrailspace", { bg = "#e67e80", fg = "NONE", underline = false, undercurl = false })
+vim.api.nvim_set_hl(0, "HighlightWhitespaces", { bg = "#d699b6", fg = "NONE", underline = false, undercurl = false })
