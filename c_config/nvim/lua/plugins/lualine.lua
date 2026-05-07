@@ -13,7 +13,7 @@ end
 local lualine = require("lualine")
 local opts = {
   options = {
-    theme = "everforest",
+    theme = "iceberg_dark",
     globalstatue = true,
     ignore_focus = { "terminal" },
   },
