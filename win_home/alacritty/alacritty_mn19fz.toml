@@ -46,7 +46,8 @@ bindings = [
   # These will only be used when the `custom_cursor_colors` field is set to `true`.
   cursor = {
     text = '#0a0c10',
-    cursor = '#f0f3f6'
+    cursor = '#71b7ff'
+    # cursor = '#f0f3f6'
   }
 
   # Normal colors

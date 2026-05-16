@@ -17,18 +17,8 @@ vim.keymap.set("n", "<leader>r", function()
 end, { desc = "Restart", remap = false })
 
 -- Floating terminal
-vim.keymap.set(
-  "n",
-  "<leader>t",
-  require("config.terminal").termOpen,
-  { noremap = true, desc = "Toggle Floating Terminal" }
-)
-vim.keymap.set(
-  "t",
-  "<Esc>",
-  require("config.terminal").termClose,
-  { noremap = true, desc = "Toggle Floating Terminal" }
-)
+vim.keymap.set("n", "<leader>t", require("config.terminal").termOpen, { noremap = true, desc = "Floating Terminal" })
+vim.keymap.set("t", "<Esc>", require("config.terminal").termClose, { noremap = true, desc = "Floating Terminal" })
 
 -- buffers
 vim.keymap.set("n", "<leader>bd", "<Cmd>bd<CR>", { desc = "Delete the current buffer" })
@@ -37,7 +27,7 @@ vim.keymap.set("n", "<leader>bp", "<Cmd>bp<CR>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>bn", "<Cmd>bn<CR>", { desc = "Next buffer" })
 
 -- mini.diff
-vim.keymap.set("n", "<leader>o", "<Cmd>lua MiniDiff.toggle_overlay()<CR>", { desc = "Toggle git diff overlay" })
+vim.keymap.set("n", "<leader>o", "<Cmd>lua MiniDiff.toggle_overlay()<CR>", { desc = "git diff overlay" })
 
 -- mini.pick
 vim.keymap.set("n", "<leader> ", "<Cmd>Pick files<CR>", { desc = "mini.pick files" })
@@ -60,6 +50,9 @@ vim.keymap.set("n", "<leader>cc", "<Cmd>checkhealth vim.lsp<CR>", { desc = "chec
 vim.keymap.set("n", "<leader>cC", "<Cmd>checkhealth nvim-treesitter<CR>", { desc = "check nvim-treesitter parsers" })
 vim.keymap.set("n", "<leader>ct", "<Cmd>Inspect<CR>", { desc = "treesitter Inspect" })
 vim.keymap.set("n", "<leader>cT", "<Cmd>InspectTree<CR>", { desc = "treesitter InspectTree" })
+vim.keymap.set("n", "<leader>x", function()
+  require("config.Fengtao").execute_file()
+end, { desc = "Execute or Compile" })
 vim.keymap.set("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Definition goto" })
 vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", { desc = "Declaration goto" })
 

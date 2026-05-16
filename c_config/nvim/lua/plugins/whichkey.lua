@@ -63,6 +63,7 @@ opts = {
     { "<leader>dk", icon = { icon = "", hl = "MiniIconsRed" } },
     { "<leader>dj", icon = { icon = "", hl = "MiniIconsRed" } },
     { "<leader>dv", icon = { icon = "󱢈", hl = "MiniIconsRed" } },
+    { "<leader>x", icon = { icon = "", hl = "MiniIconsAzure" } },
   },
 }
 

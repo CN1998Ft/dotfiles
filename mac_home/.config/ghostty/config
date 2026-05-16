@@ -2,7 +2,8 @@
 # config-file = ?"~/.config/ghostty/themes/catppuccin-mocha.conf"
 # theme = Catppuccin Mocha
 # theme = Monokai Pro Ristretto
-theme = Everforest Dark Hard
+# theme = Everforest Dark Hard
+theme = Github Dark High Contrast
 
 # Font
 font-family = "JetBrainsMono Nerd Font"

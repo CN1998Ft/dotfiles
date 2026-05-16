@@ -1,4 +1,5 @@
-theme = Everforest Dark Hard
+# theme = Everforest Dark Hard
+theme = Github Dark High Contrast
 
 # Font
 font-family = "JetBrainsMono Nerd Font"

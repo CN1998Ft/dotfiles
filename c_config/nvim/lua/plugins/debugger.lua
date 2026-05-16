@@ -77,36 +77,7 @@ disasm.setup(disasm_opts)
 local dap = require("dap")
 
 -- Get python for config
-local function find_python()
-  local is_windows = vim.uv.os_uname().sysname == "Windows_NT"
-  local _python_bin = is_windows and "/Scripts/python.exe" or "/bin/python"
-  local cwd = vim.fn.getcwd()
-  local venv = vim.fs.normalize(cwd .. "/.venv" .. _python_bin)
-  local alt_venv = vim.fs.normalize(cwd .. "/venv" .. _python_bin)
-
-  local python_bin
-  if vim.fn.executable(venv) == 1 then
-    python_bin = venv
-  elseif vim.fn.executable(alt_venv) == 1 then
-    python_bin = alt_venv
-  elseif os.getenv("CONDA_PREFIX") then
-    local conda
-    if is_windows then
-      conda = vim.fs.normalize(os.getenv("CONDA_PREFIX") .. "/python.exe")
-    else
-      conda = vim.fs.normalize(os.getenv("CONDA_PREFIX") .. _python_bin)
-    end
-    python_bin = conda
-  else
-    vim.notify(
-      "No python environment found, attemping to use global python.",
-      vim.log.levels.INFO,
-      { title = "Nvim-DAP" }
-    )
-    python_bin = "python3"
-  end
-  return python_bin
-end
+local find_python = require("config.Fengtao").find_python
 
 dap.configurations.python = {
   {

@@ -153,6 +153,8 @@ window_rules:
 
   - commands: ['ignore']
     match:
+      - window_title: { regex: "^.*Qt.*Window.*$"}
+
       - window_title: { equals: "vtkOutputWindow" }
 
       # Ignores any Zebar windows.

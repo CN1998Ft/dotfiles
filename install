@@ -9,6 +9,9 @@ case $os_name in
     "Linux")
         node_name=$(uname --nodename) # Linux distro name
         ;;
+    *)
+        node_name="unknown/unavailable"
+        ;;
 esac
 
 echo -e "The current operating system is $node_name\n"
@@ -130,5 +133,9 @@ case $node_name in
         mac_install
         stow --restow -t ~ mac_home
         stow --restow -t ~/.config c_config
+        ;;
+    *)
+        echo "The $os_name not available"
+        echo 'If running on window, try `pwsh ./win_update.ps1`'
         ;;
 esac
