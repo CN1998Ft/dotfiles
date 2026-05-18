@@ -149,12 +149,10 @@ window_rules:
 
   - commands: ['set-floating']
     match:
-      - window_title: { regex: "^.*Motion.*Path.*$"}
+      - window_title: { regex: "^.*(Qt|Path|Motion).*$"}
 
   - commands: ['ignore']
     match:
-      - window_title: { regex: "^.*Qt.*Window.*$"}
-
       - window_title: { equals: "vtkOutputWindow" }
 
       # Ignores any Zebar windows.
