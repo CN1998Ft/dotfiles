@@ -146,10 +146,14 @@ if ( Test-Path $home_path ){
 if ($me -eq "mn19fz"){
     Copy-Item -Force ./win_home/alacritty/alacritty_mn19fz.toml `
     $HOME/AppData/Roaming/alacritty/alacritty.toml
+    Copy-Item -Force ./win_home/alacritty/alacritty_mn19fz_c.toml `
+    $HOME/AppData/Roaming/alacritty/alacritty_c.toml
 } else {
     # Copy-Item -Recurse -Force ./win_home/alacritty $HOME/AppData/Roaming/
     Copy-Item -Force ./win_home/alacritty/alacritty.toml `
     $HOME/AppData/Roaming/alacritty/alacritty.toml
+    Copy-Item -Force ./win_home/alacritty/alacritty_c.toml `
+    $HOME/AppData/Roaming/alacritty/alacritty_c.toml
 }
 
 # PowerShell
