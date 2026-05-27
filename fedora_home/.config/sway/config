@@ -43,6 +43,10 @@ input "1452:591:LT75PRO-2.4G" xkb_layout us
 input "1452:591:LT75PRO-BT2" xkb_layout us
 input "1452:591:LT75PRO-BT3" xkb_layout us
 input "2821:6246:Asus_Keyboard" xkb_layout gb
+input "6392:4230:USB_GAMING_MOUSE__Keyboard" {
+    accel_profile "flat"
+    pointer_accel 0
+}
 
 
 ### Style
