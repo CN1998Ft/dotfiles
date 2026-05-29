@@ -125,12 +125,27 @@ local function find_python()
   return python_bin
 end
 
+-- define the compilation for c/cpp
+local function compile_c()
+  if vim.fn.has("win32") == 1 and vim.uv.fs_stat("./build.ps1") ~= nil then
+    vim.cmd("!pwsh ./build.ps1")
+  elseif
+    vim.fn.executable("make") == 1 and (vim.uv.fs_stat("./makefile") ~= nil or vim.uv.fs_stat("./Makefile") ~= nil)
+  then
+    vim.cmd("!make")
+  elseif vim.fn.has("win32") == 0 and vim.uv.fs_stat("./build")["type"] == "file" then
+    vim.cmd("!bash ./build")
+  else
+    vim.notify("No c/cpp build tools specified", vim.log.levels.INFO, {})
+  end
+end
+
 -- execute the current file
 local function execute_file()
   local filetype = vim.bo.filetype
   local file_to_execute = vim.fn.expand("%")
   local executor
-  local string_msg = "Skipping the execution: " .. filetype
+  local string_msg = "Skipping the execution for filetype: " .. filetype
   if filetype == "python" then
     executor = find_python()
   elseif filetype == "lua" then
@@ -143,6 +158,12 @@ local function execute_file()
       return
     end
     executor = "pwsh"
+  elseif filetype == "c" or filetype == "cpp" then
+    compile_c()
+    return
+  else
+    vim.notify(string_msg, vim.log.levels.INFO, {})
+    return
   end
   vim.cmd("!" .. executor .. " " .. file_to_execute)
 end
