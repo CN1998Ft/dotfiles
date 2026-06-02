@@ -16,9 +16,12 @@ vim.keymap.set("n", "<leader>r", function()
   require("config.Fengtao").restart_session()
 end, { desc = "Restart", remap = false })
 
--- Floating terminal
-vim.keymap.set("n", "<leader>t", require("config.terminal").termOpen, { noremap = true, desc = "Floating Terminal" })
-vim.keymap.set("t", "<Esc>", require("config.terminal").termClose, { noremap = true, desc = "Floating Terminal" })
+-- Terminal
+vim.keymap.set("n", "<leader>t", function()
+    vim.cmd("vsplit")
+    vim.cmd("terminal")
+    vim.cmd("wincmd L")
+end, { noremap = true, desc = "Terminal" })
 
 -- buffers
 vim.keymap.set("n", "<leader>bd", "<Cmd>bd<CR>", { desc = "Delete the current buffer" })
@@ -39,13 +42,10 @@ end, { desc = "pick dirs and files" })
 vim.keymap.set("n", "<leader>fg", "<Cmd>Pick grep<CR>", { desc = "pick grep" })
 vim.keymap.set("n", "<leader>fb", "<Cmd>Pick buffers<CR>", { desc = "pick buffers" })
 vim.keymap.set("n", "<leader>f/", "<Cmd>Pick grep_live<CR>", { desc = "pick live grep" })
-vim.keymap.set("n", "<leader>fh", "<Cmd>Pick help<CR>", { desc = "grep through help files" })
+vim.keymap.set("n", "<leader>fh", "<Cmd>Pick help<CR>", { desc = "grep help docs" })
 vim.keymap.set("n", "<leader>fc", function()
   require("config.Fengtao").pick_config()
 end, { desc = "pick config" })
-vim.keymap.set("n", "<leader>fs", function()
-  require("config.Fengtao").pick_in_custom_path()
-end, { desc = "pick source files" })
 
 -- Code related, mason and stuff
 vim.keymap.set("n", "<leader>cm", "<Cmd>Mason<CR>", { desc = "Mason TUI" })

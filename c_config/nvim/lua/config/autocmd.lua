@@ -28,27 +28,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
--- term
-local floatTerminal = vim.api.nvim_create_augroup("floatTerminal", { clear = true })
-
-vim.api.nvim_create_autocmd("TermClose", {
-  group = floatTerminal,
-  callback = function()
-    if vim.v.event.status == 0 then
-      vim.api.nvim_buf_delete(0, {})
-    end
-  end,
-})
-
-vim.api.nvim_create_autocmd("TermOpen", {
-  group = floatTerminal,
-  callback = function()
-    vim.opt_local.number = false
-    vim.opt_local.relativenumber = false
-    vim.opt_local.signcolumn = "no"
-  end,
-})
-
 -- Highlight
 local highlight_group = vim.api.nvim_create_augroup("highlight_group", { clear = true })
 
