@@ -43,6 +43,9 @@ vim.keymap.set("n", "<leader>fh", "<Cmd>Pick help<CR>", { desc = "grep through h
 vim.keymap.set("n", "<leader>fc", function()
   require("config.Fengtao").pick_config()
 end, { desc = "pick config" })
+vim.keymap.set("n", "<leader>fs", function()
+  require("config.Fengtao").pick_in_custom_path()
+end, { desc = "pick source files" })
 
 -- Code related, mason and stuff
 vim.keymap.set("n", "<leader>cm", "<Cmd>Mason<CR>", { desc = "Mason TUI" })

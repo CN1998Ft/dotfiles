@@ -17,6 +17,7 @@ opts = {
     { "<leader>fg", icon = { icon = "󰍉", hl = "MiniIconsAzura" } },
     { "<leader>f/", icon = { icon = "󰍉", hl = "MiniIconsRed" } },
     { "<leader>ff", icon = "󰱽" },
+    { "<leader>fs", icon = { icon = "󰮮", hl = "MiniIconsPurple" } },
     { "<leader>fb", icon = "" },
     { "<leader>fc", icon = { icon = conf_icons, hl = "MiniIconsBlue" } },
     { "<leader>G", icon = { icon = "󰍉", hl = "MiniIconsGreen" } },

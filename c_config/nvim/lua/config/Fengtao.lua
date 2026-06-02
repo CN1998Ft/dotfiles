@@ -1,8 +1,5 @@
 local M = {}
-
-local function example()
-  vim.cmd([[echo "hello"]])
-end
+local mini_pick = require("mini.pick")
 
 -- NOTE1: harpoon not working with vim.pack.add yet
 local function harpoon_pick_menu()
@@ -17,18 +14,12 @@ local function harpoon_pick_menu()
     table.insert(items, file.value)
   end
 
-  MiniPick.start({
+  mini_pick.start({
     source = {
       items = items,
       name = "󰛢 Harpoon",
-      -- choose = function(item)
-      --     vim.api.nvim_win_call(
-      --     MiniPick.get_picker_state().windows.target,
-      --     function() vim.cmd('edit ' .. item) end
-      --     )
-      -- end,
       show = function(buf_id, items, query)
-        return MiniPick.default_show(buf_id, items, query, { show_icons = true })
+        return mini_pick.default_show(buf_id, items, query, { show_icons = true })
       end,
     },
   })
@@ -56,19 +47,12 @@ local function pick_config()
     end
   end
 
-  MiniPick.start({
+  mini_pick.start({
     source = {
       items = items,
       name = " config",
-      -- cwd = vim.fn.stdpath("config"),
-      -- choose = function(item)
-      --     vim.api.nvim_win_call(
-      --         MiniPick.get_picker_state().windows.target,
-      --         function() vim.cmd('edit ' .. item) end
-      --     )
-      -- end,
       show = function(buf_id, items, query)
-        return MiniPick.default_show(buf_id, items, query, { show_icons = true })
+        return mini_pick.default_show(buf_id, items, query, { show_icons = true })
       end,
     },
   })
@@ -82,15 +66,51 @@ local function pick_dir_file()
     local file = vim.fs.normalize(name)
     table.insert(items, file)
   end
-  MiniPick.start({
+  mini_pick.start({
     source = {
       items = items,
       name = "󰙅 dirs & files",
       show = function(buf_id, items, query)
-        return MiniPick.default_show(buf_id, items, query, { show_icons = true })
+        return mini_pick.default_show(buf_id, items, query, { show_icons = true })
       end,
     },
   })
+end
+
+-- Find in custom path
+local function pick_in_custom_path()
+  -- Prompt the user for the target path
+  vim.ui.input({
+    prompt = "Grep in path: ",
+    default = vim.uv.os_homedir() .. "/",
+    completion = "file",
+  }, function(input)
+    if not input or input == "" then
+      print("Grep cancelled")
+      return
+    end
+
+    if vim.fn.isdirectory(input) == 0 then
+      vim.notify("Directory does not exist: " .. input, vim.log.levels.INFO)
+      return
+    end
+
+    -- local items = {}
+    -- local iterators = vim.fs.dir(input, { depth = 10 })
+    -- for name, _ in iterators do
+    --   local file = vim.fs.normalize(name)
+    --   table.insert(items, file)
+    -- end
+    mini_pick.builtin.start({
+      source = {
+        items = { "rg", "--files", input },
+        name = "󰮮 Grep source file",
+        show = function(buf_id, items, query)
+          return mini_pick.default_show(buf_id, items, query, { show_icons = true })
+        end,
+      },
+    })
+  end)
 end
 
 -- Get python for config
@@ -171,6 +191,7 @@ end
 M.harpoon_pick_menu = harpoon_pick_menu
 M.pick_config = pick_config
 M.pick_dir_file = pick_dir_file
+M.pick_in_custom_path = pick_in_custom_path
 M.restart_session = restart_session
 M.find_python = find_python
 M.execute_file = execute_file
