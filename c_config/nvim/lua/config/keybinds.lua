@@ -9,18 +9,21 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = tr
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
 vim.keymap.set("n", "<S-h>", "<Cmd>bp<CR>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<S-l>", "<Cmd>bn<CR>", { desc = "Next buffer" })
+
 -- Use Comment.nvim instead
--- vim.keymap.set("n", "gco", "o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", {desc = "Comment below"})
--- vim.keymap.set("n", "gcO", "O<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", {desc = "Comment above"})
+vim.keymap.set("n", "gco", "o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", { desc = "Comment below" })
+vim.keymap.set("n", "gcO", "O<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", { desc = "Comment above" })
+
+-- Restart and restore session
 vim.keymap.set("n", "<leader>r", function()
   require("config.Fengtao").restart_session()
 end, { desc = "Restart", remap = false })
 
 -- Terminal
 vim.keymap.set("n", "<leader>t", function()
-    vim.cmd("vsplit")
-    vim.cmd("terminal")
-    vim.cmd("wincmd L")
+  vim.cmd("vsplit")
+  vim.cmd("terminal")
+  vim.cmd("wincmd L")
 end, { noremap = true, desc = "Terminal" })
 
 -- buffers
