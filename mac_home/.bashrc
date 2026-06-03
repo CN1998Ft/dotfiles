@@ -77,6 +77,8 @@ openf() {
 
 alias n="nvim"
 
+alias nvide="neovide"
+
 if command -v luajit &>/dev/null; then
 	alias lua="luajit"
 fi

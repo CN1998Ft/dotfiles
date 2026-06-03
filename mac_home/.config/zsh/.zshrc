@@ -54,6 +54,8 @@ alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
 alias n="nvim"
 
+alias nvide="neovide"
+
 if command -v luajit &>/dev/null; then
 	alias lua="luajit"
 fi
@@ -111,7 +113,7 @@ fi
 unset __mamba_setup
 # <<< mamba initialize <<<
 
-# --------------------- Temporary stuff --------------------- 
+# --------------------- Temporary stuff ---------------------
 
 # >>> Python path for specific projects, temporarily  >>>
 phd_python="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/project_related:"

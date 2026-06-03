@@ -64,6 +64,8 @@ Set-Alias -Name touch -Value $touch
 
 $ldd = "$HOME\scoop\apps\git\current\usr\bin\ldd.exe"
 Set-Alias -Name ldd -Value $ldd
+
+Set-Alias -Name nvide -Value "Neovide.exe"
 #> <== Aliases
 
 # ==> environment variable
