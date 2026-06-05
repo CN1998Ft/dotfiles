@@ -124,8 +124,12 @@ run = 'layout floating'
 if.app-id = 'com.apple.helpviewer'
 run = 'layout floating'
 
+# [[on-window-detected]]
+# if.window-title-regex-substring = "Motion|Path|Qt"
+# run = 'layout floating'
+
 [[on-window-detected]]
-if.window-title-regex-substring = "Motion|Path|Qt"
+if.window-title-regex-substring = "Visualization Toolkit - Cocoa"
 run = 'layout floating'
 
 # 'main' binding mode declaration
