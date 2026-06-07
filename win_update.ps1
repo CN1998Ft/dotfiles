@@ -57,6 +57,8 @@ $packages = @(
 'luajit'
 'nodejs'
 'psmux'
+'cmake'
+'make'
 )
 
 # Install mising packages if

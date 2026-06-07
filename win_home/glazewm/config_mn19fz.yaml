@@ -151,6 +151,10 @@ window_rules:
   #   match:
   #     - window_title: { regex: "^.*(Qt|Path|Motion).*$"}
 
+  - commands: ['set-floating']
+    match:
+      - window_title: { regex: "^.*(OpenSim).*$"}
+
   - commands: ['ignore']
     match:
       - window_title: { equals: "vtkOutputWindow" }
