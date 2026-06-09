@@ -147,13 +147,17 @@ window_rules:
       - window_title: { regex: ".*python\\.exe$"}
       - window_title: { regex: ".*cmd\\.exe$"}
 
-  # - commands: ['set-floating']
-  #   match:
-  #     - window_title: { regex: "^.*(Qt|Path|Motion).*$"}
+  - commands: ['set-floating']
+    match:
+      - window_title: { regex: "^.*(Qt|Path|Motion|Handmade|handmade|development).*$"}
 
   - commands: ['set-floating']
     match:
       - window_title: { regex: "^.*(OpenSim).*$"}
+
+  - commands: ['set-floating']
+    match:
+      - window_title: { regex: "^.*(Snipping Tool).*$"}
 
   - commands: ['ignore']
     match:

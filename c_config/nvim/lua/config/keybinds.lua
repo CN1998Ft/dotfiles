@@ -10,7 +10,7 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = tr
 vim.keymap.set("n", "<S-h>", "<Cmd>bp<CR>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<S-l>", "<Cmd>bn<CR>", { desc = "Next buffer" })
 
--- Use Comment.nvim instead
+-- Comment above the line and below the line
 vim.keymap.set("n", "gco", "o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", { desc = "Comment below" })
 vim.keymap.set("n", "gcO", "O<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", { desc = "Comment above" })
 
