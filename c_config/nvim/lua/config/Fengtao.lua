@@ -117,8 +117,8 @@ local function compile_c()
     vim.fn.executable("make") == 1 and (vim.uv.fs_stat("./makefile") ~= nil or vim.uv.fs_stat("./Makefile") ~= nil)
   then
     vim.cmd("!make")
-  elseif vim.fn.has("win32") == 0 and vim.uv.fs_stat("./build")["type"] == "file" then
-    vim.cmd("!bash ./build")
+  elseif vim.fn.has("win32") == 0 and vim.uv.fs_stat("./build.sh")["type"] == "file" then
+    vim.cmd("!bash ./build.sh")
   else
     vim.notify("No c/cpp build tools specified", vim.log.levels.INFO, {})
   end
