@@ -78,7 +78,7 @@ openf() {
 
 alias n="nvim"
 
-alias nvide="~/AppImages/neovide.AppImage"
+alias nvide="~/AppImages/neovide.AppImage --no-fork & disown"
 
 if command -v luajit &>/dev/null; then
 	alias lua="luajit"

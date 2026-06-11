@@ -58,18 +58,18 @@ if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
   -- Set the terminal shell for nvim, this may not be used
   local powershell_options = {
     shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
-    shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;",
-    shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait",
-    shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; if($?) { cat %s } : echo $null",
+    shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';$PSStyle.OutputRendering = ''PlainText'';",
+    shellpipe = "> %s 2>&1",
     shellquote = "",
     shellxquote = "",
   }
-
   for option, value in pairs(powershell_options) do
     vim.opt[option] = value
   end
-elseif vim.fn.has("Darwin") == 1 then
+elseif vim.fn.has("mac") == 1 and vim.env.TERM_PROGRAM == "ghostty" then
   vim.o.shell = "/bin/zsh"
+elseif vim.fn.has("mac") == 1 and vim.env.ALACRITTY_LOG ~= nil then
+  vim.o.shell = "/opt/homebrew/bin/bash"
 elseif vim.fn.has("Linux") == 1 then
   vim.o.shell = "/usr/bin/bash"
 end
