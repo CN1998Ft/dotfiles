@@ -55,10 +55,14 @@ if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
     vim.env.HOME = vim.uv.os_homedir()
   end
 
+  local shellcmdflag1 = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "
+  local shellcmdflag2 = "[Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
+  local shellcmdflag3 = "$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
+  local shellcmdflag4 = "$PSStyle.OutputRendering = 'PlainText';"
   -- Set the terminal shell for nvim, this may not be used
   local powershell_options = {
     shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
-    shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::new();$PSDefaultParameterValues[''Out-File:Encoding'']=''utf8'';$PSStyle.OutputRendering = ''PlainText'';",
+    shellcmdflag = shellcmdflag1 .. shellcmdflag2 .. shellcmdflag3 .. shellcmdflag4,
     shellpipe = "> %s 2>&1",
     shellquote = "",
     shellxquote = "",
