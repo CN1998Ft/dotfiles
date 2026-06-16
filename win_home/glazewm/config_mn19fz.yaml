@@ -149,7 +149,7 @@ window_rules:
 
   - commands: ['set-floating']
     match:
-      - window_title: { regex: "^.*(Qt|Path|Motion|Handmade|handmade|development).*$"}
+      - window_title: { regex: "^.*(_FloatingWindow).*$"}
 
   - commands: ['set-floating']
     match:

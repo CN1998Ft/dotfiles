@@ -125,7 +125,7 @@ if.app-id = 'com.apple.helpviewer'
 run = 'layout floating'
 
 [[on-window-detected]]
-if.window-title-regex-substring = "Qt|Path|Motion|Handmade|handmade|development"
+if.window-title-regex-substring = "_FloatingWindow"
 run = 'layout floating'
 
 [[on-window-detected]]
