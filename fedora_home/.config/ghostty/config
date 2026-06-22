@@ -1,5 +1,5 @@
 # theme = Everforest Dark Hard
-theme = Github Dark High Contrast
+theme = GitHub Dark High Contrast
 
 # Font
 font-family = "JetBrainsMono Nerd Font"
@@ -8,8 +8,8 @@ font-size = 13
 
 # Window
 window-theme = ghostty
-window-padding-x = 10
-window-padding-y = 10
+window-padding-x = 7
+window-padding-y = 7
 confirm-close-surface=false
 resize-overlay = never
 gtk-toolbar-style = flat
