@@ -101,26 +101,25 @@ local function find_python()
   else
     vim.notify(
       "No python environment found, attemping to use global python.",
-      vim.log.levels.INFO,
+      vim.log.levels.ERROR,
       { title = "Nvim-DAP" }
     )
-    python_bin = "python3"
+    python_bin = nil
   end
   return python_bin
 end
 
--- define the compilation for c/cpp
-local function compile_c()
+local function get_c_compile_cmd()
   if vim.fn.has("win32") == 1 and vim.uv.fs_stat("./build.ps1") ~= nil then
-    vim.cmd("!pwsh ./build.ps1")
+    return { "pwsh", "./build.ps1" }
   elseif
     vim.fn.executable("make") == 1 and (vim.uv.fs_stat("./makefile") ~= nil or vim.uv.fs_stat("./Makefile") ~= nil)
   then
-    vim.cmd("!make")
+    return { "make" }
   elseif vim.fn.has("win32") == 0 and vim.uv.fs_stat("./build.sh")["type"] == "file" then
-    vim.cmd("!bash ./build.sh")
+    return { "bash", "./build.sh" }
   else
-    vim.notify("No c/cpp build tools specified", vim.log.levels.INFO, {})
+    return nil
   end
 end
 
@@ -128,28 +127,72 @@ end
 local function execute_file()
   local filetype = vim.bo.filetype
   local file_to_execute = vim.fn.expand("%")
-  local executor
-  local string_msg = "Skipping the execution for filetype: " .. filetype
+  local cmd = nil
+  local string_msg = "  Skipping the execution for filetype: " .. filetype
+  local fail_msg = " Build Execution Failed!  "
   if filetype == "python" then
-    executor = find_python()
-  elseif filetype == "lua" then
-    executor = "luajit"
-  elseif filetype == "sh" then
-    executor = "bash"
-  elseif filetype == "ps1" then
-    if vim.fn.has("win32") == 0 then
-      print(string_msg)
+    local python_bin = find_python()
+    if not python_bin then
+      vim.notify(fail_msg, vim.log.levels.ERROR, {})
       return
     end
-    executor = "pwsh"
+    cmd = { python_bin, file_to_execute }
+  elseif filetype == "lua" then
+    cmd = { "luajit", file_to_execute }
+  elseif filetype == "sh" then
+    cmd = { "bash", file_to_execute }
+  elseif filetype == "ps1" then
+    if vim.fn.has("win32") == 0 then
+      vim.notify(string_msg, vim.log.levels.ERROR, {})
+      return
+    end
+    cmd = { "pwsh", file_to_execute }
   elseif filetype == "c" or filetype == "cpp" then
-    compile_c()
-    return
+    cmd = get_c_compile_cmd()
+    if not cmd then
+      vim.notify("  No c/cpp build tool specified!", vim.log.levels.ERROR, {})
+      return
+    end
   else
-    vim.notify(string_msg, vim.log.levels.INFO, {})
+    vim.notify(string_msg, vim.log.levels.ERROR, {})
     return
   end
-  vim.cmd("!" .. executor .. " " .. file_to_execute)
+
+  vim.fn.setqflist({}, "r")
+  vim.notify("  Executing Build...", vim.log.levels.WARN, {})
+
+  vim.system(cmd, { text = true }, function(obj)
+    vim.schedule(function()
+      local output = ""
+      if obj.stdout and obj.stdout ~= "" then
+        output = output .. obj.stdout .. "\n"
+      end
+      if obj.stderr and obj.stderr ~= "" then
+        output = output .. obj.stderr
+      end
+
+      if vim.fn.has("win32") == 1 then
+        output = output:gsub("\r", "")
+        output = output:gsub("\27%[[%d;]*%a", "")
+      end
+
+      local lines = vim.split(output, "\n")
+      while #lines > 0 and lines[#lines] == "" do
+        table.remove(lines)
+      end
+
+      vim.fn.setqflist({}, "r", {
+        title = table.concat(cmd, " "),
+        lines = lines,
+        efm = vim.o.errorformat,
+      })
+
+      if #lines > 0 then
+        vim.cmd("copen")
+        vim.notify("  Execution done, check if any errors.  ", vim.log.levels.INFO, {})
+      end
+    end)
+  end)
 end
 
 M.harpoon_pick_menu = harpoon_pick_menu

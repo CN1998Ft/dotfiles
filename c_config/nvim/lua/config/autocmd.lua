@@ -87,6 +87,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "dap-view-term",
     "dap-repl",
     "dap-disassembly",
+    "qf",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

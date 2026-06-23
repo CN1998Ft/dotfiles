@@ -26,6 +26,7 @@ opts = {
     { "<leader>bd", icon = "" },
     { "<leader>bp", icon = "" },
     { "<leader>bn", icon = "" },
+    { "<leader>q", icon = { icon = "", hl = "MiniIconsRed" } },
     -- NOTE1: harpoon not working with vim.pack.add() yet
     -- {"<leader>H", icon = { icon = "󰛢", hl = "MiniIconsPurple"}},
     -- {"<leader>h", icon = {icon = "󰀱", hl = "MiniIconsPurple"}},

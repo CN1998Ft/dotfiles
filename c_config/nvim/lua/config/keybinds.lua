@@ -9,6 +9,7 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = tr
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", remap = true })
 vim.keymap.set("n", "<S-h>", "<Cmd>bp<CR>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<S-l>", "<Cmd>bn<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>q", "<Cmd>copen<CR>", { desc = "Quickfix List" })
 
 -- Comment above the line and below the line
 vim.keymap.set("n", "gco", "o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", { desc = "Comment below" })
