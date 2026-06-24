@@ -116,7 +116,7 @@ local function get_c_compile_cmd()
     vim.fn.executable("make") == 1 and (vim.uv.fs_stat("./makefile") ~= nil or vim.uv.fs_stat("./Makefile") ~= nil)
   then
     return { "make" }
-  elseif vim.fn.has("win32") == 0 and vim.uv.fs_stat("./build.sh")["type"] == "file" then
+  elseif vim.fn.has("win32") == 0 and vim.uv.fs_stat("./build.sh") ~= nil then
     return { "bash", "./build.sh" }
   else
     return nil
@@ -125,11 +125,18 @@ end
 
 -- execute the current file
 local function execute_file()
+  -- local variable initialisation
   local filetype = vim.bo.filetype
   local file_to_execute = vim.fn.expand("%")
   local cmd = nil
   local string_msg = "  Skipping the execution for filetype: " .. filetype
   local fail_msg = " Build Execution Failed!  "
+  local efm = vim.o.errorformat
+  local efm_python = [[  File "%f"\, line %l\, in %m]] .. "," .. [[  File "%f"\, line %l%.%#]]
+  local efm_bash = [[%f: line %l: %m]]
+  local efm_pwsh = [[%A%*[^:]:\ %f:%l,%+C%.%#]]
+
+  -- filetype specific cmd and error message format.
   if filetype == "python" then
     local python_bin = find_python()
     if not python_bin then
@@ -137,21 +144,29 @@ local function execute_file()
       return
     end
     cmd = { python_bin, file_to_execute }
+    efm = efm_python
   elseif filetype == "lua" then
     cmd = { "luajit", file_to_execute }
   elseif filetype == "sh" then
     cmd = { "bash", file_to_execute }
+    efm = efm_bash
   elseif filetype == "ps1" then
     if vim.fn.has("win32") == 0 then
       vim.notify(string_msg, vim.log.levels.ERROR, {})
       return
     end
-    cmd = { "pwsh", file_to_execute }
+    cmd = { "pwsh", "-File", file_to_execute }
+    efm = efm_pwsh
   elseif filetype == "c" or filetype == "cpp" then
     cmd = get_c_compile_cmd()
     if not cmd then
       vim.notify("  No c/cpp build tool specified!", vim.log.levels.ERROR, {})
       return
+    end
+    if cmd[1] == "pwsh" then
+      efm = efm_pwsh .. "," .. vim.o.errorformat
+    elseif cmd[1] == "bash" then
+      efm = efm_bash .. "," .. vim.o.errorformat
     end
   else
     vim.notify(string_msg, vim.log.levels.ERROR, {})
@@ -184,12 +199,15 @@ local function execute_file()
       vim.fn.setqflist({}, "r", {
         title = table.concat(cmd, " "),
         lines = lines,
-        efm = vim.o.errorformat,
+        efm = efm,
       })
 
       if #lines > 0 then
         vim.cmd("copen")
         vim.notify("  Execution done, check if any errors.  ", vim.log.levels.INFO, {})
+      else
+        vim.notify("  Execution Successful, not stdout  ", vim.log.levels.INFO, {})
+        vim.cmd("cclose")
       end
     end)
   end)
