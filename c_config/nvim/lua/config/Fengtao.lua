@@ -176,7 +176,12 @@ local function execute_file()
   vim.fn.setqflist({}, "r")
   vim.notify("  Executing Build...", vim.log.levels.WARN, {})
 
-  vim.system(cmd, { text = true }, function(obj)
+  local final_cmd = cmd
+  if vim.fn.has("win32") == 1 then
+    final_cmd = vim.list_extend({ "cmd.exe", "/c" }, cmd)
+  end
+
+  vim.system(final_cmd, { text = true }, function(obj)
     vim.schedule(function()
       local output = ""
       if obj.stdout and obj.stdout ~= "" then
