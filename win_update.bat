@@ -1,7 +1,4 @@
 @echo off
 
-echo %cd%
-if not "%~dp0" == "%cd%" (
-    cd "%~dp0"
-)
-echo I am currently in %cd%
+cd /d "%~dp0"
+pwsh -File ./win_update.ps1
