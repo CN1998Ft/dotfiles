@@ -62,7 +62,10 @@ $packages = @(
 'psmux'
 'cmake'
 'make'
+'clink'
 )
+
+clink autorun install
 
 # Install mising packages if
 $installed=$(ls $HOME/scoop/apps)
@@ -104,13 +107,6 @@ if ((-Not (Test-Path $startup_glazewm)) -and `
     $shortcut.TargetPath=$alacritty
     $shortcut.Save()
 }
-# elseif (-Not (Test-Path $startup_alacritty))
-# {
-#     $shell=New-Object -comObject WScript.Shell
-#     $shortcut=$shell.CreateShortcut($startup_alacritty)
-#     $shortcut.TargetPath=$alacritty
-#     $shortcut.Save()
-# }
 else
 {
     echo ""
@@ -128,6 +124,11 @@ echo "Synchronizing Windows configuration"
 echo ""
 
 # Neovim
+rm -Force -Recurse $HOME/AppData/Local/nvim | Out-Null
+if (-Not (Test-path $HOME/AppData/Local/nvim))
+{
+	mkdir $HOME/AppData/Local/nvim
+}
 Copy-Item -Recurse -Force ./c_config/nvim $HOME/AppData/Local/
 
 # vim
@@ -138,28 +139,26 @@ if ($me -eq "mn19fz"){
     $home_path=$($HOME)
 }
 $vim_path=$home_path+"\.vimrc"
-# $gvim_path=$home_path+"\_vimrc"
 if ( Test-Path $home_path ){
     Copy-Item -Force ./win_home/vimrc $vim_path
-    # Copy-Item -Force ./win_home/vimrc $gvim_path
 }
-# if ( Test-Path $HOME/.config/vim ){
-#     Remove-Item -Recurse -Force $HOME/.config/vim
-# }
 
 # Alacritty
+rm -Force -Recurse $HOME/AppData/Roaming/alacritty | Out-Null
+if (-Not (Test-path $HOME/AppData/Roaming/alacritty))
+{
+	mkdir $HOME/AppData/Roaming/alacritty
+}
 if ($me -eq "mn19fz"){
     Copy-Item -Force ./win_home/alacritty/alacritty_mn19fz.toml `
     $HOME/AppData/Roaming/alacritty/alacritty.toml
-    Copy-Item -Force ./win_home/alacritty/alacritty_mn19fz_c.toml `
-    $HOME/AppData/Roaming/alacritty/alacritty_c.toml
 } else {
     # Copy-Item -Recurse -Force ./win_home/alacritty $HOME/AppData/Roaming/
     Copy-Item -Force ./win_home/alacritty/alacritty.toml `
     $HOME/AppData/Roaming/alacritty/alacritty.toml
-    Copy-Item -Force ./win_home/alacritty/alacritty_c.toml `
-    $HOME/AppData/Roaming/alacritty/alacritty_c.toml
 }
+Copy-Item -Force ./win_home/alacritty/alacritty_c.toml `
+$HOME/AppData/Roaming/alacritty/alacritty_c.toml
 
 # PowerShell
 Copy-Item -Force ./win_home/Microsoft.PowerShell_profile.ps1 $PROFILE
@@ -190,8 +189,6 @@ echo ""
 echo "Synchronzed all windows configurations."
 echo ""
 # <== Configuration synchronizing section
-
-. $PROFILE
 
 echo ""
 echo "Happy coding!"
