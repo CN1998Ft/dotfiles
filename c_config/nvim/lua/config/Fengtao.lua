@@ -110,7 +110,9 @@ local function find_python()
 end
 
 local function get_c_compile_cmd()
-  if vim.fn.has("win32") == 1 and vim.uv.fs_stat("./build.ps1") ~= nil then
+  if vim.fn.has("win32") == 1 and vim.uv.fs_stat("./build.bat") ~= nil then
+    return { "build.bat" }
+  elseif vim.fn.has("win32") == 1 and vim.uv.fs_stat("./build.ps1") ~= nil then
     return { "pwsh", "./build.ps1" }
   elseif
     vim.fn.executable("make") == 1 and (vim.uv.fs_stat("./makefile") ~= nil or vim.uv.fs_stat("./Makefile") ~= nil)
@@ -127,7 +129,8 @@ end
 local function execute_file()
   -- local variable initialisation
   local filetype = vim.bo.filetype
-  local file_to_execute = vim.fn.expand("%")
+  -- local file_to_execute = vim.fs.normalize(vim.fn.expand("%"))
+  local file_to_execute = vim.fn.fnamemodify(vim.fn.expand("%"), ".")
   local cmd = nil
   local string_msg = "  Skipping the execution for filetype: " .. filetype
   local fail_msg = " Build Execution Failed!  "
@@ -157,6 +160,12 @@ local function execute_file()
     end
     cmd = { "pwsh", "-File", file_to_execute }
     efm = efm_pwsh
+  elseif filetype == "dosbatch" then
+    if vim.fn.has("win32") == 0 then
+      vim.notify(string_msg, vim.log.levels.ERROR, {})
+      return
+    end
+    cmd = { file_to_execute }
   elseif filetype == "c" or filetype == "cpp" then
     cmd = get_c_compile_cmd()
     if not cmd then

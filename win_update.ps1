@@ -1,4 +1,7 @@
 # This is the PowerShell script for updating the config on Windows.
+
+# Move to the script dir for operation.
+cd $PSScriptRoot
 echo "I am currently in $(pwd)"
 
 # ==> Scoop related section

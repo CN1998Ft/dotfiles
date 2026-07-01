@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# cd into the file dir first before any operation.
+cd "${0%/*}" > /dev/null 2>&1
+
 # Determine the os.
 os_name=$(uname)
 case $os_name in
