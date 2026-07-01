@@ -138,6 +138,7 @@ local function execute_file()
   local efm_python = [[  File "%f"\, line %l\, in %m]] .. "," .. [[  File "%f"\, line %l%.%#]]
   local efm_bash = [[%f: line %l: %m]]
   local efm_pwsh = [[%A%*[^:]:\ %f:%l,%+C%.%#]]
+  local efm_lua = [[%*[^ ]\ %f:%l:\ %m]] .. "," .. [[%+Gstack\ traceback:]] .. "," .. [[%+G\ \ \ \ \ \ \ \ %.%#]]
 
   -- filetype specific cmd and error message format.
   if filetype == "python" then
@@ -150,6 +151,7 @@ local function execute_file()
     efm = efm_python
   elseif filetype == "lua" then
     cmd = { "luajit", file_to_execute }
+    efm = efm_lua
   elseif filetype == "sh" then
     cmd = { "bash", file_to_execute }
     efm = efm_bash

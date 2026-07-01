@@ -185,6 +185,9 @@ Copy-Item -Force -Recurse ./win_home/okular $HOME/AppData/Local/kxmlgui5/
 # psmux
 Copy-Item -Force ./win_home/tmux.conf $HOME/.tmux.conf
 
+# Clink
+Copy-Item -Force ./win_home/clink/* $env:LOCALAPPDATA/clink/
+
 echo ""
 echo "Synchronzed all windows configurations."
 echo ""
