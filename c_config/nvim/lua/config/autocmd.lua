@@ -203,6 +203,19 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
+-- dosbatch file specific autocmd
+local dosbatch_auto_comment = vim.api.nvim_create_augroup("dosbatch_auto_comment", { clear = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = dosbatch_auto_comment,
+  pattern = "dosbatch",
+  callback = function()
+    vim.keymap.set("n", "gcc", "mtI:: <esc>`tll", { buffer = true, remap = false })
+    vim.keymap.set("n", "gcO", "O:: ", { buffer = true, remap = false })
+    vim.keymap.set("n", "gco", "o:: ", { buffer = true, remap = false })
+  end,
+})
+
 -- auto update the treesitter parser
 local ts_update = vim.api.nvim_create_augroup("ts_update", { clear = true })
 

@@ -88,10 +88,19 @@ nnoremap <leader>t  :below term<CR>
 augroup filetype_common_language
     autocmd!
     " comment the current line, find a way to switch comment on and off
-    autocmd FileType tex nnoremap gc mtI% <esc>`tll
+    autocmd FileType tex nnoremap gcc mtI% <esc>`tll
+    autocmd FileType tex nnoremap gcO O%
+    autocmd FileType tex nnoremap gco o%
+    autocmd FileType dosbatch nnoremap gcc mtI:: <esc>`tll
+    autocmd FileType dosbatch nnoremap gcO O::
+    autocmd FileType dosbatch nnoremap gco o::
     autocmd FileType python,sh,ps1,make
-    \ nnoremap gc mtI# <esc>`tll
-    autocmd FileType vim nnoremap gc mtI" <esc>`tll
+    \ nnoremap gcc mtI# <esc>`tll
+    autocmd FileType python,sh,ps1,make
+    \ nnoremap gco o#
+    autocmd FileType python,sh,ps1,make
+    \ nnoremap gcO O#
+    autocmd FileType vim nnoremap gcc mtI" <esc>`tll
     " string the selection
     autocmd FileType python,vim,sh
     \ vnoremap <leader>' <esc>`<i"<esc>`>la"<esc>
