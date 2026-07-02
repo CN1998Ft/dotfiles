@@ -7,7 +7,7 @@ echo "I am currently in $(pwd)"
 # ==> Scoop related section
 # Check if scoop.sh is installed and add extras to bucket
 echo ""
-echo "Checking is scoop is installed"
+echo "Checking if scoop is installed"
 echo ""
 if (-Not (get-command scoop))
 {
@@ -149,14 +149,8 @@ if (-Not (Test-path $HOME/AppData/Roaming/alacritty))
 {
 	mkdir $HOME/AppData/Roaming/alacritty
 }
-if ($me -eq "mn19fz"){
-    Copy-Item -Force ./win_home/alacritty/alacritty_mn19fz.toml `
-    $HOME/AppData/Roaming/alacritty/alacritty.toml
-} else {
-    # Copy-Item -Recurse -Force ./win_home/alacritty $HOME/AppData/Roaming/
-    Copy-Item -Force ./win_home/alacritty/alacritty.toml `
-    $HOME/AppData/Roaming/alacritty/alacritty.toml
-}
+Copy-Item -Force ./win_home/alacritty/alacritty.toml `
+$HOME/AppData/Roaming/alacritty/alacritty.toml
 Copy-Item -Force ./win_home/alacritty/alacritty_c.toml `
 $HOME/AppData/Roaming/alacritty/alacritty_c.toml
 
@@ -164,13 +158,20 @@ $HOME/AppData/Roaming/alacritty/alacritty_c.toml
 Copy-Item -Force ./win_home/Microsoft.PowerShell_profile.ps1 $PROFILE
 
 # YASB and Starship
-$config_dir = $(ls ./win_home/config/)
-for (($i=0); $config=$config_dir[$i]; $i++)
+rm -Force -Recurse "$HOME/.config" | Out-Null
+if (-Not (Test-Path "$HOME/.config"))
 {
-    Copy-Item -Force -Recurse ./win_home/config/$config $HOME/.config/
+    mkdir "$HOME/.config"
 }
+Copy-Item -Recurse -Force ./win_home/config/* "$HOME/.config/"
+
 
 # Glazewm
+rm -Force -Recurse $HOME/.glzr/glazewm | Out-Null
+if (-Not (Test-path $HOME/.glzr/glazewm))
+{
+	mkdir $HOME/.glzr/glazewm
+}
 if ($me -eq "mn19fz"){
     Copy-Item -Force ./win_home/glazewm/config_mn19fz.yaml `
     $HOME/.glzr/glazewm/config.yaml
@@ -186,6 +187,11 @@ Copy-Item -Force -Recurse ./win_home/okular $HOME/AppData/Local/kxmlgui5/
 Copy-Item -Force ./win_home/tmux.conf $HOME/.tmux.conf
 
 # Clink
+rm -Force -Recurse $env:LOCALAPPDATA/clink | Out-Null
+if (-Not (Test-Path $env:LOCALAPPDATA/clink))
+{
+    mkdir $env:LOCALAPPDATA/clink
+}
 Copy-Item -Force ./win_home/clink/* $env:LOCALAPPDATA/clink/
 
 echo ""

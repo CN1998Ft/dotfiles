@@ -24,7 +24,7 @@ italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
 size = 13
 
 [cursor]
-style = { shape = "Block", blinking = "Never" }
+style = { shape = "Beam", blinking = "On" }
 
 [mouse]
 hide_when_typing = true

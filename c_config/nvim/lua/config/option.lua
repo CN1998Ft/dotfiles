@@ -48,29 +48,7 @@ vim.opt.showmode = false
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
--- Operating system dependent
-if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
-  -- set the vim.env.HOME to correct path on windows
-  if vim.env.HOME ~= vim.uv.os_homedir() then
-    vim.env.HOME = vim.uv.os_homedir()
-  end
-
-  local shellcmdflag1 = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "
-  local shellcmdflag2 = "[Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();"
-  local shellcmdflag3 = "$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
-  local shellcmdflag4 = "$PSStyle.OutputRendering = 'PlainText';"
-  -- Set the terminal shell for nvim, this may not be used
-  local powershell_options = {
-    shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
-    shellcmdflag = shellcmdflag1 .. shellcmdflag2 .. shellcmdflag3 .. shellcmdflag4,
-    shellpipe = "> %s 2>&1",
-    shellquote = "",
-    shellxquote = "",
-  }
-  for option, value in pairs(powershell_options) do
-    vim.opt[option] = value
-  end
-elseif vim.fn.has("mac") == 1 and vim.env.TERM_PROGRAM == "ghostty" then
+if vim.fn.has("mac") == 1 and vim.env.TERM_PROGRAM == "ghostty" then
   vim.o.shell = "/bin/zsh"
 elseif vim.fn.has("mac") == 1 and vim.env.ALACRITTY_LOG ~= nil then
   vim.o.shell = "/opt/homebrew/bin/bash"

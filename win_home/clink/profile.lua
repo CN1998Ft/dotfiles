@@ -8,6 +8,8 @@ os.setalias("nvide", "Neovide.exe $*")
 os.setalias("ls", "eza -h --group-directories-first --icons=auto $*")
 os.setalias("lua", "luajit $*")
 os.setalias("open", "start $*")
+-- this cd will ruin normal cd use z instead
+-- os.setalias("cd", 'for /f "delims=" %i in (\'zoxide query $*\') do @cd /d "%i"')
 
 -- borrow git usr stuff for windows usage
 local git_usr_bin = os.getenv("USERPROFILE") .. "\\scoop\\apps\\git\\current\\usr\\bin"

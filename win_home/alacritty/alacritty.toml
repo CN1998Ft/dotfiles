@@ -3,10 +3,7 @@ TERM = "xterm-256color"
 WINIT_X11_SCALE_FACTOR = "1.0"
 
 [terminal]
-# shell = { program = "C:\\Program Files\\PowerShell\\7\\pwsh.exe", args = [
-#     "-i",
-# ] }
-shell = "pwsh"
+shell = "cmd.exe"
 
 [window]
 padding.x = 10

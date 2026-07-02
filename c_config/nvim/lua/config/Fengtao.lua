@@ -188,7 +188,7 @@ local function execute_file()
   vim.notify("  Executing Build...", vim.log.levels.WARN, {})
 
   local final_cmd = cmd
-  if vim.fn.has("win32") == 1 then
+  if vim.fn.has("win32") == 1 and filetype ~= "dosbatch" then
     final_cmd = vim.list_extend({ "cmd.exe", "/c" }, cmd)
   end
 

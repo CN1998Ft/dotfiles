@@ -82,6 +82,7 @@ compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-$ZSH_VERSION
 setopt auto_list
 setopt auto_menu
 zstyle ':completion:*' menu select
+bindkey "^I" fzf-completion
 
 
 # >>> conda initialize >>>
