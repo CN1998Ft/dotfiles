@@ -40,6 +40,13 @@ if exist "%LOCALAPPDATA%\nvim" rmdir /S /Q "%LOCALAPPDATA%\nvim"
 mkdir "%LOCALAPPDATA%\nvim"
 xcopy /S /I /Y ".\c_config\nvim" "%LOCALAPPDATA%\nvim" >nul 2>nul
 
+:: vim
+if %USERNAME% == mn19fz (
+    copy /Y .\win_home\vimrc M:\.vimrc >nul 2>nul
+) else (
+    copy /Y .\win_home\vimrc %USERPROFILE%\.vimrc >nul 2>nul
+)
+
 :: alacritty
 if exist "%APPDATA%\alacritty" rmdir /S /Q "%APPDATA%\alacritty"
 mkdir "%APPDATA%\alacritty"
@@ -54,20 +61,30 @@ xcopy /S /I /Y ".\win_home\config" "%USERPROFILE%\.config" >nul 2>nul
 if exist "%USERPROFILE%\.glzr\glazewm" rmdir /S /Q "%USERPROFILE%\.glzr\glazewm"
 if not exist "%USERPROFILE%\.glzr" mkdir "%USERPROFILE%\.glzr"
 mkdir "%USERPROFILE%\.glzr\glazewm"
-if %USERNAME%=="mn19fz" (
-    xcopy /Y ".\win_home\glazewm\config_mn19fz.yaml"  ^
-    "%USERPROFILE%\.glzr\glazewm" >nul 2>nul
+if %USERNAME%==mn19fz (
+    copy /Y ".\win_home\glazewm\config_mn19fz.yaml" ^
+    "%USERPROFILE%\.glzr\glazewm\config.yaml" >nul 2>nul
 ) else (
-    xcopy /Y ".\win_home\glazewm\config.yaml"  "%USERPROFILE%\.glzr\glazewm" ^
+    copy /Y ".\win_home\glazewm\config.yaml"  "%USERPROFILE%\.glzr\glazewm" ^
     >nul 2>nul
 )
+:: Add glazewm to startup
+del /S /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\*" >nul 2>nul
+set glazewm_bat_path="%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\glazewm.bat"
+echo %glazewm_bat_path%
+echo @echo off > glazewm.bat
+echo set __COMPAT_LAYER=RunAsInvoker >> glazewm.bat
+echo start "" "%USERPROFILE%\scoop\apps\glazewm\current\glazewm.exe" >> glazewm.bat
+move /Y ".\glazewm.bat" %glazewm_bat_path% >nul 2>nul
 
 :: Okular
-mkdir "%LOCALAPPDATA%\kxmlgui5" 2>nul
+if exist "%LOCALAPPDATA%\kxmlgui5" rmdir /S /Q "%LOCALAPPDATA%\kxmlgui5" 2>nul
+if not exist "%LOCALAPPDATA%\kxmlgui5" mkdir "%LOCALAPPDATA%\kxmlgui5" 2>nul
+if not exist "%LOCALAPPDATA%\kxmlgui5\okular" mkdir "%LOCALAPPDATA%\kxmlgui5\okular" 2>nul
 xcopy /S /I /Y ".\win_home\okular" "%LOCALAPPDATA%\kxmlgui5\okular" >nul 2>nul
 
 :: psmux
-xcopy /Y ".\win_home\tmux.conf" "%USERPROFILE%\.tmux.conf" >nul 2>nul
+copy /Y ".\win_home\tmux.conf" "%USERPROFILE%\.tmux.conf" >nul 2>nul
 
 
 :: Clink
@@ -76,6 +93,8 @@ mkdir "%LOCALAPPDATA%\clink" 2>nul
 xcopy /S /I /Y ".\win_home\clink" "%LOCALAPPDATA%\clink" >nul 2>nul
 call clink set fzf.exe_location "%USERPROFILE%\scoop\apps\fzf\current\fzf.exe" >nul 2>nul
 call clink set fzf.default_bindings true >nul 2>nul
+call clink set match.expand_envvars True
+call clink autorun install
 
 echo [Synchronised all windows configurations.]
 :: <== Configuration synchronizing section

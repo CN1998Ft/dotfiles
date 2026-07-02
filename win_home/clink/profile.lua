@@ -24,7 +24,7 @@ os.setalias("mwe", 'for /f "delims=" %i in (\'zoxide query motion\') do @cd /d "
 local pythonpath = os.getenv("PYTHONPATH")
 local motion_path_dir = ""
 if os.getenv("USERNAME") == "mn19fz" then
-	motion_path_dir = "\\Documents\\PhD\\motion_path"
+	motion_path_dir = os.getenv("USERPROFILE")--[[:gsub("\\", "\\\\")]] .. "\\Documents\\PhD\\motion_path"
 elseif os.getenv("USERNAME") == "93581" then
 	motion_path_dir = "D:\\PhD\\motion_path"
 end
