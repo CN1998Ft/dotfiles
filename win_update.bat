@@ -71,7 +71,6 @@ if %USERNAME%==mn19fz (
 :: Add glazewm to startup
 del /S /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\*" >nul 2>nul
 set glazewm_bat_path="%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\glazewm.bat"
-echo %glazewm_bat_path%
 echo @echo off > glazewm.bat
 echo set __COMPAT_LAYER=RunAsInvoker >> glazewm.bat
 echo start "" "%USERPROFILE%\scoop\apps\glazewm\current\glazewm.exe" >> glazewm.bat
@@ -93,8 +92,8 @@ mkdir "%LOCALAPPDATA%\clink" 2>nul
 xcopy /S /I /Y ".\win_home\clink" "%LOCALAPPDATA%\clink" >nul 2>nul
 call clink set fzf.exe_location "%USERPROFILE%\scoop\apps\fzf\current\fzf.exe" >nul 2>nul
 call clink set fzf.default_bindings true >nul 2>nul
-call clink set match.expand_envvars True
-call clink autorun install
+call clink set match.expand_envvars True >nul 2>nul
+call clink autorun install >nul 2>nul
 
 echo [Synchronised all windows configurations.]
 :: <== Configuration synchronizing section

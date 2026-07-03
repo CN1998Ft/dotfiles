@@ -18,10 +18,21 @@ output Virtual-1 {
         alias $virtual
     }
 
+output "Apple Computer Inc Color LCD *" {
+    mode 2560x1600
+    scale 1.3
+    alias $mac_builtin
+    }
+
 profile phd_2026 {
         output $cheap_extern enable
         output $builtin enable
     }
+
 profile virtual {
         output $virtual enable
+    }
+
+profile mac-fedora {
+        output $mac_builtin enable
     }

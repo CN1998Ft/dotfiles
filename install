@@ -125,20 +125,18 @@ mac_install() {
     brew update && brew upgrade && brew cleanup --prune=all
 }
 
-case $node_name in
-    "fedora")
+fedora_node_name_regex='^.*[Ff]edora.*$'
+
+if [[ "$node_name" == "Darwin" ]]; then
+        mac_install
+        stow --restow -t ~ mac_home
+        stow --restow -t ~/.config c_config
+elif [[ "$node_name" =~ $fedora_node_name_regex ]]; then
         fedora_install
         stow --restow -t ~ fedora_home
         stow --restow -t ~/.config c_config
         sddm_setup
-        ;;
-    "Darwin")
-        mac_install
-        stow --restow -t ~ mac_home
-        stow --restow -t ~/.config c_config
-        ;;
-    *)
+else
         echo "The $os_name not available"
-        echo 'If running on window, try `pwsh ./win_update.ps1`'
-        ;;
-esac
+        echo 'If running on window, try `win_update.bat`'
+fi

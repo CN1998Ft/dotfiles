@@ -47,6 +47,9 @@ input "6392:4230:USB_GAMING_MOUSE__Keyboard" {
     accel_profile "flat"
     pointer_accel 0
 }
+input "1267:12511:ELAN1405:00_04F3:30DF_Touchpad" {
+    natural_scroll enabled
+}
 
 
 ### Style
