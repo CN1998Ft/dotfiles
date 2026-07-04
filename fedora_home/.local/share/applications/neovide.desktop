@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Neovide
+GenericName=GUI neovim
+Exec=/home/fengtao/AppImages/neovide.AppImage
+Terminal=false
+Keywords=Text;editor;
+Categories=Utility;TextEditor;Development;
