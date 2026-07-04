@@ -1,8 +1,15 @@
+output "PNP(XEC) MFG24F4L *" {
+        mode 1920x1080@180Hz
+        scale 1
+        position 1600,0
+        alias $niri_cheap_extern
+    }
+
 output "XEC MFG24F4L *" {
         mode 1920x1080@180Hz
         scale 1
         position 1600,0
-        alias $cheap_extern
+        alias $sway_cheap_extern
     }
 
 output "AU Optronics 0x82ED *" {
@@ -24,8 +31,13 @@ output "Apple Computer Inc Color LCD *" {
     alias $mac_builtin
     }
 
-profile phd_2026 {
-        output $cheap_extern enable
+profile sway_phd_2026 {
+        output $sway_cheap_extern enable
+        output $builtin enable
+    }
+
+profile niri_phd_2026 {
+        output $niri_cheap_extern enable
         output $builtin enable
     }
 

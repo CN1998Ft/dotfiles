@@ -54,6 +54,8 @@ f_pkg=(
     okular
     cmake
     @c-development
+    niri
+    @swaywm-extended
     # zathura
     # zathura-pdf-poppler
 )
