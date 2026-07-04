@@ -244,7 +244,7 @@ keybindings:
 
   # Change focus from tiling windows -> floating -> fullscreen.
   - commands: ['wm-cycle-focus']
-    bindings: ['alt+space']
+    bindings: ['alt+shit+t']
 
   # Change the focused window to be floating.
   - commands: ['toggle-floating --centered']

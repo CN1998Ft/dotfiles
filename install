@@ -138,6 +138,7 @@ elif [[ "$node_name" =~ $fedora_node_name_regex ]]; then
         stow --restow -t ~ fedora_home
         stow --restow -t ~/.config c_config
         sddm_setup
+        update-desktop-database ~/.local/share/applications
 else
         echo "The $os_name not available"
         echo 'If running on window, try `win_update.bat`'

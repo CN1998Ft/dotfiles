@@ -210,14 +210,14 @@ exec $term
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle, border normal
-    bindsym $mod+Shift+f floating toggle, sticky toggle, border normal
+    bindsym $mod+t floating toggle, sticky toggle, border normal
 
     # anchor a treasure
     bindsym $mod+m mark --toggle " 󰀱 "
     bindsym $mod+Shift+m [con_mark=" 󰀱 "] focus
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    bindsym $mod+Shift+t focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent

@@ -189,7 +189,7 @@ cmd-y = 'exec-and-forget open "https://youtube.com"'
 alt-f = 'fullscreen --no-outer-gaps'
 
 # Toggle floating of focused window
-alt-shift-f = 'layout floating tiling'
+alt-t = 'layout floating tiling'
 
 # Disable hide application shortcut apple builtin
 cmd-h = []
