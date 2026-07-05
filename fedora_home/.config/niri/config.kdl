@@ -37,7 +37,8 @@ input {
         // drag-lock
         natural-scroll
         // accel-speed 0.2
-        // accel-profile "flat"
+        accel-profile "flat"
+        scroll-factor 0.5
         // scroll-method "two-finger"
         // disabled-on-external-mouse
     }
@@ -46,7 +47,7 @@ input {
         // off
         // natural-scroll
         // accel-speed 0.2
-        // accel-profile "flat"
+        accel-profile "flat"
         // scroll-method "no-scroll"
     }
 
@@ -154,13 +155,13 @@ layout {
         // You can use any CSS linear-gradient tool on the web to set these up.
         // Changing the color space is also supported, check the wiki for more info.
         //
-        active-gradient from="#80c8ff" to="#c7ff7f" angle=45
+        active-gradient from="#DF69BA" to="#3A94C5" angle=45
 
         // You can also color the gradient relative to the entire view
         // of the workspace, rather than relative to just the window itself.
         // To do that, set relative-to="workspace-view".
         //
-        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        inactive-gradient from="#93B259" to="#35A77C" angle=45 // relative-to="workspace-view"
     }
 
     // You can also add a border. It's similar to the focus ring, but always visible.
@@ -243,6 +244,11 @@ layout {
 spawn-at-startup "waybar"
 spawn-at-startup "kanshi"
 spawn-sh-at-startup "swaybg -i /usr/share/backgrounds/3-ristretto.jpg -m fill"
+spawn-at-startup "swayidle" "-w" \
+    "timeout" "300" "swaylock -f -c 000000" \
+    "timeout" "600" "niri msg action power-off-monitors" \
+    "resume" "niri msg action power-on-monitors" \
+    "before-sleep" "swaylock -f -c 000000"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -250,6 +256,7 @@ spawn-sh-at-startup "swaybg -i /usr/share/backgrounds/3-ristretto.jpg -m fill"
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
     // skip-at-startup
+    hide-not-bound
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -415,14 +422,14 @@ binds {
     Mod+K     { focus-monitor-up; }
     Mod+L     { focus-monitor-right; }
 
-    Mod+Shift+Left  { move-column-to-monitor-left; }
-    Mod+Shift+Down  { move-column-to-monitor-down; }
-    Mod+Shift+Up    { move-column-to-monitor-up; }
-    Mod+Shift+Right { move-column-to-monitor-right; }
-    Mod+Shift+H     { move-column-to-monitor-left; }
-    Mod+Shift+J     { move-column-to-monitor-down; }
-    Mod+Shift+K     { move-column-to-monitor-up; }
-    Mod+Shift+L     { move-column-to-monitor-right; }
+    Mod+Shift+Left  { move-window-to-monitor-left; }
+    Mod+Shift+Down  { move-window-to-monitor-down; }
+    Mod+Shift+Up    { move-window-to-monitor-up; }
+    Mod+Shift+Right { move-window-to-monitor-right; }
+    Mod+Shift+H     { move-window-to-monitor-left; }
+    Mod+Shift+J     { move-window-to-monitor-down; }
+    Mod+Shift+K     { move-window-to-monitor-up; }
+    Mod+Shift+L     { move-window-to-monitor-right; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
@@ -432,8 +439,8 @@ binds {
     // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
     // ...
 
-    Mod+Ctrl+J         { focus-workspace-down; }
-    Mod+Ctrl+K         { focus-workspace-up; }
+    Mod+Ctrl+J        hotkey-overlay-title="Focus workspace down" { focus-workspace-down; }
+    Mod+Ctrl+K        hotkey-overlay-title="Focus workspace up" { focus-workspace-up; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
@@ -445,15 +452,15 @@ binds {
     // To avoid scrolling through workspaces really fast, you can use
     // the cooldown-ms property. The bind will be rate-limited to this value.
     // You can set a cooldown on any bind, but it's most useful for the wheel.
-    Mod+WheelScrollDown         cooldown-ms=150  { focus-column-right; }
-    Mod+WheelScrollUp           cooldown-ms=150  { focus-column-left; }
-    Mod+WheelScrollRight                         { focus-workspace-down; }
-    Mod+WheelScrollLeft                          { focus-workspace-up; }
+    Mod+WheelScrollDown         hotkey-overlay-title=null cooldown-ms=150  { focus-column-right; }
+    Mod+WheelScrollUp           hotkey-overlay-title=null cooldown-ms=150  { focus-column-left; }
+    Mod+WheelScrollRight        hotkey-overlay-title=null                  { focus-workspace-down; }
+    Mod+WheelScrollLeft         hotkey-overlay-title=null                  { focus-workspace-up; }
 
-    Mod+Shift+WheelScrollDown   cooldown-ms=150  { move-column-right; }
-    Mod+Shift+WheelScrollUp     cooldown-ms=150  { move-column-left; }
-    Mod+Shift+WheelScrollRight                   { move-column-to-workspace-down; }
-    Mod+Shift+WheelScrollLeft                    { move-column-to-workspace-up; }
+    Mod+Shift+WheelScrollDown   hotkey-overlay-title=null cooldown-ms=150  { move-column-right; }
+    Mod+Shift+WheelScrollUp     hotkey-overlay-title=null cooldown-ms=150  { move-column-left; }
+    Mod+Shift+WheelScrollRight  hotkey-overlay-title=null                  { move-column-to-workspace-down; }
+    Mod+Shift+WheelScrollLeft   hotkey-overlay-title=null                  { move-column-to-workspace-up; }
 
     // Similarly, you can bind touchpad scroll "ticks".
     // Touchpad scrolling is continuous, so for these binds it is split into
@@ -461,15 +468,15 @@ binds {
     // These binds are also affected by touchpad's natural-scroll, so these
     // example binds are "inverted", since we have natural-scroll enabled for
     // touchpads by default.
-    Mod+TouchPadScrollDown         cooldown-ms=150  { focus-column-right; }
-    Mod+TouchPadScrollUp           cooldown-ms=150  { focus-column-left; }
-    Mod+TouchPadScrollRight                         { focus-workspace-down; }
-    Mod+TouchPadScrollLeft                          { focus-workspace-up; }
+    Mod+TouchPadScrollRight        cooldown-ms=150  { focus-column-right; }
+    Mod+TouchPadScrollLeft         cooldown-ms=150  { focus-column-left; }
+    Mod+TouchPadScrollDown         cooldown-ms=150  { focus-workspace-down; }
+    Mod+TouchPadScrollUp           cooldown-ms=150  { focus-workspace-up; }
 
-    Mod+Shift+TouchPadScrollDown   cooldown-ms=150  { move-column-right; }
-    Mod+Shift+TouchPadScrollUp     cooldown-ms=150  { move-column-left; }
-    Mod+Shift+TouchPadScrollRight                   { move-column-to-workspace-down; }
-    Mod+Shift+TouchPadScrollLeft                    { move-column-to-workspace-up; }
+    Mod+Shift+TouchPadScrollRight  cooldown-ms=150  { move-column-right; }
+    Mod+Shift+TouchPadScrollLeft   cooldown-ms=150  { move-column-left; }
+    Mod+Shift+TouchPadScrollDown   cooldown-ms=150  { move-column-to-workspace-down; }
+    Mod+Shift+TouchPadScrollUp     cooldown-ms=150  { move-column-to-workspace-up; }
 
     // You can refer to workspaces by index. However, keep in mind that
     // niri is a dynamic workspace system, so these commands are kind of
@@ -488,6 +495,7 @@ binds {
     Alt+7 { focus-workspace 7; }
     Alt+8 { focus-workspace 8; }
     Alt+9 { focus-workspace 9; }
+    Alt+0 { focus-workspace 10; }
     Alt+Shift+1 { move-column-to-workspace 1; }
     Alt+Shift+2 { move-column-to-workspace 2; }
     Alt+Shift+3 { move-column-to-workspace 3; }
@@ -497,6 +505,7 @@ binds {
     Alt+Shift+7 { move-column-to-workspace 7; }
     Alt+Shift+8 { move-column-to-workspace 8; }
     Alt+Shift+9 { move-column-to-workspace 9; }
+    Alt+Shift+0 { move-column-to-workspace 10; }
 
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
@@ -523,23 +532,23 @@ binds {
     Alt+Ctrl+Shift+R { switch-preset-window-height; }
     Alt+Ctrl+R { reset-window-height; }
 
-    Alt+F { maximize-column; }
-    Alt+Shift+F { fullscreen-window; }
+    Alt+F hotkey-overlay-title="Maximum column" { maximize-column; }
+    Alt+Shift+F hotkey-overlay-title="Maximum window to screen" { fullscreen-window; }
 
     // While maximize-column leaves gaps and borders around the window,
     // maximize-window-to-edges doesn't: the window expands to the edges of the screen.
     // This bind corresponds to normal window maximizing,
     // e.g. by double-clicking on the titlebar.
-    Alt+M { maximize-window-to-edges; }
+    Alt+M hotkey-overlay-title="Maximum window to edge" { maximize-window-to-edges; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
     Alt+Ctrl+F { expand-column-to-available-width; }
 
-    Alt+C { center-column; }
+    Alt+Shift+C hotkey-overlay-title="Center focused column" { center-column; }
 
     // Center all fully visible columns on screen.
-    Alt+Ctrl+C { center-visible-columns; }
+    Alt+Ctrl+C hotkey-overlay-title="Center all columns" { center-visible-columns; }
 
     // Finer width adjustments.
     // This command can also:
@@ -573,7 +582,7 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
+    Ctrl+Shift+c hotkey-overlay-title="  Select region to screenshot" { screenshot; }
     Ctrl+Shift+p { screenshot-screen; }
     Ctrl+Shift+w { screenshot-window; }
 
@@ -585,7 +594,7 @@ binds {
     //
     // The allow-inhibiting=false property can be applied to other binds as well,
     // which ensures niri always processes them, even when an inhibitor is active.
-    Alt+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    Alt+Escape hotkey-overlay-title="󰩈 Toggle Shortcuts inhibitor" allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Alt+Shift+E { quit; }

@@ -34,7 +34,7 @@ c_pkg=(
     starship
     ripgrep
     tree-sitter-cli
-    # neovim
+    neovim
     zoxide
     tmux
     stow
@@ -46,8 +46,6 @@ c_pkg=(
 )
 f_pkg=(
     # eza and nerd fonts need to use curl
-    # also eza needs both bash completion and the man files
-    # Not doing eza and font for now
     alacritty
     chromium-browser
     tldr
@@ -63,11 +61,10 @@ m_pkg=(
     pandoc
     borders
     aerospace
-    neovim
     tree-sitter
     utm
     tlrc
-    #    localsend
+    localsend
     sketchybar
     font-hack-nerd-font
     font-sketchybar-app-font
