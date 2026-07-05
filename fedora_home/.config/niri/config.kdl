@@ -84,7 +84,7 @@ output "eDP-1" {
 // https://niri-wm.github.io/niri/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 16
+    gaps 10
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -228,10 +228,10 @@ layout {
     // Top and bottom struts will simply add outer gaps in addition to the area occupied by
     // layer-shell panels and regular gaps.
     struts {
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
+        left 2
+        right 2
+        top 2
+        bottom 2
     }
 }
 
@@ -305,6 +305,7 @@ window-rule {
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"chromium-browser"# title="^Picture-in-Picture$"
+    match title="^.*_FloatingWindow.*$"
     open-floating true
 }
 
@@ -582,9 +583,9 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Ctrl+Shift+c hotkey-overlay-title="  Select region to screenshot" { screenshot; }
-    Ctrl+Shift+p { screenshot-screen; }
-    Ctrl+Shift+w { screenshot-window; }
+    Mod+Shift+c hotkey-overlay-title="  Select region to screenshot" { screenshot; }
+    Mod+Shift+p { screenshot-screen; }
+    Mod+Shift+w { screenshot-window; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here

@@ -98,6 +98,17 @@ fedora_install() {
     sudo dnf clean all
 }
 
+appimage_setup() {
+    if [[ ! -d ~/AppImages ]]; then
+        mkdir ~/AppImages > /dev/null 2>&1
+    fi
+    wget \
+        "https://github.com/neovide/neovide/releases/latest/download/neovide.AppImage" \
+        > /dev/null 2>&1
+    chmod u+x *.AppImage
+    mv -f *.AppImage ~/AppImages/
+}
+
 # define the sddm login screen function
 sddm_setup() {
     sudo cp ./3-ristretto.jpg /usr/share/backgrounds/
@@ -132,6 +143,7 @@ if [[ "$node_name" == "Darwin" ]]; then
         stow --restow -t ~/.config c_config
 elif [[ "$node_name" =~ $fedora_node_name_regex ]]; then
         fedora_install
+        appimage_setup
         stow --restow -t ~ fedora_home
         stow --restow -t ~/.config c_config
         sddm_setup

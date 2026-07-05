@@ -7,6 +7,7 @@ vim.opt.sidescrolloff = 10
 vim.opt.signcolumn = "auto:1"
 vim.opt.conceallevel = 0
 vim.opt.concealcursor = ""
+vim.opt.swapfile = false
 
 -- Tab settings:
 vim.opt.smartindent = true
