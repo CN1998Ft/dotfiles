@@ -115,4 +115,5 @@ if [[ -d "$HOME/miniforge3" ]]; then
     # <<< mamba initialize <<<
     phd_python="$HOME/me/phd/motion_path:"
     export PYTHONPATH="$PYTHONPATH$phd_python"
+    alias mwe="cd motion; mamba activate phd"
 fi

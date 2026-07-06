@@ -3,7 +3,7 @@ TERM = "xterm-256color"
 WINIT_X11_SCALE_FACTOR = "1.0"
 
 [terminal]
-shell = "pwsh.exe"
+shell = "cmd.exe"
 
 [window]
 padding.x = 10

@@ -83,45 +83,47 @@ if command -v luajit &>/dev/null; then
 	alias lua="luajit"
 fi
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/fengtaozhang/miniforge3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
-if [ $? -eq 0 ]; then
-	eval "$__conda_setup"
-else
-	if [ -f "/Users/fengtaozhang/miniforge3/etc/profile.d/conda.sh" ]; then
-		. "/Users/fengtaozhang/miniforge3/etc/profile.d/conda.sh"
-	else
-		export PATH="/Users/fengtaozhang/miniforge3/bin:$PATH"
-	fi
+if [[ -d "$HOME/miniforge3" ]]; then
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/Users/fengtaozhang/miniforge3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/Users/fengtaozhang/miniforge3/etc/profile.d/conda.sh" ]; then
+            . "/Users/fengtaozhang/miniforge3/etc/profile.d/conda.sh"
+        else
+            export PATH="/Users/fengtaozhang/miniforge3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
+
+    # >>> mamba initialize >>>
+    # !! Contents within this block are managed by 'mamba shell init' !!
+    export MAMBA_EXE='/Users/fengtaozhang/miniforge3/bin/mamba'
+    export MAMBA_ROOT_PREFIX='/Users/fengtaozhang/miniforge3'
+    __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__mamba_setup"
+    else
+        alias mamba="$MAMBA_EXE" # Fallback on help from mamba activate
+    fi
+    unset __mamba_setup
+    # <<< mamba initialize <<<
+
+    # --------------------- Temporary stuff ---------------------
+
+    # >>> Python path for specific projects, temporarily  >>>
+    phd_python="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/project_related:"
+    phd_python+="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/motion_path:"
+    export PYTHONPATH="$phd_python$PYTHONPATH"
+    export PATH="$PATH:/Applications/FEBioStudio.app/Contents/MacOS"
+    export PATH="$PATH:/Applications/OpenSim\ 4.5/bin"
+    # <<< Python path for specific projects, temporarily  <<<
+
+    # >>>> work alias >>>>
+    alias opensim="open /Applications/OpenSim\ 4.5/OpenSim\ 4.5.app"
+    alias pwe="cd project_related; mamba activate phd"
+    alias mwe="cd motion; mamba activate phd"
 fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'mamba shell init' !!
-export MAMBA_EXE='/Users/fengtaozhang/miniforge3/bin/mamba'
-export MAMBA_ROOT_PREFIX='/Users/fengtaozhang/miniforge3'
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2>/dev/null)"
-if [ $? -eq 0 ]; then
-	eval "$__mamba_setup"
-else
-	alias mamba="$MAMBA_EXE" # Fallback on help from mamba activate
-fi
-unset __mamba_setup
-# <<< mamba initialize <<<
-
-# --------------------- Temporary stuff ---------------------
-
-# >>> Python path for specific projects, temporarily  >>>
-phd_python="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/project_related:"
-phd_python+="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/motion_path:"
-export PYTHONPATH="$phd_python$PYTHONPATH"
-export PATH="$PATH:/Applications/FEBioStudio.app/Contents/MacOS"
-export PATH="$PATH:/Applications/OpenSim\ 4.5/bin"
-# <<< Python path for specific projects, temporarily  <<<
-
-# >>>> work alias >>>>
-alias opensim="open /Applications/OpenSim\ 4.5/OpenSim\ 4.5.app"
-alias pwe="cd project_related; mamba activate phd"
-alias mwe="cd motion; mamba activate phd"

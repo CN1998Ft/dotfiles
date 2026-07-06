@@ -56,7 +56,7 @@
     // },
 
     "niri/window":{
-        "format": "{app_id}",
+        "format": "{app_id}: {title}",
         "seperate-outputs": true
     },
 

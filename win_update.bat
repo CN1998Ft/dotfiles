@@ -70,10 +70,14 @@ if %USERNAME%==mn19fz (
 )
 :: Add glazewm to startup
 del /S /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\*" >nul 2>nul
-set glazewm_bat_path="%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\glazewm.bat"
 echo @echo off > glazewm.bat
 echo set __COMPAT_LAYER=RunAsInvoker >> glazewm.bat
 echo start "" "%USERPROFILE%\scoop\apps\glazewm\current\glazewm.exe" >> glazewm.bat
+if %USERNAME%==mn19fz (
+    set glazewm_bat_path="%USERPROFILE%\Desktop\glazewm.bat"
+) else (
+    set glazewm_bat_path="%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\glazewm.bat"
+)
 move /Y ".\glazewm.bat" %glazewm_bat_path% >nul 2>nul
 
 :: Okular
