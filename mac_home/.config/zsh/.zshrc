@@ -84,7 +84,7 @@ setopt auto_menu
 zstyle ':completion:*' menu select
 bindkey "^I" fzf-completion
 
-if [[ -d "$HOME\miniforge3" ]]; then
+if [[ -d "$HOME/miniforge3" ]]; then
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('/Users/fengtaozhang/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
