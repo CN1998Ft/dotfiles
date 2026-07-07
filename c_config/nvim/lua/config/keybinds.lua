@@ -15,6 +15,17 @@ vim.keymap.set("n", "<leader>q", "<Cmd>copen<CR>", { desc = "Quickfix List" })
 vim.keymap.set("n", "gco", "o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", { desc = "Comment below" })
 vim.keymap.set("n", "gcO", "O<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", { desc = "Comment above" })
 
+-- Markdown Related
+vim.keymap.set("n", "<leader>mt", function()
+  require("render-markdown").buf_toggle()
+end, { desc = "Toggle buf md render", remap = false })
+vim.keymap.set("n", "<leader>mT", function()
+  require("render-markdown").toggle()
+end, { desc = "Toggle markdown render", remap = false })
+vim.keymap.set("n", "<leader>mr", function()
+  require("render-markdown").preview()
+end, { desc = "preview markdown", remap = false })
+
 -- Restart and restore session
 vim.keymap.set("n", "<leader>r", function()
   require("config.Fengtao").restart_session()
