@@ -177,10 +177,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- C/CPP file specific autocmd
-local clang_format = vim.api.nvim_create_augroup("clang_format", { clear = true })
+local c_cpp_group = vim.api.nvim_create_augroup("c_cpp_group", { clear = true })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  group = clang_format,
+  group = c_cpp_group,
   pattern = {
     "*.c",
     "*.cpp",
@@ -252,5 +252,35 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     elseif buf_ft == "bib" then
       vim.treesitter.start(args.buf, "bibtex")
     end
+  end,
+})
+
+-- template injection
+local template_inject = vim.api.nvim_create_augroup("template_inject", { clear = true })
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+  group = template_inject,
+  pattern = {
+    "*.h",
+    "*.hpp",
+    "*.hh",
+    "*.hxx",
+  },
+  callback = function()
+    require("config.template").c_template_injection()
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+  group = template_inject,
+  pattern = {
+    "*.bat",
+    "*.py",
+    "*.sh",
+  },
+  callback = function()
+    local bufName = vim.api.nvim_buf_get_name(0)
+    local extension = vim.fn.fnamemodify(bufName, ":e")
+    require("config.template").template_injection(extension)
   end,
 })
