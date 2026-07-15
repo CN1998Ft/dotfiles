@@ -8,13 +8,13 @@ dynamic_padding = true
 decorations = "Full"
 
 [font]
-normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
-bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
-italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMonoNL Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMonoNL Nerd Font", style = "Italic" }
 size = 13
 
 [cursor]
-style = { shape = "Block", blinking = "Never" }
+style = { shape = "Beam", blinking = "Never" }
 
 [mouse]
 hide_when_typing = true

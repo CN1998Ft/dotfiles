@@ -2,7 +2,7 @@
 theme = GitHub Dark High Contrast
 
 # Font
-font-family = "JetBrainsMono Nerd Font"
+font-family = "JetBrainsMonoNL Nerd Font"
 font-style = Regular
 font-size = 13
 
@@ -15,7 +15,7 @@ resize-overlay = never
 gtk-toolbar-style = flat
 
 # Cursor styling
-cursor-style = "block"
+cursor-style = "bar"
 cursor-style-blink = false
 mouse-hide-while-typing = true
 
