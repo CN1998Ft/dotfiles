@@ -128,6 +128,7 @@ exec $term
     # Start youtube
     bindsym $launch+y exec "xdg-open https://youtube.com"
 
+    bindsym $launch+Shift+c exec grimshot save area
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.

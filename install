@@ -102,11 +102,13 @@ appimage_setup() {
     if [[ ! -d ~/AppImages ]]; then
         mkdir ~/AppImages > /dev/null 2>&1
     fi
-    wget \
-        "https://github.com/neovide/neovide/releases/latest/download/neovide.AppImage" \
-        > /dev/null 2>&1
-    chmod u+x *.AppImage
-    mv -f *.AppImage ~/AppImages/
+    if [[ ! -x ~/AppImages/neovide.AppImage ]]; then
+        wget \
+            "https://github.com/neovide/neovide/releases/latest/download/neovide.AppImage" \
+            > /dev/null 2>&1
+        chmod u+x *.AppImage
+        mv -f *.AppImage ~/AppImages/
+    fi
 }
 
 # define the sddm login screen function
