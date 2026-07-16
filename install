@@ -26,6 +26,7 @@ c_pkg=(
     bat
     eza
     cloc
+    cmake
     fastfetch
     fd
     fzf
@@ -50,7 +51,6 @@ f_pkg=(
     chromium-browser
     tldr
     okular
-    cmake
     @c-development
     niri
     @swaywm-extended

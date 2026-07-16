@@ -28,8 +28,8 @@ vim.api.nvim_set_hl(0, "ReplaceCursor", { fg = "#000000", bg = "#ff9492" }) -- r
 -- Cursor
 vim.opt.termguicolors = true
 vim.opt.guicursor = {
-  "n-c-t:block-NormalCursor",
-  "i-ci:ver25-InsertCursor",
+  "n-c:block-NormalCursor",
+  "i-ci-t:ver25-InsertCursor",
   "v:block-VisualCursor",
   "r-cr:hor10-ReplaceCursor",
 }

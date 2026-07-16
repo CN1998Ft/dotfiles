@@ -23,7 +23,7 @@ if not exist "%USERPROFILE%\scoop\buckets\extras" (
 set package=bat cloc eza fastfetch fd ffmpeg fzf git glazewm lazygit neovim
 set package1=ripgrep starship yasb zoxide alacritty miktex pandoc glow mpv
 set package2=jq poppler resvg imagemagick pwsh luajit nodejs
-set package3=make clink yt-dlp yazi 7zip psmux neovide okular draw.io
+set package3=clink yt-dlp yazi 7zip psmux neovide okular draw.io
 
 for %%p in (%package% %package1% %package2% %package3%) do (
     if not exist "%USERPROFILE%\scoop\apps\%%p" (
@@ -53,7 +53,7 @@ mkdir "%APPDATA%\alacritty"
 xcopy /S /I /Y ".\win_home\alacritty" "%APPDATA%\alacritty" >nul 2>nul
 
 :: Windows Terminal
-copy /Y ".\win_home\wt\settings.json" "%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+copy /Y ".\win_home\wt\settings.json" "%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" >nul 2>nul
 
 :: .config
 if exist "%USERPROFILE%\.config" rmdir /S /Q "%USERPROFILE%\.config" >nul 2>nul
