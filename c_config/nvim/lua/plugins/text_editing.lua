@@ -9,5 +9,5 @@ elseif vim.fn.has("mac") == 1 then
 end
 vim.g.vimtex_view_general_options = "file:@pdf#src:@line@tex"
 require("render-markdown").setup({
-  enabled = false,
+  enabled = true,
 })

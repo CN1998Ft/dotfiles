@@ -5,36 +5,36 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-    "keybindings": 
+    "keybindings":
     [
         {
             "id": "Terminal.CopyToClipboard",
-            "keys": "ctrl+c"
+            "keys": "ctrl+shift+c"
         },
         {
             "id": "Terminal.PasteFromClipboard",
-            "keys": "ctrl+v"
+            "keys": "ctrl+shift+v"
         },
         {
             "id": "Terminal.DuplicatePaneAuto",
             "keys": "alt+shift+d"
         }
     ],
-    "newTabMenu": 
+    "newTabMenu":
     [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
+    "profiles":
     {
         "defaults": {},
-        "list": 
+        "list":
         [
             {
                 "colorScheme": "IBM 5153",
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-                "font": 
+                "font":
                 {
                     "face": "JetBrainsMonoNL Nerd Font"
                 },
@@ -47,7 +47,7 @@
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
                 "cursorColor": "#39C5CF",
                 "cursorShape": "bar",
-                "font": 
+                "font":
                 {
                     "face": "JetBrainsMonoNL Nerd Font",
                     "size": 13
@@ -60,7 +60,7 @@
                 "colorScheme": "IBM 5153",
                 "cursorColor": "#39C5CF",
                 "cursorShape": "filledBox",
-                "font": 
+                "font":
                 {
                     "face": "JetBrainsMonoNL Nerd Font",
                     "size": 13
@@ -78,7 +78,7 @@
             },
             {
                 "colorScheme": "Dark+",
-                "font": 
+                "font":
                 {
                     "face": "JetBrainsMonoNL Nerd Font"
                 },
@@ -89,7 +89,7 @@
             },
             {
                 "colorScheme": "Dark+",
-                "font": 
+                "font":
                 {
                     "face": "JetBrainsMonoNL Nerd Font"
                 },
@@ -106,7 +106,7 @@
             }
         ]
     },
-    "schemes": 
+    "schemes":
     [
         {
             "background": "#090C10",

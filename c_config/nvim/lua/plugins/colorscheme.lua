@@ -1,4 +1,7 @@
-vim.pack.add({ "https://github.com/neanias/everforest-nvim", "https://github.com/projekt0n/github-nvim-theme" })
+vim.pack.add({
+  "https://github.com/neanias/everforest-nvim",
+  "https://github.com/projekt0n/github-nvim-theme",
+})
 require("everforest").setup({
   background = "hard",
   transparent_background_level = 0,

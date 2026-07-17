@@ -1,7 +1,7 @@
 -- For compatible reasons, the icons and group is defined inside the
 -- plugins/whichkey.lua
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>e", "<Cmd>Explore<CR>", { desc = "Explorer" })
+vim.keymap.set("n", "<leader>e", "<Cmd>Oil<CR>", { desc = "Explorer" })
 vim.keymap.set("n", "<leader>n", "<Cmd>tabnew<CR>", { desc = "New file" })
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window", remap = true })
