@@ -148,7 +148,7 @@ window_rules:
 
   - commands: ['set-floating']
     match:
-      - window_title: { regex: "^.*(OpenSim).*$"}
+      - window_process: { equals: "OpenSim64" }
 
   - commands: ['set-floating']
     match:

@@ -28,20 +28,18 @@
     ],
     "profiles":
     {
-        "defaults": {},
+        "defaults":
+        {
+            "colorScheme": "GitHub Dark",
+            "cursorColor": "#58A6FF",
+            "font":
+            {
+                "face": "JetBrainsMonoNL Nerd Font",
+                "size": 13
+            }
+        },
         "list":
         [
-            {
-                "colorScheme": "IBM 5153",
-                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-                "font":
-                {
-                    "face": "JetBrainsMonoNL Nerd Font"
-                },
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": false,
-                "name": "Windows PowerShell"
-            },
             {
                 "colorScheme": "GitHub Dark",
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
@@ -55,6 +53,17 @@
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command Prompt"
+            },
+            {
+                "colorScheme": "IBM 5153",
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "font":
+                {
+                    "face": "JetBrainsMonoNL Nerd Font"
+                },
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
             },
             {
                 "colorScheme": "IBM 5153",
