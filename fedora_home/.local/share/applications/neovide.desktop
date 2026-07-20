@@ -5,4 +5,5 @@ GenericName=GUI neovim
 Exec=bash -c "~/AppImages/neovide.AppImage"
 Terminal=false
 Keywords=Text;editor;
+Icon=/home/fengtao/.local/share/icons/neovide.png
 Categories=Utility;TextEditor;Development;

@@ -44,6 +44,9 @@ c_pkg=(
     yt-dlp
     yazi
     luajit
+    # for use of AppImage, e.g. LocalSend and drawio.
+    fuse
+    fuse-libs
 )
 f_pkg=(
     # eza and nerd fonts need to use curl
@@ -106,9 +109,14 @@ appimage_setup() {
         wget \
             "https://github.com/neovide/neovide/releases/latest/download/neovide.AppImage" \
             > /dev/null 2>&1
-        chmod u+x *.AppImage
-        mv -f *.AppImage ~/AppImages/
     fi
+    if [[ ! -x ~/AppImages/drawio.AppImage ]]; then
+        wget \
+            "https://github.com/jgraph/drawio-desktop/releases/download/v30.3.14/drawio-x86_64-30.3.14.AppImage" \
+            -O drawio.AppImage > /dev/null 2>&1
+    fi
+    chmod u+x *.AppImage
+    mv -f *.AppImage ~/AppImages/
 }
 
 # define the sddm login screen function
