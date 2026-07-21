@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 cd "$(dirname "$0")" && echo "[Current dir: $PWD]"
 
+os_name=$(uname)
+NT_name='^.*_NT-.*$'
+
+if [[ ! "$os_name" =~ $NT_name ]]; then
+    echo "This script is for Windows bash only, try run ./install instead."
+fi
+
 echo "[Checking if scoop is installed]"
 
 if ! command -v scoop &> /dev/null; then
