@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=draw.io
+Exec=bash -c "~/AppImages/drawio.AppImage"
+Terminal=false
+Icon=/home/fengtao/.local/share/icons/drawio.png
+Categories=Graphics;Office;Chart;
