@@ -59,6 +59,7 @@ copy /Y ".\win_home\wt\settings.json" "%LOCALAPPDATA%\Packages\Microsoft.Windows
 if exist "%USERPROFILE%\.config" rmdir /S /Q "%USERPROFILE%\.config" >nul 2>nul
 mkdir "%USERPROFILE%\.config" >nul 2>nul
 xcopy /S /I /Y ".\win_home\config" "%USERPROFILE%\.config" >nul 2>nul
+copy /Y ".\c_config\starship.toml" "%USERPROFILE%\.config" >nul 2>nul
 
 :: glazewm
 if exist "%USERPROFILE%\.glzr\glazewm" rmdir /S /Q "%USERPROFILE%\.glzr\glazewm"
