@@ -22,7 +22,7 @@ if not exist "%USERPROFILE%\scoop\buckets\extras" (
 
 set package=bat cloc eza fastfetch fd ffmpeg fzf git glazewm lazygit neovim
 set package1=ripgrep starship yasb zoxide alacritty miktex pandoc glow mpv
-set package2=jq poppler resvg imagemagick pwsh luajit nodejs
+set package2=jq poppler resvg imagemagick pwsh luajit nodejs uv
 set package3=clink yt-dlp yazi 7zip psmux neovide okular draw.io
 
 for %%p in (%package% %package1% %package2% %package3%) do (

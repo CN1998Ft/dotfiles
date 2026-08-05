@@ -305,7 +305,8 @@ window-rule {
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"chromium-browser"# title="^Picture-in-Picture$"
-    match title="^.*_FloatingWindow.*$"
+    match title=r#"^.*_FloatingWindow.*$"#
+    match app-id="Vtk"
     open-floating true
 }
 
