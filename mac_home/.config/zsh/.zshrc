@@ -54,7 +54,9 @@ alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
 alias n="nvim"
 
-alias nvide="open -a neovide"
+nvide() {
+    neovide "$@" --no-fork & disown
+}
 
 alias okular="open -a okular"
 

@@ -77,7 +77,9 @@ openf() {
 
 alias n="nvim"
 
-alias nvide="open -a neovide"
+nvide() {
+    neovide "$@" --no-fork & disown
+}
 
 alias okular="open -a okular"
 

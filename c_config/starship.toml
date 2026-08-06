@@ -3,18 +3,19 @@ $os\
 $all\
 $character"""
 
-command_timeout=1000
 add_newline = true
 
 [character]
 success_symbol = '[➜](bold green)'
 error_symbol = '[➜](bold red)'
-# success_symbol = '[🅘 ➜](bold green)'
-# error_symbol = '[🅘 ➜](bold red)'
-# vimcmd_symbol = '[🅝 ➜](bold green)'
-# vimcmd_visual_symbol = '[🅥➜](bold yellow)'
-# vimcmd_replace_symbol = '[🅡➜](bold purple)'
-# vimcmd_replace_one_symbol = '[🅡➜](bold purple)'
+
+[shell]
+bash_indicator = "󱆃"
+zsh_indicator = ""
+cmd_indicator = ""
+powershell_indicator = ""
+style = 'cyan bold'
+disabled = false
 
 [os]
 disabled = false
