@@ -129,7 +129,7 @@ if [[ -d "$HOME/miniforge3" ]]; then
     # <<< Python path for specific projects, temporarily  <<<
 
     # >>>> work alias >>>>
-    alias opensim="open /Applications/OpenSim\ 4.5/OpenSim\ 4.5.app"
+    alias opensim="open /Applications/OpenSim\ 4.6/OpenSim\ 4.6.app"
     alias pwe="cd project_related; mamba activate phd"
     alias mwe="cd motion; mamba activate phd"
 fi
