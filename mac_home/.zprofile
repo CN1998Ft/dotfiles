@@ -23,5 +23,6 @@ export PATH="/Library/Frameworks/Python.framework/Versions/3.10/bin:${PATH}"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-export PATH="$PATH:/Applications/FEBioStudio.app/Contents/MacOS"
 export PATH="$PATH:/Applications/OpenSim\ 4.6/bin"
+
+export PATH="$PATH:/Applications/FEBioStudio/FEBioStudio.app/Contents/MacOS"

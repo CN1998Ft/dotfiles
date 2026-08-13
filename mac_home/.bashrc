@@ -122,7 +122,7 @@ if [[ -d "$HOME/miniforge3" ]]; then
     phd_python="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/project_related:"
     phd_python+="/Users/fengtaozhang/me/university_of_leeds/PhD/git_local/motion_path:"
     export PYTHONPATH="$phd_python$PYTHONPATH"
-    export PATH="$PATH:/Applications/FEBioStudio.app/Contents/MacOS"
+    export PATH="$PATH:/Applications/FEBioStudio/FEBioStudio.app/Contents/MacOS"
     export PATH="$PATH:/Applications/OpenSim\ 4.6/bin"
     # <<< Python path for specific projects, temporarily  <<<
 
