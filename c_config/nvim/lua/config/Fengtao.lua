@@ -125,8 +125,55 @@ local function get_c_compile_cmd()
   end
 end
 
+-- Getting the cmd in a string format for prompt and execute_file
+local function get_cmd()
+  local filetype = vim.bo.filetype
+  local file_to_execute = vim.fn.fnamemodify(vim.fn.expand("%"), ".")
+  local error_msg = " Build or execution tools unavailable!  "
+  local cmd = nil
+  local cmd_string = nil
+  -- filetype specific cmd and error message format.
+  if filetype == "python" then
+    local python_bin = find_python()
+    if not python_bin then
+      vim.notify(error_msg, vim.log.levels.ERROR, {})
+      return nil
+    end
+    cmd = { python_bin, file_to_execute }
+  elseif filetype == "lua" then
+    cmd = { "luajit", file_to_execute }
+  elseif filetype == "sh" then
+    cmd = { "bash", file_to_execute }
+  elseif filetype == "ps1" then
+    if vim.fn.has("win32") == 0 then
+      vim.notify(error_msg, vim.log.levels.ERROR, {})
+      return nil
+    end
+    cmd = { "pwsh", "-File", file_to_execute }
+  elseif filetype == "dosbatch" then
+    if vim.fn.has("win32") == 0 then
+      vim.notify(error_msg, vim.log.levels.ERROR, {})
+      return nil
+    end
+    cmd = { "cmd.exe", "/c", file_to_execute }
+  elseif filetype == "c" or filetype == "cpp" then
+    cmd = get_c_compile_cmd()
+    if not cmd then
+      vim.notify(error_msg, vim.log.levels.ERROR, {})
+      return nil
+    end
+  else
+    vim.notify(error_msg, vim.log.levels.ERROR, {})
+    return nil
+  end
+  for _, value in ipairs(cmd) do
+    cmd_string = (cmd_string or "") .. " " .. value
+  end
+  return cmd_string
+end
+
 -- execute the current file
-local function execute_file()
+local function execute_file(input_args)
   -- local variable initialisation
   local filetype = vim.bo.filetype
   -- local file_to_execute = vim.fs.normalize(vim.fn.expand("%"))
@@ -167,7 +214,7 @@ local function execute_file()
       vim.notify(string_msg, vim.log.levels.ERROR, {})
       return
     end
-    cmd = { file_to_execute }
+    cmd = { "cmd.exe", "/c", file_to_execute }
   elseif filetype == "c" or filetype == "cpp" then
     cmd = get_c_compile_cmd()
     if not cmd then
@@ -187,10 +234,7 @@ local function execute_file()
   vim.fn.setqflist({}, "r")
   vim.notify("  Executing Build...", vim.log.levels.WARN, {})
 
-  local final_cmd = cmd
-  if vim.fn.has("win32") == 1 and filetype ~= "dosbatch" then
-    final_cmd = vim.list_extend({ "cmd.exe", "/c" }, cmd)
-  end
+  local final_cmd = vim.list_extend(cmd, { input_args })
 
   vim.system(final_cmd, { text = true }, function(obj)
     vim.schedule(function()
@@ -235,5 +279,6 @@ M.pick_dir_file = pick_dir_file
 M.restart_session = restart_session
 M.find_python = find_python
 M.execute_file = execute_file
+M.get_cmd = get_cmd
 
 return M
