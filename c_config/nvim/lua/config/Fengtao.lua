@@ -125,74 +125,27 @@ local function get_c_compile_cmd()
   end
 end
 
--- Getting the cmd in a string format for prompt and execute_file
-local function get_cmd()
+-- Getting a table of cmd: table and efm: string
+local function get_cmd_efm()
   local filetype = vim.bo.filetype
   local file_to_execute = vim.fn.fnamemodify(vim.fn.expand("%"), ".")
-  local error_msg = " Build or execution tools unavailable!  "
+  local error_msg = "  Skipping the execution for filetype: " .. filetype
   local cmd = nil
-  local cmd_string = nil
-  -- filetype specific cmd and error message format.
-  if filetype == "python" then
-    local python_bin = find_python()
-    if not python_bin then
-      vim.notify(error_msg, vim.log.levels.ERROR, {})
-      return nil
-    end
-    cmd = { python_bin, file_to_execute }
-  elseif filetype == "lua" then
-    cmd = { "luajit", file_to_execute }
-  elseif filetype == "sh" then
-    cmd = { "bash", file_to_execute }
-  elseif filetype == "ps1" then
-    if vim.fn.has("win32") == 0 then
-      vim.notify(error_msg, vim.log.levels.ERROR, {})
-      return nil
-    end
-    cmd = { "pwsh", "-File", file_to_execute }
-  elseif filetype == "dosbatch" then
-    if vim.fn.has("win32") == 0 then
-      vim.notify(error_msg, vim.log.levels.ERROR, {})
-      return nil
-    end
-    cmd = { "cmd.exe", "/c", file_to_execute }
-  elseif filetype == "c" or filetype == "cpp" then
-    cmd = get_c_compile_cmd()
-    if not cmd then
-      vim.notify(error_msg, vim.log.levels.ERROR, {})
-      return nil
-    end
-  else
-    vim.notify(error_msg, vim.log.levels.ERROR, {})
-    return nil
-  end
-  for _, value in ipairs(cmd) do
-    cmd_string = (cmd_string or "") .. " " .. value
-  end
-  return cmd_string
-end
-
--- execute the current file
-local function execute_file(input_args)
-  -- local variable initialisation
-  local filetype = vim.bo.filetype
-  -- local file_to_execute = vim.fs.normalize(vim.fn.expand("%"))
-  local file_to_execute = vim.fn.fnamemodify(vim.fn.expand("%"), ".")
-  local cmd = nil
-  local string_msg = "  Skipping the execution for filetype: " .. filetype
-  local fail_msg = " Build Execution Failed!  "
   local efm = vim.o.errorformat
   local efm_python = [[  File "%f"\, line %l\, in %m]] .. "," .. [[  File "%f"\, line %l%.%#]]
   local efm_bash = [[%f: line %l: %m]]
   local efm_pwsh = [[%A%*[^:]:\ %f:%l,%+C%.%#]]
   local efm_lua = [[%*[^ ]\ %f:%l:\ %m]] .. "," .. [[%+Gstack\ traceback:]] .. "," .. [[%+G\ \ \ \ \ \ \ \ %.%#]]
+  local cmd_efm_table = {} -- For packaging cmd and error message.
 
   -- filetype specific cmd and error message format.
-  if filetype == "python" then
+  if filetype == "python" and vim.uv.fs_stat("./uv.lock") ~= nil then
+    cmd = { "uv", "run", file_to_execute }
+  elseif filetype == "python" and vim.uv.fs_stat("./uv.lock") == nil then
     local python_bin = find_python()
     if not python_bin then
-      vim.notify(fail_msg, vim.log.levels.ERROR, {})
-      return
+      vim.notify(error_msg, vim.log.levels.ERROR, {})
+      return nil
     end
     cmd = { python_bin, file_to_execute }
     efm = efm_python
@@ -204,22 +157,22 @@ local function execute_file(input_args)
     efm = efm_bash
   elseif filetype == "ps1" then
     if vim.fn.has("win32") == 0 then
-      vim.notify(string_msg, vim.log.levels.ERROR, {})
-      return
+      vim.notify(error_msg, vim.log.levels.ERROR, {})
+      return nil
     end
     cmd = { "pwsh", "-File", file_to_execute }
     efm = efm_pwsh
   elseif filetype == "dosbatch" then
     if vim.fn.has("win32") == 0 then
-      vim.notify(string_msg, vim.log.levels.ERROR, {})
-      return
+      vim.notify(error_msg, vim.log.levels.ERROR, {})
+      return nil
     end
     cmd = { "cmd.exe", "/c", file_to_execute }
   elseif filetype == "c" or filetype == "cpp" then
     cmd = get_c_compile_cmd()
     if not cmd then
       vim.notify("  No c/cpp build tool specified!", vim.log.levels.ERROR, {})
-      return
+      return nil
     end
     if cmd[1] == "pwsh" then
       efm = efm_pwsh .. "," .. vim.o.errorformat
@@ -227,15 +180,16 @@ local function execute_file(input_args)
       efm = efm_bash .. "," .. vim.o.errorformat
     end
   else
-    vim.notify(string_msg, vim.log.levels.ERROR, {})
-    return
+    vim.notify(error_msg, vim.log.levels.ERROR, {})
+    return nil
   end
+  cmd_efm_table["cmd"] = cmd
+  cmd_efm_table["efm"] = efm
+  return cmd_efm_table
+end
 
-  vim.fn.setqflist({}, "r")
-  vim.notify("  Executing Build...", vim.log.levels.WARN, {})
-
-  local final_cmd = vim.list_extend(cmd, { input_args })
-
+-- The execution call in command mode
+local function execute_and_stdout(final_cmd, efm)
   vim.system(final_cmd, { text = true }, function(obj)
     vim.schedule(function()
       local output = ""
@@ -257,7 +211,7 @@ local function execute_file(input_args)
       end
 
       vim.fn.setqflist({}, "r", {
-        title = table.concat(cmd, " "),
+        title = table.concat(final_cmd, " "),
         lines = lines,
         efm = efm,
       })
@@ -273,12 +227,126 @@ local function execute_file(input_args)
   end)
 end
 
+-- The execution call in nvim term
+local function term_execute_and_stdout(final_cmd, efm)
+  -- 1. Setup split layout: Vertical split -> terminal -> move to rightmost column
+  vim.cmd("vsplit")
+  vim.cmd("wincmd L")
+
+  -- Create an unlisted scratch buffer
+  local buf = vim.api.nvim_create_buf(false, true)
+  local win = vim.api.nvim_get_current_win()
+  vim.api.nvim_win_set_buf(win, buf)
+
+  -- 2. CRITICAL FIX: Mark buffer as non-file so Ruff/LSP won't try to analyze it
+  vim.bo[buf].buftype = "nofile"
+  vim.bo[buf].bufhidden = "hide"
+  vim.bo[buf].swapfile = false
+
+  -- Disable LSP diagnostics on this terminal buffer
+  vim.diagnostic.enable(false, { bufnr = buf })
+
+  -- 3. Launch job via termopen
+  local job_id = vim.fn.jobstart(final_cmd, {
+    term = true,
+    on_exit = function(_, exit_code, _)
+      vim.schedule(function()
+        -- Extract output lines directly from the terminal buffer
+        local raw_lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+        local lines = {}
+
+        -- Strip Windows CR and terminal ANSI escape codes for clean Quickfix parsing
+        for _, line in ipairs(raw_lines) do
+          local cleaned = line:gsub("\r", ""):gsub("\27%[[%d;]*%a", "")
+          table.insert(lines, cleaned)
+        end
+
+        -- Remove trailing empty lines
+        while #lines > 0 and lines[#lines] == "" do
+          table.remove(lines)
+        end
+
+        -- Populate Quickfix list with the stripped lines and efm
+        vim.fn.setqflist({}, "r", {
+          title = table.concat(final_cmd, " "),
+          lines = lines,
+          efm = efm,
+        })
+
+        -- Check if efm parsed any errors/warnings into quickfix
+        local qf_items = vim.fn.getqflist()
+
+        if exit_code ~= 0 or #qf_items > 0 then
+          vim.cmd("copen")
+          vim.notify("  Execution finished with errors/output. Check Quickfix list.  ", vim.log.levels.WARN)
+        else
+          vim.notify("  Execution Successful!  ", vim.log.levels.INFO)
+          vim.cmd("cclose")
+
+          -- Automatically close the live terminal split if clean exit
+          if vim.api.nvim_win_is_valid(win) then
+            vim.api.nvim_win_close(win, true)
+          end
+        end
+      end)
+    end,
+  })
+
+  if job_id <= 0 then
+    vim.notify("Failed to start job: " .. table.concat(final_cmd, " "), vim.log.levels.ERROR)
+  end
+end
+
+-- execute the current file
+local function execute_file(input_args, gui)
+  -- local fail_msg = " Build Execution Failed!  "
+
+  vim.fn.setqflist({}, "r")
+  vim.notify("  Executing Build...", vim.log.levels.WARN, {})
+
+  local cmd_efm_table = get_cmd_efm()
+  if cmd_efm_table == nil then
+    return
+  end
+
+  local final_cmd = vim.list_slice(cmd_efm_table.cmd)
+  local efm = cmd_efm_table["efm"]
+
+  if input_args and input_args ~= "" then
+    local args_list = vim.split(input_args, "%s+", { trimempty = true })
+    vim.list_extend(final_cmd, args_list)
+  end
+
+  if gui then
+    term_execute_and_stdout(final_cmd, efm)
+  else
+    execute_and_stdout(final_cmd, efm)
+  end
+end
+
+local function execute_file_with_args(gui)
+  local cmd = get_cmd_efm().cmd
+  local cmd_string
+
+  for _, value in pairs(cmd) do
+    cmd_string = (cmd_string or "") .. " " .. value
+  end
+
+  local prompt_indicator = nil
+  if cmd_string then
+    prompt_indicator = cmd_string .. " "
+    vim.ui.input({ prompt = prompt_indicator }, function(input)
+      execute_file(input, gui)
+    end)
+  end
+end
+
 M.harpoon_pick_menu = harpoon_pick_menu
 M.pick_config = pick_config
 M.pick_dir_file = pick_dir_file
 M.restart_session = restart_session
 M.find_python = find_python
 M.execute_file = execute_file
-M.get_cmd = get_cmd
+M.execute_file_with_args = execute_file_with_args
 
 return M

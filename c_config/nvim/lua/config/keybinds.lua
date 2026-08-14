@@ -74,17 +74,11 @@ vim.keymap.set("n", "<leader>ct", "<Cmd>Inspect<CR>", { desc = "treesitter Inspe
 vim.keymap.set("n", "<leader>cT", "<Cmd>InspectTree<CR>", { desc = "treesitter InspectTree" })
 vim.keymap.set("n", "<leader>cd", "<Cmd>lua vim.diagnostic.setqflist()<CR>", { desc = "Diagnostics list" })
 vim.keymap.set("n", "<leader>cr", function()
-  local cmd_string = require("config.Fengtao").get_cmd()
-  local prompt_indicator = nil
-  if cmd_string then
-    prompt_indicator = cmd_string .. " "
-    vim.ui.input({ prompt = prompt_indicator }, function(input)
-      if input ~= nil then
-        require("config.Fengtao").execute_file(input)
-      end
-    end)
-  end
+  require("config.Fengtao").execute_file_with_args()
 end, { desc = "run with arguments" })
+vim.keymap.set("n", "<leader>cx", function()
+  require("config.Fengtao").execute_file_with_args(true)
+end, { desc = "run with args in term" })
 vim.keymap.set("n", "<leader>x", function()
   require("config.Fengtao").execute_file()
 end, { desc = "Execute or Compile" })
