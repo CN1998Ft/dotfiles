@@ -138,17 +138,18 @@ local function get_cmd_efm()
   local efm_lua = [[%*[^ ]\ %f:%l:\ %m]] .. "," .. [[%+Gstack\ traceback:]] .. "," .. [[%+G\ \ \ \ \ \ \ \ %.%#]]
   local cmd_efm_table = {} -- For packaging cmd and error message.
 
-  -- filetype specific cmd and error message format.
-  if filetype == "python" and vim.uv.fs_stat("./uv.lock") ~= nil then
-    cmd = { "uv", "run", file_to_execute }
-  elseif filetype == "python" and vim.uv.fs_stat("./uv.lock") == nil then
-    local python_bin = find_python()
-    if not python_bin then
-      vim.notify(error_msg, vim.log.levels.ERROR, {})
-      return nil
-    end
-    cmd = { python_bin, file_to_execute }
+  if filetype == "python" then
     efm = efm_python
+    if vim.uv.fs_stat("./uv.lock") ~= nil then
+      cmd = { "uv", "run", file_to_execute }
+    else
+      local python_bin = find_python()
+      if not python_bin then
+        vim.notify(error_msg, vim.log.levels.ERROR, {})
+        return nil
+      end
+      cmd = { python_bin, file_to_execute }
+    end
   elseif filetype == "lua" then
     cmd = { "luajit", file_to_execute }
     efm = efm_lua
@@ -228,7 +229,7 @@ local function execute_and_stdout(final_cmd, efm)
 end
 
 -- The execution call in nvim term
-local function term_execute_and_stdout(final_cmd, efm)
+local function term_execute_and_stdout(final_cmd)
   -- 1. Setup split layout: Vertical split -> terminal -> move to rightmost column
   vim.cmd("vsplit")
   vim.cmd("wincmd L")
@@ -238,12 +239,12 @@ local function term_execute_and_stdout(final_cmd, efm)
   local win = vim.api.nvim_get_current_win()
   vim.api.nvim_win_set_buf(win, buf)
 
-  -- 2. CRITICAL FIX: Mark buffer as non-file so Ruff/LSP won't try to analyze it
+  -- 2. Mark buffer settings
   vim.bo[buf].buftype = "nofile"
   vim.bo[buf].bufhidden = "hide"
   vim.bo[buf].swapfile = false
 
-  -- Disable LSP diagnostics on this terminal buffer
+  -- Disable LSP diagnostics on this buffer
   vim.diagnostic.enable(false, { bufnr = buf })
 
   -- 3. Launch job via termopen
@@ -251,42 +252,9 @@ local function term_execute_and_stdout(final_cmd, efm)
     term = true,
     on_exit = function(_, exit_code, _)
       vim.schedule(function()
-        -- Extract output lines directly from the terminal buffer
-        local raw_lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-        local lines = {}
-
-        -- Strip Windows CR and terminal ANSI escape codes for clean Quickfix parsing
-        for _, line in ipairs(raw_lines) do
-          local cleaned = line:gsub("\r", ""):gsub("\27%[[%d;]*%a", "")
-          table.insert(lines, cleaned)
-        end
-
-        -- Remove trailing empty lines
-        while #lines > 0 and lines[#lines] == "" do
-          table.remove(lines)
-        end
-
-        -- Populate Quickfix list with the stripped lines and efm
-        vim.fn.setqflist({}, "r", {
-          title = table.concat(final_cmd, " "),
-          lines = lines,
-          efm = efm,
-        })
-
-        -- Check if efm parsed any errors/warnings into quickfix
-        local qf_items = vim.fn.getqflist()
-
-        if exit_code ~= 0 or #qf_items > 0 then
-          vim.cmd("copen")
-          vim.notify("  Execution finished with errors/output. Check Quickfix list.  ", vim.log.levels.WARN)
-        else
-          vim.notify("  Execution Successful!  ", vim.log.levels.INFO)
-          vim.cmd("cclose")
-
-          -- Automatically close the live terminal split if clean exit
-          if vim.api.nvim_win_is_valid(win) then
-            vim.api.nvim_win_close(win, true)
-          end
+        -- Automatically close the live terminal split if clean exit (exit code 0)
+        if exit_code == 0 and vim.api.nvim_win_is_valid(win) then
+          vim.api.nvim_win_close(win, true)
         end
       end)
     end,
@@ -310,7 +278,7 @@ local function execute_file(input_args, gui)
   end
 
   local final_cmd = vim.list_slice(cmd_efm_table.cmd)
-  local efm = cmd_efm_table["efm"]
+  local efm = cmd_efm_table.efm
 
   if input_args and input_args ~= "" then
     local args_list = vim.split(input_args, "%s+", { trimempty = true })
@@ -318,27 +286,27 @@ local function execute_file(input_args, gui)
   end
 
   if gui then
-    term_execute_and_stdout(final_cmd, efm)
+    term_execute_and_stdout(final_cmd)
   else
     execute_and_stdout(final_cmd, efm)
   end
 end
 
 local function execute_file_with_args(gui)
-  local cmd = get_cmd_efm().cmd
-  local cmd_string
-
-  for _, value in pairs(cmd) do
-    cmd_string = (cmd_string or "") .. " " .. value
+  local cmd_efm_table = get_cmd_efm()
+  if not cmd_efm_table or not cmd_efm_table.cmd then
+    return
   end
 
-  local prompt_indicator = nil
-  if cmd_string then
-    prompt_indicator = cmd_string .. " "
-    vim.ui.input({ prompt = prompt_indicator }, function(input)
+  local cmd_string = table.concat(cmd_efm_table.cmd, " ")
+  local prompt_indicator = vim.trim(cmd_string) .. " "
+
+  vim.ui.input({ prompt = prompt_indicator }, function(input)
+    -- Only execute if the user didn't cancel the input prompt (e.g. via <Esc>)
+    if input ~= nil then
       execute_file(input, gui)
-    end)
-  end
+    end
+  end)
 end
 
 M.harpoon_pick_menu = harpoon_pick_menu
