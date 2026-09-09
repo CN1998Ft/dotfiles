@@ -76,27 +76,6 @@ $env:PAGER=$less_path
 
 # <== environment variable
 
-# ==> PhD Aliases
-function pwe{
-  cd "project";
-  mamba activate phd
-}
-function mwe{
-  cd "motion";
-  mamba activate phd
-}
-#> <== PhD Aliases
-
-# ==> PhD python path
-$me=$(whoami).split("\")[1]
-if ($me -eq "mn19fz"){
-    $motion_path=$HOME+"\Documents\PhD\motion_path"
-} else {
-    $motion_path="D:\PhD\motion_path"
-}
-$env:PYTHONPATH+=";$motion_path"
-# <== PhD python path
-
 # ==> Powershell config
 # Set-PSReadLineOption -EditMode vi
 #> <== Powershell config

@@ -20,16 +20,3 @@ os.setalias("touch", git_usr_bin .. "\\touch.exe $*")
 os.setalias("ldd", git_usr_bin .. "\\ldd.exe $*")
 os.setalias("less", git_usr_bin .. "\\less.exe $*")
 os.setenv("PAGER", git_usr_bin .. "\\less.exe")
-
--->> PhD python
-os.setalias("pwe", 'for /f "delims=" %i in (\'zoxide query project\') do @cd /d "%i" && mamba activate phd')
-os.setalias("mwe", 'for /f "delims=" %i in (\'zoxide query motion\') do @cd /d "%i" && mamba activate phd')
-local pythonpath = os.getenv("PYTHONPATH")
-local motion_path_dir = ""
-if os.getenv("USERNAME") == "mn19fz" then
-	motion_path_dir = os.getenv("USERPROFILE")--[[:gsub("\\", "\\\\")]] .. "\\Documents\\PhD\\motion_path"
-elseif os.getenv("USERNAME") == "93581" then
-	motion_path_dir = "D:\\PhD\\motion_path"
-end
-os.setenv("PYTHONPATH", pythonpath .. ";" .. motion_path_dir)
--->> PhD python
