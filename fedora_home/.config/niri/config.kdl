@@ -243,7 +243,7 @@ layout {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
 spawn-at-startup "kanshi"
-spawn-sh-at-startup "swaybg -i /usr/share/backgrounds/3-ristretto.jpg -m fill"
+spawn-sh-at-startup "swaybg -i /usr/share/backgrounds/distant-green-mountains.jpg -m fill"
 spawn-at-startup "swayidle" "-w" \
     "timeout" "300" "swaylock -f -c 000000" \
     "timeout" "600" "niri msg action power-off-monitors" \

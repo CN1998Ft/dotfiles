@@ -122,8 +122,8 @@ appimage_setup() {
 
 # define the sddm login screen function
 sddm_setup() {
-    sudo cp ./3-ristretto.jpg /usr/share/backgrounds/
-    str="[General]\nbackground=/usr/share/backgrounds/3-ristretto.jpg"
+    sudo cp ./3-ristretto.jpg ./distant-green-mountains.jpg /usr/share/backgrounds/
+    str="[General]\nbackground=/usr/share/backgrounds/distant-green-mountains.jpg"
     sddm_theme_conf="/usr/share/sddm/themes/03-sway-fedora/theme.conf"
     [[ -e $sddm_theme_conf ]] || sudo touch $sddm_theme_conf
     echo -e $str | sudo tee $sddm_theme_conf &&

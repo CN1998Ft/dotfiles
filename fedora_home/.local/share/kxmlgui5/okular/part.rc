@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <!DOCTYPE gui SYSTEM 'kpartgui.dtd'>
-<gui name="okular_part" version="55">
+<gui name="okular_part" version="56">
  <MenuBar>
   <Menu name="file">
    <text>&amp;File</text>
@@ -23,6 +23,8 @@
    <Action name="edit_redo"/>
    <Separator/>
    <Action name="edit_copy"/>
+   <Action name="edit_copy_without_line_breaks"/>
+   <Action name="annotation_paste"/>
    <Separator/>
    <Action name="edit_select_all"/>
    <Action name="edit_select_all_current_page"/>
@@ -108,32 +110,10 @@
    <Action group="about_merge" name="help_about_backend"/>
   </Menu>
  </MenuBar>
- <ToolBar name="mainToolBar">
-  <text>Main Toolbar</text>
-  <Action name="show_leftpanel"/>
-  <Separator/>
-  <Action name="view_zoom_in"/>
-  <Action name="view_zoom_out"/>
-  <Action name="zoom_to"/>
-  <Action name="view_render_mode"/>
-  <Spacer/>
-  <Action name="page_number"/>
-  <Spacer/>
-  <Action name="mouse_drag"/>
-  <Action name="mouse_selecttools"/>
-  <Action name="annotation_favorites"/>
-  <Separator/>
-  <Action name="hamburger_menu"/>
+ <ToolBar hidden="true" iconSize="32" iconText="icononly" name="quickAnnotationToolBar" newline="true" position="right">
+  <text>Quick Annotation Toolbar</text>
+  <Action name="quick_annotation_action_bar"/>
  </ToolBar>
- <ActionProperties scheme="Default">
-  <Action name="show_leftpanel" priority="0" shortcut="F7; Space, E"/>
-  <Action name="view_zoom_out" priority="0"/>
-  <Action name="view_zoom_in" priority="0"/>
-  <Action name="first_page" shortcut="G, G"/>
-  <Action name="last_page" shortcut="Shift+G"/>
-  <Action name="view_scroll_page_up" shortcut="Ctrl+U"/>
-  <Action name="view_scroll_page_down" shortcut="Ctrl+D"/>
- </ActionProperties>
  <ToolBar hidden="true" iconText="icononly" name="annotationToolBar" newline="true">
   <text>Annotation Toolbar</text>
   <Action name="annotation_highlighter"/>
@@ -159,8 +139,30 @@
   <Spacer/>
   <Action name="hide_annotation_toolbar"/>
  </ToolBar>
- <ToolBar hidden="true" iconSize="32" iconText="icononly" name="quickAnnotationToolBar" newline="true" position="right">
-  <text>Quick Annotation Toolbar</text>
-  <Action name="quick_annotation_action_bar"/>
+ <ToolBar name="mainToolBar">
+  <text>Main Toolbar</text>
+  <Action name="show_leftpanel"/>
+  <Separator/>
+  <Action name="view_zoom_in"/>
+  <Action name="view_zoom_out"/>
+  <Action name="zoom_to"/>
+  <Action name="view_render_mode"/>
+  <Spacer/>
+  <Action name="page_number"/>
+  <Spacer/>
+  <Action name="mouse_drag"/>
+  <Action name="mouse_selecttools"/>
+  <Action name="annotation_favorites"/>
+  <Separator/>
+  <Action name="hamburger_menu"/>
  </ToolBar>
+ <ActionProperties scheme="Default">
+  <Action name="first_page" shortcut="G, G"/>
+  <Action name="last_page" shortcut="Shift+G"/>
+  <Action name="show_leftpanel" priority="0" shortcut="F7; Space, E"/>
+  <Action name="view_scroll_page_down" shortcut="Ctrl+D"/>
+  <Action name="view_scroll_page_up" shortcut="Ctrl+U"/>
+  <Action name="view_zoom_in" priority="0"/>
+  <Action name="view_zoom_out" priority="0"/>
+ </ActionProperties>
 </gui>
