@@ -1,6 +1,3 @@
-[env]
-TERM = "xterm-256color"
-
 [terminal]
 shell = { program = "/opt/homebrew/bin/bash", args = ["--login", "-i"] }
 
