@@ -82,6 +82,7 @@ m_pkg=(
     imagemagick-full
     font-symbols-only-nerd-font
     node
+    hiddenbar
 )
 
 # define the fedora install function
