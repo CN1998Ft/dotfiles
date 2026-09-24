@@ -35,10 +35,10 @@ export HISTSIZE=5000
 export HISTFILESIZE=5000
 
 # ==> init section
+eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
 eval "$(fzf --bash)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Shell options
 shopt -s cdspell
