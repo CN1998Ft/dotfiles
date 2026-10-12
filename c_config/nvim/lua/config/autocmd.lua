@@ -208,33 +208,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
--- C/CPP file specific autocmd
-local c_cpp_group = vim.api.nvim_create_augroup("c_cpp_group", { clear = true })
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = c_cpp_group,
-  pattern = {
-    "*.c",
-    "*.cpp",
-    "*.h",
-    "*.hpp",
-    "*.cc",
-    "*.hh",
-    "*.cxx",
-    "*.hxx",
-    "*.ino",
-  },
-  callback = function(args)
-    vim.lsp.buf.format({
-      bufnr = args.buf,
-      async = false,
-      filter = function(client)
-        return client.name == "clangd"
-      end,
-    })
-  end,
-})
-
 -- dosbatch file specific autocmd
 local dosbatch_auto_comment = vim.api.nvim_create_augroup("dosbatch_auto_comment", { clear = true })
 
@@ -306,13 +279,12 @@ vim.api.nvim_create_autocmd("BufNewFile", {
 vim.api.nvim_create_autocmd("BufNewFile", {
   group = template_inject,
   pattern = {
-    "*.bat",
-    "*.py",
-    "*.sh",
+    "*",
   },
   callback = function()
     local bufName = vim.api.nvim_buf_get_name(0)
     local extension = vim.fn.fnamemodify(bufName, ":e")
-    require("config.template").template_injection(extension)
+    local filename = vim.fn.fnamemodify(bufName, ":t:r")
+    require("config.template").template_injection(filename, extension)
   end,
 })

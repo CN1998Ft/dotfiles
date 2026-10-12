@@ -17,9 +17,11 @@ local function c_template_injection()
 end
 
 -- other files template injection
-local function template_injection(extension)
+---@param filename string the filename without the extension
+---@param extension string
+local function template_injection(filename, extension)
   local shebang = {}
-  if extension == "sh" then
+  if extension == "sh" or extension == "" then
     shebang = { [[#!/usr/bin/env bash]], [[cd "$(dirname "$0")" && echo "[Current dir: $PWD]"]] }
   elseif extension == "bat" then
     shebang = {
@@ -27,8 +29,16 @@ local function template_injection(extension)
       [[setlocal enabledelayedexpansion]],
       [[cd /D "%~dp0"]],
     }
-  elseif extension == "py" then
-    shebang = { [[#!/usr/bin/env python]] }
+  elseif extension == "py" and filename ~= "__init__" and filename ~= "api" then
+    shebang = {
+      [[#!/usr/bin/env python]],
+      [[import ]],
+      [[ ]],
+      [[def main() -> None:]],
+      [[    return None]],
+      [[if __name__ == "__main__":]],
+      [[    main()]],
+    }
   end
   for i, v in ipairs(shebang) do
     vim.fn.append(i - 1, v)
