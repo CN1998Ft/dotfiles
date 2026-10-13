@@ -1,9 +1,6 @@
-# Dynamic theme colors
-# config-file = ?"~/.config/ghostty/themes/catppuccin-mocha.conf"
-# theme = Catppuccin Mocha
-# theme = Monokai Pro Ristretto
-# theme = Everforest Dark Hard
 theme = GitHub Dark High Contrast
+
+command = /opt/homebrew/bin/bash
 
 # Font
 font-family = "JetBrainsMonoNL Nerd Font"

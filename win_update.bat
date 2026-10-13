@@ -21,7 +21,7 @@ if not exist "%USERPROFILE%\scoop\buckets\extras" (
 )
 
 set package=bat cloc eza fastfetch fd ffmpeg fzf git glazewm neovim
-set package1=ripgrep starship yasb zoxide alacritty miktex pandoc glow mpv
+set package1=ripgrep starship yasb zoxide miktex pandoc glow mpv
 set package2=jq poppler resvg imagemagick pwsh luajit nodejs uv
 
 set package3=clink yt-dlp 7zip psmux neovide okular draw.io
@@ -47,11 +47,6 @@ if %USERNAME% == mn19fz (
 ) else (
     copy /Y .\win_home\vimrc %USERPROFILE%\.vimrc >nul 2>nul
 )
-
-:: alacritty
-if exist "%APPDATA%\alacritty" rmdir /S /Q "%APPDATA%\alacritty"
-mkdir "%APPDATA%\alacritty"
-xcopy /S /I /Y ".\win_home\alacritty" "%APPDATA%\alacritty" >nul 2>nul
 
 :: Windows Terminal
 copy /Y ".\win_home\wt\settings.json" "%LOCALAPPDATA%\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" >nul 2>nul

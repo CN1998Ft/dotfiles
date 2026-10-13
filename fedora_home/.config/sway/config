@@ -10,7 +10,7 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 # Recommends: foot
-set $term alacritty
+set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -115,8 +115,8 @@ exec $term
 # Basics:
 #
     # Start a terminal
-    bindsym $launch+Return exec $term
-    bindsym $launch+Shift+Return exec foot
+    bindsym $launch+Return exec kitty
+    bindsym $launch+Shift+Return exec $term
 
     # Kill focused window
     bindsym $launch+q kill

@@ -16,8 +16,44 @@
             "keys": "ctrl+shift+v"
         },
         {
+            "id": "Terminal.SwitchToTab2",
+            "keys": "ctrl+f3"
+        },
+        {
             "id": "Terminal.DuplicatePaneAuto",
             "keys": "alt+shift+d"
+        },
+        {
+            "id": "Terminal.MoveFocusUp",
+            "keys": "ctrl+f8"
+        },
+        {
+            "id": "Terminal.SwitchToTab0",
+            "keys": "ctrl+f1"
+        },
+        {
+            "id": "Terminal.SwitchToTab1",
+            "keys": "ctrl+f2"
+        },
+        {
+            "id": "Terminal.SwitchToTab3",
+            "keys": "ctrl+f4"
+        },
+        {
+            "id": "Terminal.SwitchToTab4",
+            "keys": "ctrl+f5"
+        },
+        {
+            "id": "Terminal.MoveFocusLeft",
+            "keys": "ctrl+f6"
+        },
+        {
+            "id": "Terminal.MoveFocusDown",
+            "keys": "ctrl+f7"
+        },
+        {
+            "id": "Terminal.MoveFocusRight",
+            "keys": "ctrl+f9"
         }
     ],
     "newTabMenu":
@@ -118,27 +154,27 @@
     "schemes":
     [
         {
-            "name": "Everforest Dark Hard",
             "background": "#272E33",
-            "foreground": "#D3C6AA",
             "black": "#414B50",
-            "red": "#E67E80",
-            "green": "#A7C080",
-            "yellow": "#DBBC7F",
             "blue": "#7FBBB3",
-            "purple": "#D699B6",
-            "cyan": "#83C092",
-            "white": "#D3C6AA",
             "brightBlack": "#414B50",
-            "brightRed": "#E67E80",
-            "brightGreen": "#A7C080",
-            "brightYellow": "#DBBC7F",
             "brightBlue": "#7FBBB3",
-            "brightPurple": "#D699B6",
             "brightCyan": "#83C092",
+            "brightGreen": "#A7C080",
+            "brightPurple": "#D699B6",
+            "brightRed": "#E67E80",
             "brightWhite": "#D3C6AA",
+            "brightYellow": "#DBBC7F",
             "cursorColor": "#A7C080",
-            "selectionBackground": "#4C3743"
+            "cyan": "#83C092",
+            "foreground": "#D3C6AA",
+            "green": "#A7C080",
+            "name": "Everforest Dark Hard",
+            "purple": "#D699B6",
+            "red": "#E67E80",
+            "selectionBackground": "#4C3743",
+            "white": "#D3C6AA",
+            "yellow": "#DBBC7F"
         },
         {
             "background": "#090C10",

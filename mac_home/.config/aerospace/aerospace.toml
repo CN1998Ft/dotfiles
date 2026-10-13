@@ -176,8 +176,20 @@ run = ['layout floating']
 # '''
 
 # Add shortcut for chrome and ghostty
-cmd-shift-enter = 'exec-and-forget open -na alacritty'
+# cmd-enter = '''exec-and-forget open -na kitty'''
 cmd-enter = '''exec-and-forget osascript -e '
+tell application "kitty"
+    if it is running
+        tell application "System Events" to tell process "kitty"
+            click menu item "New OS Window" of menu "Shell" of menu bar 1
+        end tell
+    else
+        activate
+    end if
+end tell'
+'''
+
+cmd-shift-enter = '''exec-and-forget osascript -e '
 tell application "Ghostty"
     if it is running
         tell application "System Events" to tell process "Ghostty"

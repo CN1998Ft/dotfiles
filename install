@@ -42,10 +42,10 @@ c_pkg=(
     yt-dlp
     luajit
     uv
+    kitty
 )
 f_pkg=(
     # eza and nerd fonts need to use curl
-    alacritty
     chromium-browser
     tldr
     okular
