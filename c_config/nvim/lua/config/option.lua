@@ -49,12 +49,34 @@ vim.opt.showmode = false
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-if vim.fn.has("mac") == 1 and vim.env.TERM_PROGRAM == "ghostty" then
+-- platform specific
+if vim.fn.has("mac") == 1 and vim.env.KITTY_WINDOW_ID ~= nil then
   vim.o.shell = "/bin/zsh"
-elseif vim.fn.has("mac") == 1 and vim.env.ALACRITTY_LOG ~= nil then
+elseif vim.fn.has("mac") == 1 and vim.env.TERM_PROGRAM == "ghostty" then
   vim.o.shell = "/opt/homebrew/bin/bash"
 elseif vim.fn.has("Linux") == 1 then
   vim.o.shell = "/usr/bin/bash"
+end
+
+-- smart cd
+if vim.fn.executable("zoxide") == 1 then
+  vim.api.nvim_create_user_command("Z", function(opts)
+    -- 1. Use vim.fn.system() to execute zoxide and capture the returned string
+    -- 2. vim.trim() removes trailing newlines or spaces from the path
+    local output = vim.fn.system({ "zoxide", "query", opts.args })
+    local path = vim.fs.normalize(vim.trim(output))
+
+    -- Check if zoxide successfully found a directory (exit code 0)
+    if vim.v.shell_error == 0 and path ~= "" then
+      vim.cmd("cd " .. path)
+      vim.notify("Changed directory to: " .. path, vim.log.levels.INFO)
+    else
+      vim.notify("Zoxide could not find a match for: " .. opts.args, vim.log.levels.ERROR)
+    end
+  end, {
+    nargs = 1,
+    desc = "zoxide query and cd to it",
+  })
 end
 
 -- Undodir and undofile
