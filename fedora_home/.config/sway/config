@@ -107,7 +107,6 @@ for_window [class="Matplotlib"] floating enable, border normal
 ## Boottraping some applications on startup
 exec_always kanshi
 exec_always fcitx5 -d
-exec $term
 
 
 ### Key bindings

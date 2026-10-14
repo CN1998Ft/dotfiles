@@ -43,6 +43,7 @@ c_pkg=(
     luajit
     uv
     kitty
+    yazi
 )
 f_pkg=(
     # eza and nerd fonts need to use curl
@@ -57,6 +58,7 @@ f_pkg=(
     # for use of AppImage, e.g. LocalSend and drawio.
     fuse
     fuse-libs
+    nerd-fonts
 )
 m_pkg=(
     pandoc
@@ -86,6 +88,8 @@ m_pkg=(
 # define the fedora install function
 fedora_install() {
     sudo dnf copr enable -y atim/starship
+    sudo dnf copr enable -y che/nerd-fonts
+    sudo dnf copr enable -y lihaohong/yazi
     sudo dnf upgrade -y
     max="${#c_pkg[@]}"
     for ((i = 0; i < $max; i++)); do

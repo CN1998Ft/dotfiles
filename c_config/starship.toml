@@ -16,7 +16,7 @@ zsh_indicator = ""
 cmd_indicator = ":"
 powershell_indicator = ""
 style = 'cyan bold'
-disabled = false
+disabled = true
 
 [os]
 disabled = false
