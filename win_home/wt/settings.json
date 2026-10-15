@@ -66,6 +66,7 @@
     {
         "defaults":
         {
+            "bellStyle": "none",
             "colorScheme": "GitHub Dark",
             "cursorColor": "#58A6FF",
             "font":

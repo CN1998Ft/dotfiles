@@ -284,7 +284,7 @@ keybindings:
   # Launch CMD terminal. Alternatively, use `shell-exec wt` or
   # `shell-exec %ProgramFiles%/Git/git-bash.exe` to start Windows
   # Terminal and Git Bash respectively.
-  - commands: ['shell-exec wt']
+  - commands: ['shell-exec wt.exe cmd.exe']
     bindings: ['LWin+enter']
   - commands: ["shell-exec wt.exe cmd.exe /k \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\VsDevCmd.bat\" -arch=x64"]
     bindings: ['LWin+shift+enter']

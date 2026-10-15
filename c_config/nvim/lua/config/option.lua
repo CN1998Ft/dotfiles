@@ -56,6 +56,8 @@ elseif vim.fn.has("mac") == 1 and vim.env.TERM_PROGRAM == "ghostty" then
   vim.o.shell = "/opt/homebrew/bin/bash"
 elseif vim.fn.has("Linux") == 1 then
   vim.o.shell = "/usr/bin/bash"
+elseif vim.fn.has("win32") == 1 then
+  vim.o.shell = "cmd.exe"
 end
 
 -- smart cd
@@ -92,8 +94,8 @@ vim.opt.undofile = true
 -- neovide config
 if vim.g.neovide then
   vim.o.guifont = "JetBrainsMonoNL Nerd Font:h13"
-  vim.g.neovide_cursor_vfx_particle_lifetime = 0.2
+  vim.g.neovide_cursor_vfx_particle_lifetime = 0.3
   vim.g.neovide_cursor_trail_size = 0.1
-  vim.g.neovide_cursor_animation_length = 0.05
+  vim.g.neovide_cursor_animation_length = 0.10
   vim.g.neovide_cursor_short_animation_length = 0.05
 end
