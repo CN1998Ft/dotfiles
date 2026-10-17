@@ -137,13 +137,13 @@ mac_install() {
         https://raw.githubusercontent.com/Hombrew/install/HEAD/install.sh
     max="${#c_pkg[@]}"
     for ((i = 0; i < $max; i++)); do
-        brew install "${c_pkg[i]}"
+        brew install -y "${c_pkg[i]}"
     done
     max1="${#m_pkg[@]}"
     for ((i = 0; i < $max; i++)); do
         brew install "${m_pkg[i]}"
     done
-    brew update && brew upgrade && brew cleanup --prune=all
+    brew update && brew upgrade -y && brew cleanup --prune=all
 }
 
 fedora_node_name_regex='^.*[Ff]edora.*$'

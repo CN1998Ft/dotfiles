@@ -24,7 +24,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 25
+accordion-padding = 50
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -141,6 +141,10 @@ run = 'layout floating'
 if.app-name-regex-substring = '^python$'
 if.window-title-regex-substring = '^Figure [0-9]+$'
 run = ['layout floating']
+
+[[on-window-detected]]
+if = 'test %{workspace} = 10'
+run = 'layout floating'
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

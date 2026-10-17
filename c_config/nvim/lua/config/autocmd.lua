@@ -208,6 +208,33 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
+-- C/CPP file specific autocmd
+local c_cpp_group = vim.api.nvim_create_augroup("c_cpp_group", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = c_cpp_group,
+  pattern = {
+    "*.c",
+    "*.cpp",
+    "*.h",
+    "*.hpp",
+    "*.cc",
+    "*.hh",
+    "*.cxx",
+    "*.hxx",
+    "*.ino",
+  },
+  callback = function(args)
+    vim.lsp.buf.format({
+      bufnr = args.buf,
+      async = false,
+      filter = function(client)
+        return client.name == "clangd"
+      end,
+    })
+  end,
+})
+
 -- dosbatch file specific autocmd
 local dosbatch_auto_comment = vim.api.nvim_create_augroup("dosbatch_auto_comment", { clear = true })
 

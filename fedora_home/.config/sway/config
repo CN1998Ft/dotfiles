@@ -100,6 +100,7 @@ show_marks yes
 focus_follows_mouse no
 
 for_window [workspace="1"] layout tabbed
+for_window [workspace="10"] floating enable, border normal
 for_window [title=".*_FloatingWindow.*"] floating enable, border normal
 for_window [class="Vtk"] floating enable, border normal
 for_window [class="Matplotlib"] floating enable, border normal
