@@ -242,9 +242,7 @@ vim.api.nvim_create_autocmd("FileType", {
   group = dosbatch_auto_comment,
   pattern = "dosbatch",
   callback = function()
-    vim.keymap.set("n", "gcc", "mtI:: <esc>`tll", { buffer = true, remap = false })
-    vim.keymap.set("n", "gcO", "O:: ", { buffer = true, remap = false })
-    vim.keymap.set("n", "gco", "o:: ", { buffer = true, remap = false })
+    vim.bo.commentstring = ":: %s"
   end,
 })
 

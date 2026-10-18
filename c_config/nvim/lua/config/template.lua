@@ -95,7 +95,40 @@ local function template_injection(filename, extension)
   end
 end
 
+local function inject_whiteboard()
+  ---@type integer
+  local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
+  ---@type string
+  local whiteboard = "|" .. string.rep(" ", 100) .. "|"
+  ---@type string
+  local commentstring = vim.bo.commentstring
+  ---@type string
+  local whiteboard_border = "|" .. string.rep("-", 100) .. "|"
+  ---@type string
+  local whiteboard_centre =
+    [[|                                  Fengtao's Whiteboard                                              |]]
+  whiteboard = commentstring:gsub("%%s", whiteboard)
+  whiteboard_centre = commentstring:gsub("%%s", whiteboard_centre)
+  whiteboard_border = commentstring:gsub("%%s", whiteboard_border)
+  ---@type string
+  local insert_whiteboard_text
+  ---@type integer
+  local whiteboard_length = 14
+  for i = 0, whiteboard_length do
+    if i == 0 or i == whiteboard_length then
+      insert_whiteboard_text = whiteboard_border
+    elseif i == whiteboard_length / 2 then
+      insert_whiteboard_text = whiteboard_centre
+    else
+      insert_whiteboard_text = whiteboard
+    end
+    vim.fn.append(cursor_line + i, insert_whiteboard_text)
+  end
+  vim.cmd(string.format("normal! %djzz", whiteboard_length / 2 + 1))
+end
+
 M.c_template_injection = c_template_injection
 M.template_injection = template_injection
+M.inject_whiteboard = inject_whiteboard
 
 return M

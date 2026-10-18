@@ -99,3 +99,7 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0.10
   vim.g.neovide_cursor_short_animation_length = 0.05
 end
+-- User command
+vim.api.nvim_create_user_command("Note", function()
+  require("config.template").inject_whiteboard()
+end, { desc = "Inject 10 line of whiteboard." })
