@@ -16,6 +16,10 @@ local opts = {
     theme = "iceberg_dark",
     globalstatus = true,
     ignore_focus = { "terminal" },
+    disabled_filetypes = {
+      statusline = {},
+      winbar = { "dap-view" },
+    },
   },
   always_show_tabline = false,
   sections = {
@@ -48,7 +52,7 @@ local opts = {
         path = 1,
         cond = function()
           local buftype = vim.bo.buftype
-          return buftype ~= "terminal" and buftype ~= "help"
+          return buftype ~= "help"
         end,
       },
       {
@@ -99,11 +103,6 @@ local opts = {
           inactive = { fg = "#aaaaaa", bg = "#111111", gui = "italic" }, --[cite: 1]
         },
         separator = { left = "", right = "" },
-        cond = function()
-          local bufname = vim.fn.bufname
-          local buftype = vim.bo.buftype
-          return buftype ~= "terminal" and bufname ~= ""
-        end,
       },
     },
     lualine_z = {

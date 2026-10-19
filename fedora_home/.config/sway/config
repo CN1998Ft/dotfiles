@@ -130,6 +130,9 @@ exec_always fcitx5 -d
     # Start youtube
     bindsym $launch+y exec "xdg-open https://youtube.com"
 
+    # Start neovide
+    bindsym $launch+c exec "~/AppImages/neovide.AppImage"
+
     bindsym $launch+Shift+c exec grimshot save area
     bindsym $launch+Shift+p exec grim
     # Drag floating windows by holding down $mod and left mouse button.

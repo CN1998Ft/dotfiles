@@ -295,6 +295,10 @@ keybindings:
   - commands: ['shell-exec SnippingTool.exe']
     bindings: ['LWin+shift+c']
 
+  # Open neovide
+  - commands: ["shell-exec neovide"]
+    bindings: ['RWin+c']
+
   # Youtube
   - commands: ['shell-exec chrome.exe "https://youtube.com"']
     bindings: ['LWin+y', 'RWin+y']
