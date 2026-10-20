@@ -331,6 +331,15 @@ local function swap_indent_highlight()
   })
 end
 
+local function delete_package()
+  ---@type string
+  local prompt_message = [[Which package would you like to delete: ]]
+  vim.ui.input({ prompt = prompt_message }, function(input)
+    -- [!TODO:] could add more robust implementation where the input can be a string[]
+    vim.pack.del({ input }, { force = true })
+  end)
+end
+
 M.pick_config = pick_config
 M.pick_dir_file = pick_dir_file
 M.restart_session = restart_session
@@ -338,5 +347,6 @@ M.find_python = find_python
 M.execute_file = execute_file
 M.execute_file_with_args = execute_file_with_args
 M.swap_indent_highlight = swap_indent_highlight
+M.delete_package = delete_package
 
 return M

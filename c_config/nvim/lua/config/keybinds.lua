@@ -105,6 +105,9 @@ end, { desc = "pack list" })
 vim.keymap.set("n", "<leader>pu", function()
   vim.pack.update(nil, { force = true })
 end, { desc = "pack update all" })
+vim.keymap.set("n", "<leader>pd", function()
+  require("config.Fengtao").delete_package()
+end, { desc = "delete pack" })
 
 -- nvim-dap
 vim.keymap.set("n", "<leader>dc", function()

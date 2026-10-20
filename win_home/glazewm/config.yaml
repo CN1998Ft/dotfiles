@@ -297,7 +297,7 @@ keybindings:
 
   # Open neovide
   - commands: ["shell-exec neovide"]
-    bindings: ['RWin+c']
+    bindings: ['RWin+t', 'LWin+t']
 
   # Youtube
   - commands: ['shell-exec chrome.exe "https://youtube.com"']

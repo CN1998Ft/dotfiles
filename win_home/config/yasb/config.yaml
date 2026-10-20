@@ -32,7 +32,7 @@ bars:
       bottom: 4
       right: 4
     widgets:
-      left: 
+      left:
       - "home"
       - "glazewm_workspaces"
       - "active_window"
@@ -46,6 +46,8 @@ bars:
       - "volume"
       - "notifications"
       - "power_menu"
+
+
 widgets:
   media:
     type: "yasb.media.MediaWidget"
@@ -136,7 +138,7 @@ widgets:
         size: 14
         thickness: 2
         color: "#91d7e3"
-        background_color: "#242739" 
+        background_color: "#242739"
       callbacks:
         on_left: "toggle_label"
       memory_thresholds:
@@ -154,7 +156,7 @@ widgets:
         size: 14
         thickness: 2
         color: "#91d7e3"
-        background_color: "#242739" 
+        background_color: "#242739"
       update_interval: 2000
       callbacks:
         on_right: "do_nothing"
@@ -198,7 +200,7 @@ widgets:
       label: "{%H:%M:%S}"
       label_alt: "{%A, %d %B %Y %H:%M}"
       timezones: []
-      calendar: 
+      calendar:
         blur: true
         round_corners: true
         round_corners_type: "normal"
@@ -347,8 +349,8 @@ widgets:
   active_window:
     type: "yasb.active_window.ActiveWindowWidget"
     options:
-      label: "{win[title]}"
-      label_alt: "[class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
+      label: "{win[app_name]}"
+      label_alt: "[title='{win[title]}' class_name='{win[class_name]}' exe='{win[process][name]}' hwnd={win[hwnd]}]"
       label_no_window: ""
       label_icon: true
       label_icon_size: 16

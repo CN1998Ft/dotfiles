@@ -1,4 +1,5 @@
 vim.pack.add({ "https://github.com/nvim-lualine/lualine.nvim" })
+---@return string
 local function get_osicon()
   local os_name = vim.uv.os_uname().sysname
   local icon
@@ -6,6 +7,8 @@ local function get_osicon()
     icon = ""
   elseif os_name == "Linux" then
     icon = "󰣛"
+  elseif os_name == "Windows_NT" then
+    icon = ""
   end
   return icon
 end
@@ -72,11 +75,10 @@ local opts = {
         timeout = 500,
       },
       {
-        "fileformat",
-        symbols = {
-          unix = get_osicon(),
-        },
+        -- Get the icon showing
+        get_osicon,
       },
+      { "filesize" },
     },
     lualine_y = {
       {

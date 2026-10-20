@@ -47,6 +47,7 @@ local opts = {
     { "<leader>ci", icon = { icon = "󰉶", hl = "MiniIconsBlue" } },
     { "<leader>p", group = "vim.pack", icon = { icon = "󰏓", hl = "MiniIconsBlue" } },
     { "<leader>pu", icon = { icon = "󰏔", hl = "MiniIconsBlue" } },
+    { "<leader>pd", icon = { icon = "󱧙", hl = "MiniIconsRed" } },
     { "<leader>d", group = "debug", icon = { icon = "", hl = "MiniIconsGreen" } },
     { "<leader>dc", icon = { icon = "", hl = "MiniIconsBlue" } },
     { "<leader>dC", icon = { icon = "", hl = "MiniIconsGreen" } },
