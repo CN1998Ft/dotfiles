@@ -60,7 +60,23 @@ elseif vim.fn.has("win32") == 1 then
   vim.o.shell = "cmd.exe"
 end
 
--- smart cd
+-- Undodir and undofile
+local undodir = vim.fn.stdpath("data") .. "/undo"
+
+if vim.fn.isdirectory(undodir) == 0 then
+  vim.fn.mkdir(undodir, "p")
+end
+
+vim.opt.undodir = undodir
+vim.opt.undofile = true
+
+-- User command, do not know where to put yet.
+-- :Note, inject whiteboard
+vim.api.nvim_create_user_command("Note", function()
+  require("config.template").inject_whiteboard()
+end, { desc = "Inject 10 line of whiteboard." })
+
+-- :Z smart cd
 if vim.fn.executable("zoxide") == 1 then
   vim.api.nvim_create_user_command("Z", function(opts)
     -- 1. Use vim.fn.system() to execute zoxide and capture the returned string
@@ -80,27 +96,3 @@ if vim.fn.executable("zoxide") == 1 then
     desc = "zoxide query and cd to it",
   })
 end
-
--- Undodir and undofile
-local undodir = vim.fn.stdpath("data") .. "/undo"
-
-if vim.fn.isdirectory(undodir) == 0 then
-  vim.fn.mkdir(undodir, "p")
-end
-
-vim.opt.undodir = undodir
-vim.opt.undofile = true
-
--- neovide config
-if vim.g.neovide then
-  vim.o.guifont = "JetBrainsMonoNL Nerd Font:h13"
-  vim.g.neovide_cursor_vfx_particle_lifetime = 0.3
-  vim.g.neovide_cursor_trail_size = 0.1
-  vim.g.neovide_cursor_animation_length = 0.10
-  vim.g.neovide_cursor_short_animation_length = 0.05
-end
-
--- User command
-vim.api.nvim_create_user_command("Note", function()
-  require("config.template").inject_whiteboard()
-end, { desc = "Inject 10 line of whiteboard." })

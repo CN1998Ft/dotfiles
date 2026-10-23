@@ -83,7 +83,6 @@ xcopy /S /I /Y ".\win_home\okular" "%LOCALAPPDATA%\kxmlgui5\okular" >nul 2>nul
 :: psmux
 copy /Y ".\win_home\tmux.conf" "%USERPROFILE%\.tmux.conf" >nul 2>nul
 
-
 :: Clink
 if exist "%LOCALAPPDATA%\clink" rmdir /s /q "%LOCALAPPDATA%\clink" >nul 2>nul
 mkdir "%LOCALAPPDATA%\clink" 2>nul
