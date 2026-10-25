@@ -350,6 +350,7 @@ binds {
     Mod+Shift+Return hotkey-overlay-title="Open a Terminal: Ghostty" { spawn "foot"; }
     Mod+space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+B hotkey-overlay-title="Open Browser: Chromium" { spawn "chromium-browser"; }
+    Mod+T hotkey-overlay-title="Open Text Editor: Neovide" { spawn-sh "~/AppImages/neovide.AppImage"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.

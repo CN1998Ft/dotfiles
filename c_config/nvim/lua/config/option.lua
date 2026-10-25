@@ -8,6 +8,7 @@ vim.opt.signcolumn = "auto:1"
 vim.opt.conceallevel = 0
 vim.opt.concealcursor = ""
 vim.opt.swapfile = false
+vim.cmd([[colorscheme quiet]])
 
 -- Tab settings:
 vim.opt.smartindent = true

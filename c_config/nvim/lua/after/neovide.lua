@@ -6,15 +6,15 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0.10
   vim.g.neovide_cursor_short_animation_length = 0.05
   vim.g.neovide_scroll_animation_length = 0.1
-  vim.cmd([[colorscheme github_dark_high_contrast]])
+  vim.cmd([[colorscheme default]])
   -- ZZ save and restart in neovide instead of exiting it
   vim.keymap.set({ "n" }, "ZZ", function()
     vim.cmd("wa")
-    -- vim.cmd("restart!")
     vim.notify("  Files saved use :wq to exit Neovide ", vim.log.levels.INFO, {})
   end, { noremap = true, desc = " save files Neovide" })
   local whichkey = require("which-key")
   whichkey.add({
     { "ZZ", icon = { icon = "", hl = "MiniIconsOrange" } },
+    { "ZQ", icon = { icon = "", hl = "MiniIconsRed" }, desc = " Quit Neovide" },
   })
 end

@@ -89,7 +89,7 @@ local function find_python()
 end
 
 ---@return string[]|nil
-local function get_c_compile_cmd()
+local function get_build_cmd()
   if vim.fn.has("win32") == 1 and vim.uv.fs_stat("./build.bat") ~= nil then
     return { "build.bat" }
   elseif vim.fn.has("win32") == 1 and vim.uv.fs_stat("./build.ps1") ~= nil then
@@ -150,7 +150,7 @@ local function get_cmd_efm()
     end
     cmd = { "cmd.exe", "/c", file_to_execute }
   elseif filetype == "c" or filetype == "cpp" then
-    cmd = get_c_compile_cmd()
+    cmd = get_build_cmd()
     if not cmd then
       vim.notify("  No c/cpp build tool specified!", vim.log.levels.ERROR, {})
       return nil
@@ -161,8 +161,12 @@ local function get_cmd_efm()
       efm = efm_bash .. "," .. vim.o.errorformat
     end
   else
-    vim.notify(error_msg, vim.log.levels.ERROR, {})
-    return nil
+    vim.notify("  Searching build files ... ", vim.log.levels.INFO, {})
+    cmd = get_build_cmd()
+    if not cmd then
+      vim.notify(error_msg, vim.log.levels.ERROR, {})
+      return nil
+    end
   end
   cmd_efm_table["cmd"] = cmd
   cmd_efm_table["efm"] = efm
@@ -253,7 +257,7 @@ local function execute_file(input_args, gui)
   -- local fail_msg = " Build Execution Failed!  "
 
   vim.fn.setqflist({}, "r")
-  vim.notify("  Executing Build...", vim.log.levels.WARN, {})
+  vim.notify("  Executing Build ... ", vim.log.levels.WARN, {})
 
   local cmd_efm_table = get_cmd_efm()
   if cmd_efm_table == nil then
