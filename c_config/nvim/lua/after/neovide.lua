@@ -2,11 +2,11 @@
 if vim.g.neovide then
   vim.o.guifont = "JetBrainsMonoNL Nerd Font:h13"
   vim.g.neovide_cursor_vfx_particle_lifetime = 0.3
-  vim.g.neovide_cursor_trail_size = 0.1
+  vim.g.neovide_cursor_trail_size = 1.0
   vim.g.neovide_cursor_animation_length = 0.10
   vim.g.neovide_cursor_short_animation_length = 0.05
   vim.g.neovide_scroll_animation_length = 0.1
-  vim.cmd([[colorscheme default]])
+  vim.cmd([[colorscheme github_dark_high_contrast]])
   -- ZZ save and restart in neovide instead of exiting it
   vim.keymap.set({ "n" }, "ZZ", function()
     vim.cmd("wa")

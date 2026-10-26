@@ -93,6 +93,23 @@ vim.api.nvim_create_autocmd("InsertLeave", {
   end,
 })
 
+-- highlight redefine after change of the colorscheme
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "MiniTrailspace", { bg = "#e67e80", fg = "NONE", underline = false, undercurl = false })
+    vim.api.nvim_set_hl(
+      0,
+      "HighlightWhitespaces",
+      { bg = "#d699b6", fg = "NONE", underline = false, undercurl = false }
+    )
+    vim.api.nvim_set_hl(0, "NormalCursor", { fg = "#000000", bg = "#71b7ff" })
+    vim.api.nvim_set_hl(0, "InsertCursor", { fg = "#000000", bg = "#26cd4d" }) -- cyan
+    vim.api.nvim_set_hl(0, "VisualCursor", { fg = "#000000", bg = "#cb9eff" }) -- Magenta
+    vim.api.nvim_set_hl(0, "ReplaceCursor", { fg = "#000000", bg = "#ff9492" }) -- red
+  end,
+})
+
 -- Resize split when window is resized
 local resize_split = vim.api.nvim_create_augroup("resize_split", { clear = true })
 

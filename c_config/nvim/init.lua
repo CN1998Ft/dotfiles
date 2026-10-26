@@ -1,6 +1,7 @@
+require("config.autocmd")
 require("config/option")
 require("config.keybinds")
-require("config.autocmd")
+
 require("plugins.colorscheme")
 require("plugins.nvim-mini")
 require("plugins.lualine")
@@ -10,4 +11,5 @@ require("plugins.lsp")
 require("plugins.debugger")
 require("plugins.text_editing")
 require("plugins.explorer")
+
 require("after.neovide")
