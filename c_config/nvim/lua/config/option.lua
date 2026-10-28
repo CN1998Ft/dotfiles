@@ -21,10 +21,10 @@ vim.opt.softtabstop = 4
 -- Cursor
 vim.opt.termguicolors = true
 vim.opt.guicursor = {
-  "n-c:block-NormalCursor",
-  "i-ci-t:ver25-InsertCursor",
-  "v:block-VisualCursor",
-  "r-cr:hor10-ReplaceCursor",
+    "n-c:block-NormalCursor",
+    "i-ci-t:ver25-InsertCursor",
+    "v:block-VisualCursor",
+    "r-cr:hor10-ReplaceCursor",
 }
 vim.opt.cursorline = true
 
@@ -46,20 +46,20 @@ vim.opt.splitright = true
 
 -- platform specific
 if vim.fn.has("mac") == 1 and vim.env.KITTY_WINDOW_ID ~= nil then
-  vim.o.shell = "/bin/zsh"
+    vim.o.shell = "/bin/zsh"
 elseif vim.fn.has("mac") == 1 and vim.env.TERM_PROGRAM == "ghostty" then
-  vim.o.shell = "/opt/homebrew/bin/bash"
+    vim.o.shell = "/opt/homebrew/bin/bash"
 elseif vim.fn.has("Linux") == 1 then
-  vim.o.shell = "/usr/bin/bash"
+    vim.o.shell = "/usr/bin/bash"
 elseif vim.fn.has("win32") == 1 then
-  vim.o.shell = "cmd.exe"
+    vim.o.shell = "cmd.exe"
 end
 
 -- Undodir and undofile
 local undodir = vim.fn.stdpath("data") .. "/undo"
 
 if vim.fn.isdirectory(undodir) == 0 then
-  vim.fn.mkdir(undodir, "p")
+    vim.fn.mkdir(undodir, "p")
 end
 
 vim.opt.undodir = undodir
@@ -68,26 +68,26 @@ vim.opt.undofile = true
 -- User command, do not know where to put yet.
 -- :Note, inject whiteboard
 vim.api.nvim_create_user_command("Note", function()
-  require("config.template").inject_whiteboard()
+    require("config.template").inject_whiteboard()
 end, { desc = "Inject 10 line of whiteboard." })
 
 -- :Z smart cd
 if vim.fn.executable("zoxide") == 1 then
-  vim.api.nvim_create_user_command("Z", function(opts)
-    -- 1. Use vim.fn.system() to execute zoxide and capture the returned string
-    -- 2. vim.trim() removes trailing newlines or spaces from the path
-    local output = vim.fn.system({ "zoxide", "query", opts.args })
-    local path = vim.fs.normalize(vim.trim(output))
+    vim.api.nvim_create_user_command("Z", function(opts)
+        -- 1. Use vim.fn.system() to execute zoxide and capture the returned string
+        -- 2. vim.trim() removes trailing newlines or spaces from the path
+        local output = vim.fn.system({ "zoxide", "query", opts.args })
+        local path = vim.fs.normalize(vim.trim(output))
 
-    -- Check if zoxide successfully found a directory (exit code 0)
-    if vim.v.shell_error == 0 and path ~= "" then
-      vim.cmd("cd " .. path)
-      vim.notify("Changed directory to: " .. path, vim.log.levels.INFO)
-    else
-      vim.notify("Zoxide could not find a match for: " .. opts.args, vim.log.levels.ERROR)
-    end
-  end, {
-    nargs = 1,
-    desc = "zoxide query and cd to it",
-  })
+        -- Check if zoxide successfully found a directory (exit code 0)
+        if vim.v.shell_error == 0 and path ~= "" then
+            vim.cmd("cd " .. path)
+            vim.notify("Changed directory to: " .. path, vim.log.levels.INFO)
+        else
+            vim.notify("Zoxide could not find a match for: " .. opts.args, vim.log.levels.ERROR)
+        end
+    end, {
+        nargs = 1,
+        desc = "zoxide query and cd to it",
+    })
 end

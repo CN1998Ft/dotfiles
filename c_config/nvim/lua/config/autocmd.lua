@@ -2,14 +2,14 @@
 local trial_line_trim = vim.api.nvim_create_augroup("RemoveEmptyLineTrialSpace", { clear = true })
 
 vim.api.nvim_create_autocmd("BufWrite", {
-  desc = "Trim trail space after :w",
-  group = trial_line_trim,
-  callback = function()
-    ---@diagnostic disable-next-line: undefined-global
-    MiniTrailspace.trim()
-    ---@diagnostic disable-next-line: undefined-global
-    MiniTrailspace.trim_last_lines()
-  end,
+    desc = "Trim trail space after :w",
+    group = trial_line_trim,
+    callback = function()
+        ---@diagnostic disable-next-line: undefined-global
+        MiniTrailspace.trim()
+        ---@diagnostic disable-next-line: undefined-global
+        MiniTrailspace.trim_last_lines()
+    end,
 })
 
 -- mini.indentscope: enable only for Python
@@ -17,316 +17,313 @@ local indent_scope = vim.api.nvim_create_augroup("MiniIndentScope", { clear = tr
 
 -- Default only enabled with python files
 vim.api.nvim_create_autocmd("FileType", {
-  group = indent_scope,
-  pattern = "*",
-  callback = function(args)
-    vim.b[args.buf].miniindentscope_disable = vim.bo[args.buf].filetype ~= "python"
-  end,
+    group = indent_scope,
+    pattern = "*",
+    callback = function(args)
+        vim.b[args.buf].miniindentscope_disable = vim.bo[args.buf].filetype ~= "python"
+    end,
 })
 
 -- ColorScheme and Mini-indentscope
 vim.api.nvim_create_autocmd("ColorScheme", {
-  group = indent_scope,
-  pattern = "*",
-  callback = function()
-    -- Correct indent highlight
-    vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", {
-      fg = "#A7C080",
-      nocombine = true, -- Prevents blending with underlying line highlights
-    })
+    group = indent_scope,
+    pattern = "*",
+    callback = function()
+        -- Correct indent highlight
+        vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", {
+            fg = "#A7C080",
+            nocombine = true, -- Prevents blending with underlying line highlights
+        })
 
-    -- Incorrectly indented
-    vim.api.nvim_set_hl(0, "MiniIndentscopeSymbolOff", {
-      fg = "#F85552",
-      nocombine = true,
-    })
-  end,
+        -- Incorrectly indented
+        vim.api.nvim_set_hl(0, "MiniIndentscopeSymbolOff", {
+            fg = "#F85552",
+            nocombine = true,
+        })
+    end,
 })
 
 -- Cursor
 local restore_cursor = vim.api.nvim_create_augroup("RestoreCursor", { clear = true })
 
 vim.api.nvim_create_autocmd("BufReadPost", {
-  group = restore_cursor,
-  callback = function()
-    local line = vim.fn.line("'\"")
-    local last_line = vim.fn.line("$")
-    local ft = vim.bo.filetype
-    local is_diff = vim.wo.diff
+    group = restore_cursor,
+    callback = function()
+        local line = vim.fn.line("'\"")
+        local last_line = vim.fn.line("$")
+        local ft = vim.bo.filetype
+        local is_diff = vim.wo.diff
 
-    -- Logic: If the line is valid, not a commit/rebase/xxd, and not in diff mode
-    if line >= 1 and line <= last_line and ft ~= "gitcommit" and ft ~= "xxd" and ft ~= "gitrebase" and not is_diff then
-      vim.cmd('normal! g`"')
-    end
-  end,
+        -- Logic: If the line is valid, not a commit/rebase/xxd, and not in diff mode
+        if
+            line >= 1
+            and line <= last_line
+            and ft ~= "gitcommit"
+            and ft ~= "xxd"
+            and ft ~= "gitrebase"
+            and not is_diff
+        then
+            vim.cmd('normal! g`"')
+        end
+    end,
 })
 
 -- Highlight
 local highlight_group = vim.api.nvim_create_augroup("highlight_group", { clear = true })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
-  group = highlight_group,
-  desc = "Highlight selection on yank",
-  callback = function()
-    vim.hl.on_yank()
-  end,
+    group = highlight_group,
+    desc = "Highlight selection on yank",
+    callback = function()
+        vim.hl.on_yank()
+    end,
 })
 
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
-  group = highlight_group,
-  desc = "Highlight whitespaces",
-  pattern = "*",
-  callback = function()
-    vim.w.ws_match1 = vim.fn.matchadd("HighlightWhitespaces", [[^\s\+$]])
-  end,
+    group = highlight_group,
+    desc = "Highlight whitespaces",
+    pattern = "*",
+    callback = function()
+        vim.w.ws_match1 = vim.fn.matchadd("HighlightWhitespaces", [[^\s\+$]])
+    end,
 })
 
 vim.api.nvim_create_autocmd("InsertLeave", {
-  group = highlight_group,
-  pattern = "*",
-  callback = function()
-    -- Use pcall (protected call) to avoid errors if the match was already cleared
-    if vim.w.ws_match1 then
-      pcall(vim.fn.matchdelete, vim.w.ws_match1)
-      vim.w.ws_match1 = nil
-    end
-  end,
+    group = highlight_group,
+    pattern = "*",
+    callback = function()
+        -- Use pcall (protected call) to avoid errors if the match was already cleared
+        if vim.w.ws_match1 then
+            pcall(vim.fn.matchdelete, vim.w.ws_match1)
+            vim.w.ws_match1 = nil
+        end
+    end,
 })
 
 -- highlight redefine after change of the colorscheme
 vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  callback = function()
-    vim.api.nvim_set_hl(0, "MiniTrailspace", { bg = "#e67e80", fg = "NONE", underline = false, undercurl = false })
-    vim.api.nvim_set_hl(
-      0,
-      "HighlightWhitespaces",
-      { bg = "#d699b6", fg = "NONE", underline = false, undercurl = false }
-    )
-    vim.api.nvim_set_hl(0, "NormalCursor", { fg = "#000000", bg = "#71b7ff" })
-    vim.api.nvim_set_hl(0, "InsertCursor", { fg = "#000000", bg = "#26cd4d" }) -- cyan
-    vim.api.nvim_set_hl(0, "VisualCursor", { fg = "#000000", bg = "#cb9eff" }) -- Magenta
-    vim.api.nvim_set_hl(0, "ReplaceCursor", { fg = "#000000", bg = "#ff9492" }) -- red
-  end,
+    pattern = "*",
+    callback = function()
+        vim.api.nvim_set_hl(0, "MiniTrailspace", { bg = "#e67e80", fg = "NONE", underline = false, undercurl = false })
+        vim.api.nvim_set_hl(
+            0,
+            "HighlightWhitespaces",
+            { bg = "#d699b6", fg = "NONE", underline = false, undercurl = false }
+        )
+        vim.api.nvim_set_hl(0, "NormalCursor", { fg = "#000000", bg = "#71b7ff" })
+        vim.api.nvim_set_hl(0, "InsertCursor", { fg = "#000000", bg = "#26cd4d" }) -- cyan
+        vim.api.nvim_set_hl(0, "VisualCursor", { fg = "#000000", bg = "#cb9eff" }) -- Magenta
+        vim.api.nvim_set_hl(0, "ReplaceCursor", { fg = "#000000", bg = "#ff9492" }) -- red
+    end,
 })
 
 -- Resize split when window is resized
 local resize_split = vim.api.nvim_create_augroup("resize_split", { clear = true })
 
 vim.api.nvim_create_autocmd("VimResized", {
-  group = resize_split,
-  desc = "Resize split when window is resized",
-  callback = function()
-    local current_tab = vim.fn.tabpagenr()
-    vim.cmd("tabdo wincmd =")
-    vim.cmd("tabnext " .. current_tab)
-  end,
+    group = resize_split,
+    desc = "Resize split when window is resized",
+    callback = function()
+        local current_tab = vim.fn.tabpagenr()
+        vim.cmd("tabdo wincmd =")
+        vim.cmd("tabnext " .. current_tab)
+    end,
 })
 
 -- close certain filetypes with 'q'
 local simple_q = vim.api.nvim_create_augroup("simple_q", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-  group = simple_q,
-  pattern = {
-    -- Not exhaustive, only the one that I use, copied from LazyVim.
-    "checkhealth",
-    "help",
-    "nvim-pack",
-    "dap-view",
-    "dap-view-term",
-    "dap-repl",
-    "dap-disassembly",
-    "qf",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.schedule(function()
-      vim.keymap.set("n", "q", function()
-        vim.cmd("close")
-        pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
-      end, {
-        buffer = event.buf,
-        silent = true,
-        desc = "Quit buffer",
-      })
-    end)
-  end,
+    group = simple_q,
+    pattern = {
+        -- Not exhaustive, only the one that I use, copied from LazyVim.
+        "checkhealth",
+        "help",
+        "nvim-pack",
+        "dap-view",
+        "dap-view-term",
+        "dap-repl",
+        "dap-disassembly",
+        "qf",
+    },
+    callback = function(event)
+        vim.bo[event.buf].buflisted = false
+        vim.schedule(function()
+            vim.keymap.set("n", "q", function()
+                vim.cmd("close")
+                pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+            end, {
+                buffer = event.buf,
+                silent = true,
+                desc = "Quit buffer",
+            })
+        end)
+    end,
 })
 
 -- wrap and check for spell in text filetypes
 local wrap_text = vim.api.nvim_create_augroup("wrap_text", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-  group = wrap_text,
-  pattern = { "text", "plaintext", "typst", "gitcommit", "markdown", "tex", "bib" },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-    vim.opt_local.linebreak = true
-  end,
+    group = wrap_text,
+    pattern = { "text", "plaintext", "typst", "gitcommit", "markdown", "tex", "bib" },
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.spell = true
+        vim.opt_local.linebreak = true
+    end,
 })
 
 -- auto create dir when saving file without intermediate directory
 local inter_dir = vim.api.nvim_create_augroup("inter_dir_create", { clear = true })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  group = inter_dir,
-  callback = function(event)
-    if event.match:match("^%w%w+:[\\/][\\/]") then
-      return
-    end
-    local file = vim.uv.fs_realpath(event.match) or event.match
-    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
-  end,
+    group = inter_dir,
+    callback = function(event)
+        if event.match:match("^%w%w+:[\\/][\\/]") then
+            return
+        end
+        local file = vim.uv.fs_realpath(event.match) or event.match
+        vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+    end,
 })
 
 -- lua file specific autocmd
 local lua_file = vim.api.nvim_create_augroup("lua_file", { clear = true })
 
-vim.api.nvim_create_autocmd("FileType", {
-  group = lua_file,
-  pattern = { "lua" },
-  callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.softtabstop = 2
-  end,
-})
-
 vim.api.nvim_create_autocmd("BufWritePre", {
-  group = lua_file,
-  pattern = "*.lua",
-  callback = function(args)
-    vim.lsp.buf.format({
-      bufnr = args.buf,
-      async = false,
-      filter = function(client)
-        return client.name == "stylua"
-      end,
-    })
-  end,
+    group = lua_file,
+    pattern = "*.lua",
+    callback = function(args)
+        vim.lsp.buf.format({
+            bufnr = args.buf,
+            async = false,
+            filter = function(client)
+                return client.name == "stylua"
+            end,
+        })
+    end,
 })
 
 -- python file specific autocmd
 local py_file = vim.api.nvim_create_augroup("py_file", { clear = true })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  group = py_file,
-  pattern = "*.py",
-  callback = function(args)
-    vim.lsp.buf.format({
-      bufnr = args.buf,
-      async = false,
-      filter = function(client)
-        return client.name == "ruff"
-      end,
-    })
-  end,
+    group = py_file,
+    pattern = "*.py",
+    callback = function(args)
+        vim.lsp.buf.format({
+            bufnr = args.buf,
+            async = false,
+            filter = function(client)
+                return client.name == "ruff"
+            end,
+        })
+    end,
 })
 
 -- C/CPP file specific autocmd
 local c_cpp_group = vim.api.nvim_create_augroup("c_cpp_group", { clear = true })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  group = c_cpp_group,
-  pattern = {
-    "*.c",
-    "*.cpp",
-    "*.h",
-    "*.hpp",
-    "*.cc",
-    "*.hh",
-    "*.cxx",
-    "*.hxx",
-    "*.ino",
-  },
-  callback = function(args)
-    vim.lsp.buf.format({
-      bufnr = args.buf,
-      async = false,
-      filter = function(client)
-        return client.name == "clangd"
-      end,
-    })
-  end,
+    group = c_cpp_group,
+    pattern = {
+        "*.c",
+        "*.cpp",
+        "*.h",
+        "*.hpp",
+        "*.cc",
+        "*.hh",
+        "*.cxx",
+        "*.hxx",
+        "*.ino",
+    },
+    callback = function(args)
+        vim.lsp.buf.format({
+            bufnr = args.buf,
+            async = false,
+            filter = function(client)
+                return client.name == "clangd"
+            end,
+        })
+    end,
 })
 
 -- dosbatch file specific autocmd
 local dosbatch_auto_comment = vim.api.nvim_create_augroup("dosbatch_auto_comment", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-  group = dosbatch_auto_comment,
-  pattern = "dosbatch",
-  callback = function()
-    vim.bo.commentstring = ":: %s"
-  end,
+    group = dosbatch_auto_comment,
+    pattern = "dosbatch",
+    callback = function()
+        vim.bo.commentstring = ":: %s"
+    end,
 })
 
 -- auto update the treesitter parser
 local ts_update = vim.api.nvim_create_augroup("ts_update", { clear = true })
 
 vim.api.nvim_create_autocmd("PackChanged", {
-  group = ts_update,
-  desc = "Auto update the parsers when nvim-treesitter udpate",
-  callback = function(ev)
-    local name, kind = ev.data.spec.name, ev.data.kind
-    if name == "nvim-treesitter" and kind == "update" then
-      if not ev.data.active then
-        vim.cmd.packadd("nvim-treesitter")
-      end
-      vim.cmd("TSUpdate")
-    end
-  end,
+    group = ts_update,
+    desc = "Auto update the parsers when nvim-treesitter udpate",
+    callback = function(ev)
+        local name, kind = ev.data.spec.name, ev.data.kind
+        if name == "nvim-treesitter" and kind == "update" then
+            if not ev.data.active then
+                vim.cmd.packadd("nvim-treesitter")
+            end
+            vim.cmd("TSUpdate")
+        end
+    end,
 })
 
 -- Treesitter highlight apply
 local ts_hl = vim.api.nvim_create_augroup("ts_hl", { clear = true })
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  group = ts_hl,
-  callback = function(args)
-    local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
-    local parser_list = require("nvim-treesitter").get_installed()
-    if vim.list_contains(parser_list, buf_ft) then
-      vim.treesitter.start(args.buf)
-    elseif buf_ft == "sh" then
-      vim.treesitter.start(args.buf, "bash")
-    elseif buf_ft == "ps1" then
-      vim.treesitter.start(args.buf, "powershell")
-    elseif buf_ft == "tex" then
-      vim.treesitter.start(args.buf, "latex")
-    elseif buf_ft == "bib" then
-      vim.treesitter.start(args.buf, "bibtex")
-    end
-  end,
+    group = ts_hl,
+    callback = function(args)
+        local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+        local parser_list = require("nvim-treesitter").get_installed()
+        if vim.list_contains(parser_list, buf_ft) then
+            vim.treesitter.start(args.buf)
+        elseif buf_ft == "sh" then
+            vim.treesitter.start(args.buf, "bash")
+        elseif buf_ft == "ps1" then
+            vim.treesitter.start(args.buf, "powershell")
+        elseif buf_ft == "tex" then
+            vim.treesitter.start(args.buf, "latex")
+        elseif buf_ft == "bib" then
+            vim.treesitter.start(args.buf, "bibtex")
+        end
+    end,
 })
 
 -- template injection
 local template_inject = vim.api.nvim_create_augroup("template_inject", { clear = true })
 
 vim.api.nvim_create_autocmd("BufNewFile", {
-  group = template_inject,
-  pattern = {
-    "*.h",
-    "*.hpp",
-    "*.hh",
-    "*.hxx",
-  },
-  callback = function()
-    require("config.template").c_template_injection()
-  end,
+    group = template_inject,
+    pattern = {
+        "*.h",
+        "*.hpp",
+        "*.hh",
+        "*.hxx",
+    },
+    callback = function()
+        require("config.template").c_template_injection()
+    end,
 })
 
 vim.api.nvim_create_autocmd("BufNewFile", {
-  group = template_inject,
-  pattern = {
-    "*",
-  },
-  callback = function()
-    local bufName = vim.api.nvim_buf_get_name(0)
-    local extension = vim.fn.fnamemodify(bufName, ":e")
-    local filename = vim.fn.fnamemodify(bufName, ":t:r")
-    require("config.template").template_injection(filename, extension)
-  end,
+    group = template_inject,
+    pattern = {
+        "*",
+    },
+    callback = function()
+        local bufName = vim.api.nvim_buf_get_name(0)
+        local extension = vim.fn.fnamemodify(bufName, ":e")
+        local filename = vim.fn.fnamemodify(bufName, ":t:r")
+        require("config.template").template_injection(filename, extension)
+    end,
 })
