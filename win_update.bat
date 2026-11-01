@@ -1,9 +1,11 @@
+:: Author: Fengtao Zhang
+:: Last Edit: 01/11/2026, 02:03 PM
 @echo off
 setlocal enabledelayedexpansion
 
 :: Move to parent dir of the batch file
 cd /D "%~dp0"
-echo [I am currently in %cd%]
+echo [You are currently in %cd%]
 
 :: Check if scoop is installed
 echo [Checking if scoop is installed]

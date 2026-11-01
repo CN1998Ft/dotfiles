@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
+# Author: Fengtao Zhang
+# Last Edit: 01/11/2026, 02:02 PM
 
 # cd into the file dir first before any operation.
 cd "${0%/*}" > /dev/null 2>&1
+
+echo "[You are currently in $PWD]"
 
 # Determine the os.
 os_name=$(uname)
@@ -141,9 +145,25 @@ mac_install() {
     done
     max1="${#m_pkg[@]}"
     for ((i = 0; i < $max; i++)); do
-        brew install "${m_pkg[i]}"
+        brew install -y "${m_pkg[i]}"
     done
     brew update && brew upgrade -y && brew cleanup --prune=all
+}
+
+mac_default() {
+    # Some default settings for macos
+    echo "Change default settins for Macintosh ..."
+    defaults write -g AppleShowAllExtensions -bool true
+	defaults write com.apple.finder _FXShowPosixPathInTitle -bool false
+	defaults write com.apple.finder ShowStatusBar -bool false
+	defaults write com.apple.finder ShowPathbar -bool true
+    defaults write com.apple.dock autohide -bool true
+    defaults write com.apple.dock orientation -string left
+    defaults write com.apple.dock show-recents -bool false
+    defaults write com.apple.dock tilesize -int 48
+    defaults write com.apple.screencapture include-date -bool true
+    echo "[Done]: killing Dock and finder"
+    killall Dock Finder
 }
 
 fedora_node_name_regex='^.*[Ff]edora.*$'
@@ -152,6 +172,7 @@ if [[ "$node_name" == "Darwin" ]]; then
         mac_install
         stow --restow -t ~ mac_home
         stow --restow -t ~/.config c_config
+        mac_default
 elif [[ "$node_name" =~ $fedora_node_name_regex ]]; then
         fedora_install
         appimage_setup

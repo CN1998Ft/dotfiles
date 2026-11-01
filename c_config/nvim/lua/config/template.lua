@@ -127,8 +127,24 @@ local function inject_whiteboard()
     vim.cmd(string.format("normal! %djzz", whiteboard_length / 2 + 1))
 end
 
+local function inject_me()
+    ---@type integer
+    local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
+    ---@type string
+    local commentstring = vim.bo.commentstring
+    ---@type string
+    local author = "Author: Fengtao Zhang"
+    ---@type string
+    local last_edit = "Last Edit: " .. os.date("%d/%m/%Y") .. ", " .. os.date("%I:%M %p")
+    local author_comment = commentstring:gsub("%%s", author)
+    vim.fn.append(cursor_line + 0, author_comment)
+    local last_edit_comment = commentstring:gsub("%%s", last_edit)
+    vim.fn.append(cursor_line + 1, last_edit_comment)
+end
+
 M.c_template_injection = c_template_injection
 M.template_injection = template_injection
 M.inject_whiteboard = inject_whiteboard
+M.inject_me = inject_me
 
 return M

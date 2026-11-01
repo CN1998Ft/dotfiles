@@ -71,6 +71,10 @@ vim.api.nvim_create_user_command("Note", function()
     require("config.template").inject_whiteboard()
 end, { desc = "Inject 10 line of whiteboard." })
 
+vim.api.nvim_create_user_command("Me", function()
+    require("config.template").inject_me()
+end, { desc = "Inject me." })
+
 -- :Z smart cd
 if vim.fn.executable("zoxide") == 1 then
     vim.api.nvim_create_user_command("Z", function(opts)

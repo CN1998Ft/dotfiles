@@ -13,3 +13,4 @@ require("plugins.text_editing")
 require("plugins.explorer")
 
 require("after.neovide")
+-- require("after.theme")
