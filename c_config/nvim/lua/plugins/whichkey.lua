@@ -42,6 +42,7 @@ local opts = {
         { "<leader>ct", icon = { icon = "", hl = "MiniIconsGreen" } },
         { "<leader>cd", icon = { icon = "", hl = "MiniIconsPurple" } },
         { "<leader>cn", icon = { icon = "󰚗", hl = "MiniIconsAzure" } },
+        { "<leader>ca", icon = { icon = "", hl = "MiniIconsBlue" } },
         { "<leader>cr", icon = { icon = "", hl = "MiniIconsAzure" } },
         { "<leader>cx", icon = { icon = "󰱠", hl = "MiniIconsBlue" } },
         { "<leader>ci", icon = { icon = "󰉶", hl = "MiniIconsBlue" } },

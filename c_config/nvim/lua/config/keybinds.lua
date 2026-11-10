@@ -83,6 +83,7 @@ vim.keymap.set("n", "<leader>ct", "<Cmd>Inspect<CR>", { desc = "treesitter Inspe
 vim.keymap.set("n", "<leader>cT", "<Cmd>InspectTree<CR>", { desc = "treesitter InspectTree" })
 vim.keymap.set("n", "<leader>cd", "<Cmd>lua vim.diagnostic.setqflist()<CR>", { desc = "Diagnostics list" })
 vim.keymap.set("n", "<leader>cn", "<Cmd>Note<CR>", { desc = "Whiteboard" })
+vim.keymap.set("n", "<leader>ca", "<Cmd>Me<CR>", { desc = "About me" })
 vim.keymap.set("n", "<leader>cr", function()
     require("config.Fengtao").execute_file_with_args()
 end, { desc = "run with arguments" })
