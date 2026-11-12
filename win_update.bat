@@ -25,7 +25,7 @@ if not exist "%USERPROFILE%\scoop\buckets\extras" (
 set package=bat cloc eza fastfetch fd ffmpeg fzf git glazewm neovim
 set package1=ripgrep starship yasb zoxide miktex pandoc glow mpv
 set package2=jq poppler resvg imagemagick pwsh luajit nodejs uv
-set package3=clink yt-dlp 7zip psmux neovide okular draw.io
+set package3=clink yt-dlp 7zip psmux neovide okular draw.io bottom
 
 for %%p in (%package% %package1% %package2% %package3%) do (
     if not exist "%USERPROFILE%\scoop\apps\%%p" (

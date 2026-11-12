@@ -48,9 +48,9 @@ c_pkg=(
     uv
     kitty
     yazi
+    btop
 )
 f_pkg=(
-    # eza and nerd fonts need to use curl
     chromium-browser
     tldr
     okular
@@ -87,6 +87,7 @@ m_pkg=(
     node
     hiddenbar
     ghostty
+    status-trio
 )
 
 # define the fedora install function

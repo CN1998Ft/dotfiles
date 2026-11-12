@@ -10,6 +10,7 @@ config-version = 2
 after-startup-command = [
     # 'exec-and-forget borders active_color=#F57D26 inactive_color=#5C6A72 width=6.0',
     'exec-and-forget borders',
+    'exec-and-forget open -a Status\ Trio.app',
     # 'exec-and-forget sketchybar',
     'layout --workspace 1 --root h_accordion'  # Use 'v_accordion' if you prefer vertical stacking
 ]

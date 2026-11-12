@@ -1,4 +1,6 @@
 theme = GitHub Dark High Contrast
+custom-shader = shaders/cursor_tail.glsl
+custom-shader-animation = always
 
 command = /opt/homebrew/bin/bash
 
