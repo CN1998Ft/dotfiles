@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Vial
+Type=Application
+Exec=bash -c "~/AppImages/Vial.AppImage"
+Terminal=false
+NoDisplay=false
+Categories=Utility;
+Version=1.0
+Icon=/home/fengtao/.local/share/icons/Vial.png
+X-AppImage-Version=.glibc2.3.4

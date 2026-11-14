@@ -100,7 +100,7 @@ show_marks yes
 focus_follows_mouse no
 
 for_window [workspace="1"] layout tabbed
-for_window [workspace="10"] floating enable, border normal
+# for_window [workspace="10"] floating enable, border normal
 for_window [title=".*_FloatingWindow.*"] floating enable, border normal
 for_window [class="Vtk"] floating enable, border normal
 for_window [class="Matplotlib"] floating enable, border normal
@@ -146,7 +146,11 @@ exec_always fcitx5 -d
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec "~/.config/rofi/exit_sway"
+
+    # rofi show windows
+    bindsym $launch+Tab exec rofi -show window
 #
 # Moving around:
 #

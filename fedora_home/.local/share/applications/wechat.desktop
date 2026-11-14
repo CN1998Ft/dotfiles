@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Wechat
+GenericName=GUI Wechat
+Exec=bash -c "~/AppImages/Wechat.AppImage"
+Terminal=false
+Keywords=Communication;Social;
+Icon=/home/fengtao/.local/share/icons/wechat.png

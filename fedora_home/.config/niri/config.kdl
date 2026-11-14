@@ -352,6 +352,7 @@ binds {
     Mod+B hotkey-overlay-title="Open Browser: Chromium" { spawn "chromium-browser"; }
     Mod+T hotkey-overlay-title="Open Text Editor: Neovide" { spawn-sh "~/AppImages/neovide.AppImage"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Mod+Tab hotkey-overlay-title="Show opened window list" { spawn-sh "rofi -show window";}
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.

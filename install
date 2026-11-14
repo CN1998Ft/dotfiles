@@ -117,9 +117,13 @@ appimage_setup() {
             > /dev/null 2>&1
     fi
     if [[ ! -x ~/AppImages/drawio.AppImage ]]; then
+        drawio_url=$(curl -s https://api.github.com/repos/jgraph/drawio-desktop/releases/latest | grep "browser_download_url.*x86_64.*AppImage" | cut -d '"' -f 4)
+        wget "$drawio_url" -O drawio.AppImage > /dev/null 2>&1
+    fi
+    if [[ ! -x ~/AppImages/Wechat.AppImage ]]; then
         wget \
-            "https://github.com/jgraph/drawio-desktop/releases/download/v30.3.14/drawio-x86_64-30.3.14.AppImage" \
-            -O drawio.AppImage > /dev/null 2>&1
+            "https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.AppImage" \
+            -O Wechat.AppImage > /dev/null 2>&1
     fi
     chmod u+x *.AppImage
     mv -f *.AppImage ~/AppImages/

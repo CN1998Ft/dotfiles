@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Exit sway session with rofi.
+answer=$(echo -e "Yes\nNo" | rofi -dmenu -p "Exit Sway?" -mesg "This will end your Wayland session.")
+
+if [[ "$answer" == "Yes" ]]; then
+    swaymsg exit
+fi
